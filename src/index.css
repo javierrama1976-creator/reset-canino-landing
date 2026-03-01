@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #f97316; /* Orange for CTA */
+  --color-secondary: #22c55e; /* Green for success/CTA */
+  --color-dark: #0f172a;
+  --color-light: #ffffff;
+  --color-neutral: #f8fafc;
+  --color-neutral-alt: #f1f5f9;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-slate-900 antialiased;
+  }
+}
