@@ -17,9 +17,33 @@ const ExitIntentModal = () => {
         sessionStorage.setItem("exit_intent_shown", "true");
       }
     };
+    const handleScroll = () => {
+  const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  const docHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+
+  if (docHeight <= 0) return;
+
+  const progress = scrollTop / docHeight;
+
+  if (
+    window.innerWidth < 1024 &&
+    progress >= 0.6 &&
+    !sessionStorage.getItem("exit_intent_shown")
+  ) {
+    setIsVisible(true);
+    sessionStorage.setItem("exit_intent_shown", "true");
+  }
+};
 
     document.addEventListener("mouseleave", handleMouseLeave);
-    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+document.addEventListener("scroll", handleScroll);
+
+return () => {
+  document.removeEventListener("mouseleave", handleMouseLeave);
+  document.removeEventListener("scroll", handleScroll);
+};
+
   }, []);
 
   if (!isVisible) return null;
