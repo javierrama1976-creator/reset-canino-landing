@@ -189,6 +189,9 @@ export default function App() {
             </div>
 
             <CTAButton className="mb-6" href="https://mascotaequilibrada.com/cart/57475776184707:1">Acceder ahora</CTAButton>
+            <p className="text-center text-xs text-slate-300 mt-2">
+  🛡️ 7 días de garantía – Prueba sin riesgo
+</p>
             
             <div className="flex items-center gap-4 text-slate-400 text-sm">
               <div className="flex -space-x-2">
