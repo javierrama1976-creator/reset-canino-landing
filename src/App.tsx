@@ -164,7 +164,7 @@ export default function App() {
               Método de Reeducación Emocional
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Para dueños que <span className="text-primary">aman a su perro</span> pero están al límite
+              Para dueños que <span className="text-primary">aman a su perro</span> pero ya no saben qué más hacer
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium">
               Reduce la ansiedad por separación sin castigos ni gritos. En pocos días notarás un perro más calmado cuando sales de casa, sin destrozos ni ladridos constantes.
