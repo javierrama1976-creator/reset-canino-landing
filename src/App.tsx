@@ -164,15 +164,17 @@ export default function App() {
               Método de Reeducación Emocional
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Para dueños que <span className="text-primary">aman a su perro</span> pero ya no saben qué más hacer
+              No es rebeldía. Es <span className="text-primary">ansiedad por separación</span>.
             </h1>
             <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium">
-              Reduce la ansiedad por separación sin castigos ni gritos. En pocos días notarás un perro más calmado cuando sales de casa, sin destrozos ni ladridos constantes.
+              Si tu perro entra en pánico cuando lo dejas solo, aquí tienes el método paso a paso para devolverle la calma.
             </p>
             <p className="text-md text-slate-400 mb-8 italic">
-              Recupera la paz en tu hogar con un método práctico diseñado para transformar el caos en calma, sin importar cuántos juguetes o cursos hayas probado ya.
+              Recupera la paz en casa con un método práctico para transformar destrozos y ladridos en calma — sin castigos.
             </p>
-            
+            <p className="text-sm text-slate-400 mb-6">
+  ✅ 7 días de garantía • ⭐ 5.0 valorado por dueños • Acceso inmediato
+</p>
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-slate-400 line-through text-xl">Antes 29,97€</span>
