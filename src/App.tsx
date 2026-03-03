@@ -348,7 +348,7 @@ export default function App() {
           </div>
           
           <FadeIn delay={0.4} className="mt-16">
-            <CTAButton className="mx-auto" primary={true} href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero empezar el método Reset Canino</CTAButton>
+            <CTAButton className="mx-auto" primary={true} href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero devolverle la calma</CTAButton>
           </FadeIn>
         </div>
       </Section>
@@ -546,7 +546,7 @@ export default function App() {
               </ul>
             </div>
             
-            <CTAButton className="mx-auto scale-110" primary={true} href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero empezar el método Reset Canino</CTAButton>
+            <CTAButton className="mx-auto scale-110" primary={true} href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero devolverle la calma</CTAButton>
           </FadeIn>
         </div>
       </Section>
