@@ -437,111 +437,131 @@ export default function App() {
         </div>
       </Section>
 
-     {/* BLOQUE EXTRA - BONOS - OPTIMIZADO (TRÁFICO FRÍO) */}
+     {/* BLOQUE EXTRA - BONOS - NEUTRAL */}
 <Section className="bg-neutral">
   <FadeIn className="text-center">
     <h2 className="text-3xl md:text-5xl font-bold mb-3">
-      Incluido hoy: <span className="text-primary">3 Bonos</span> para cortar el caos más rápido
+      Y eso no es todo… Llévate estos{" "}
+      <span className="text-primary">Bonos</span> para cortar el caos más rápido
     </h2>
 
-    <p className="text-slate-600 text-base md:text-lg max-w-3xl mx-auto mb-10">
-      Estos bonos están pensados para dueños que viven el momento más duro:
-      <span className="font-semibold"> ladridos, puerta arañada, muebles rotos </span>
-      y la sensación de “no puedo más”.
-      <span className="font-semibold"> Hoy van GRATIS </span> con tu compra.
+    <p className="text-lg text-slate-600 max-w-3xl mx-auto mb-10">
+      Pensados para el peor momento: <b>ladridos</b>, <b>puerta arañada</b>, <b>muebles rotos</b> y la
+      sensación de “no puedo más”. <span className="text-green-700 font-bold">Hoy van GRATIS</span> con tu compra.
     </p>
 
-    <div className="max-w-6xl mx-auto rounded-3xl border border-slate-200 bg-white/70 backdrop-blur p-6 md:p-10 shadow-2xl">
-      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold mb-6">
-        🎁 Bonos de implementación inmediata (tráfico frío)
-      </div>
+    <div className="max-w-6xl mx-auto rounded-3xl border border-slate-200 bg-white/70 shadow-xl overflow-hidden">
+      <div className="px-6 md:px-10 pt-8 pb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold text-sm mb-4">
+          🎁 Bonos VIP incluidos hoy
+        </div>
 
-      <h3 className="text-2xl md:text-3xl font-bold mb-2">
-        Hoy recibes <span className="text-primary">3 Bonos VIP</span>
-      </h3>
-      <p className="text-slate-600 mb-10">
-        Para acelerar resultados <span className="font-semibold">desde el primer día</span>.
-      </p>
+        <h3 className="text-2xl md:text-3xl font-extrabold mb-1">
+          Hoy recibes <span className="text-primary">3 Bonos VIP</span>
+        </h3>
+        <p className="text-slate-600 mb-8">para acelerar resultados desde el primer día</p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-        {/* BONO 1 */}
-        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-sm font-bold text-slate-500">BONO 1</div>
-            <div className="px-3 py-1 rounded-full bg-green-100 text-green-700 font-bold text-xs">
-              HOY GRATIS
+        <div className="grid md:grid-cols-3 gap-6 text-left">
+          {/* BONO 1 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center text-xl">
+                  🧯
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-500">BONO 1</p>
+                  <p className="text-lg font-extrabold leading-snug">
+                    Protocolo “Me voy de casa”
+                  </p>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                HOY GRATIS
+              </span>
+            </div>
+
+            <p className="text-slate-600 leading-relaxed mb-4">
+              Qué hacer <b>antes de salir</b> para reducir el pánico: menos ladridos, menos arañazos
+              y menos destrozos desde el inicio.
+            </p>
+
+            <div className="flex items-center gap-2 text-sm font-bold">
+              <span className="line-through text-slate-400">12,97€</span>
+              <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
 
-          <div className="text-xl font-bold mb-2">
-            Protocolo de Emergencia “Me voy de casa”
-          </div>
-          <p className="text-slate-600">
-            Qué hacer <span className="font-semibold">antes de salir</span> para reducir el pánico:
-            menos ladridos, menos arañazos y menos destrozos desde el inicio.
-          </p>
+          {/* BONO 2 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center text-xl">
+                  🎧
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-500">BONO 2</p>
+                  <p className="text-lg font-extrabold leading-snug">
+                    Audio guiado (15 min): “Calma antes de salir”
+                  </p>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                HOY GRATIS
+              </span>
+            </div>
 
-          <div className="mt-5 flex items-center gap-2 text-sm text-slate-500">
-            <span className="line-through">12,97€</span>
-            <span className="font-bold text-green-700">HOY GRATIS</span>
-          </div>
-        </div>
+            <p className="text-slate-600 leading-relaxed mb-4">
+              Un audio corto para aplicar en rutina y empezar a reeducar el estado emocional del perro
+              <b> sin gritos ni castigos</b>.
+            </p>
 
-        {/* BONO 2 */}
-        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-sm font-bold text-slate-500">BONO 2</div>
-            <div className="px-3 py-1 rounded-full bg-green-100 text-green-700 font-bold text-xs">
-              HOY GRATIS
+            <div className="flex items-center gap-2 text-sm font-bold">
+              <span className="line-through text-slate-400">9,97€</span>
+              <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
 
-          <div className="text-xl font-bold mb-2">
-            Audio Guiado (15 min): “Calma antes de salir”
-          </div>
-          <p className="text-slate-600">
-            Un audio corto para aplicar <span className="font-semibold">en rutina</span> y empezar a
-            reeducar el estado emocional del perro sin gritos ni castigos.
-          </p>
+          {/* BONO 3 */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center text-xl">
+                  🎬
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-500">BONO 3</p>
+                  <p className="text-lg font-extrabold leading-snug">
+                    Video resumen (5 min): “Qué hacer HOY”
+                  </p>
+                </div>
+              </div>
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
+                HOY GRATIS
+              </span>
+            </div>
 
-          <div className="mt-5 flex items-center gap-2 text-sm text-slate-500">
-            <span className="line-through">9,97€</span>
-            <span className="font-bold text-green-700">HOY GRATIS</span>
-          </div>
-        </div>
+            <p className="text-slate-600 leading-relaxed mb-4">
+              Si tienes poco tiempo, te deja clarísimo lo esencial para empezar hoy y evitar el ciclo:
+              <b> te vas → ladra → rompe → vuelves con culpa</b>.
+            </p>
 
-        {/* BONO 3 */}
-        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-sm font-bold text-slate-500">BONO 3</div>
-            <div className="px-3 py-1 rounded-full bg-green-100 text-green-700 font-bold text-xs">
-              HOY GRATIS
+            <div className="flex items-center gap-2 text-sm font-bold">
+              <span className="line-through text-slate-400">9,97€</span>
+              <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
-
-          <div className="text-xl font-bold mb-2">
-            Video Resumen (5 min): “Qué hacer HOY”
-          </div>
-          <p className="text-slate-600">
-            Si tienes poco tiempo, esto te deja claro lo esencial para empezar hoy y evitar
-            el típico ciclo: te vas → ladra → rompe → vuelves con culpa.
-          </p>
-
-          <div className="mt-5 flex items-center gap-2 text-sm text-slate-500">
-            <span className="line-through">9,97€</span>
-            <span className="font-bold text-green-700">HOY GRATIS</span>
-          </div>
         </div>
-      </div>
 
-      <div className="mt-10 text-center">
-        <p className="text-xl md:text-2xl font-bold">
-          Valor total: <span className="line-through text-slate-500">32,91€</span>
-          <span className="text-green-700 ml-2">HOY GRATIS</span>
-        </p>
-        <p className="text-slate-600 mt-2">
-          Te los llevas sin coste adicional. Solo pagas <span className="font-bold">19,97€</span> por todo.
-        </p>
+        <div className="mt-8 text-center">
+          <p className="text-xl font-extrabold">
+            Valor total: <span className="line-through text-slate-400">32,91€</span>{" "}
+            <span className="text-green-700">HOY GRATIS</span>
+          </p>
+          <p className="text-slate-600 mt-1">
+            Te los llevas sin coste adicional. Solo pagas <b>19,97€</b> por todo.
+          </p>
+        </div>
       </div>
     </div>
   </FadeIn>
