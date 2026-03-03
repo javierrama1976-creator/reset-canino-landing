@@ -80,18 +80,23 @@ return () => {
           <Zap className="w-8 h-8 text-secondary" />
         </div>
 
-        <h2 className="text-3xl font-bold text-white mb-4">Espera un momento 🐶</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">No es rebeldía. Es ansiedad por separación. 🐶</h2>
         
         <p className="text-lg text-slate-300 mb-10 leading-relaxed">
-          Estabas a solo 1 clic de empezar a calmar a tu perro sin gritos ni castigos. ¿Seguro que quieres irte ahora?
-        </p>
+          
+
+Si cierras ahora, seguirá entrando en pánico cada vez que lo dejes solo.
+
+Pero puedes empezar hoy mismo a devolverle la calma — sin castigos y con 7 días de garantía.
+
+</p>
 
         <div className="flex flex-col gap-4">
           <button 
             onClick={handleConfirm}
             className="w-full py-4 bg-secondary hover:bg-green-600 text-white font-bold text-xl rounded-full shadow-lg shadow-secondary/20 transition-all transform hover:scale-[1.02] active:scale-[0.98]"
           >
-            Sí, quiero empezar ahora
+            Quiero devolverle la calma
           </button>
           
           <button 
@@ -221,7 +226,7 @@ export default function App() {
               <div className="relative aspect-[3/4] bg-slate-800">
                 <img 
                   src="https://i.postimg.cc/yxr02NC3/Diseno-sin-titulo-(10).png" 
-                  alt="Libro Digital Reset Canino" 
+                  alt="Libro Digital Quiero devolverle la calma" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                   fetchPriority="high"
@@ -283,7 +288,7 @@ export default function App() {
       <Section className="bg-dark text-white">
         <FadeIn>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Lo que vas a desbloquear con <span className="text-primary">Reset Canino</span>
+            Lo que vas a desbloquear con <span className="text-primary">Quiero devolverle la calma</span>
           </h2>
         </FadeIn>
         
