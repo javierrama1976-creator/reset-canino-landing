@@ -437,22 +437,97 @@ export default function App() {
         </div>
       </Section>
 
-      {/* BLOQUE EXTRA - BONOS - NEUTRAL */}
-      <Section className="bg-neutral">
-        <FadeIn className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">Y eso no es todo... Llévate estos <span className="text-primary">Bonos Exclusivos</span></h2>
-          <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-            <img 
-              src="https://i.postimg.cc/NjN42TGM/Whats-App-Image-2026-02-27-at-21-32-00.jpg" 
-              alt="Bonos Exclusivos Reset Canino" 
-              className="w-full h-auto"
-              referrerPolicy="no-referrer"
-              loading="lazy"
-              decoding="async"
-            />
+     {/* BLOQUE EXTRA - BONOS - NEUTRAL */}
+<Section className="bg-neutral">
+  <FadeIn className="text-center">
+    <h2 className="text-3xl md:text-4xl font-bold mb-6">
+      Y eso no es todo… Llévate estos <span className="text-primary">Bonos</span> Exclusivos
+    </h2>
+
+    <p className="text-slate-600 max-w-2xl mx-auto mb-10">
+      Incluidos <span className="font-bold">GRATIS</span> con tu compra (sin coste adicional).
+    </p>
+
+    <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 md:p-10 text-left">
+      <div className="text-center mb-8">
+        <p className="text-xl md:text-2xl font-bold">
+          Hoy recibes <span className="text-primary">3 Bonos VIP</span>
+        </p>
+        <p className="text-slate-600 mt-1">para acelerar resultados desde el primer día</p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-lg">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">🧩</div>
+            <div>
+              <p className="text-sm font-bold text-slate-500">Bono 1</p>
+              <p className="text-lg font-extrabold leading-snug">
+                Errores invisibles al usar juguetes
+              </p>
+            </div>
           </div>
-        </FadeIn>
-      </Section>
+          <p className="text-slate-600 leading-relaxed">
+            Descubre qué estás haciendo sin darte cuenta que puede estar empeorando la ansiedad
+            y cómo corregirlo rápido.
+          </p>
+          <p className="mt-5 inline-flex items-center gap-2 text-sm font-bold px-3 py-2 rounded-full bg-white border border-slate-200">
+            <span className="line-through text-slate-500">12,97€</span>
+            <span className="text-green-700">HOY GRATIS</span>
+          </p>
+        </div>
+
+        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-lg">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">🎧</div>
+            <div>
+              <p className="text-sm font-bold text-slate-500">Bono 2</p>
+              <p className="text-lg font-extrabold leading-snug">
+                Audio (15 min) para aplicar antes de salir
+              </p>
+            </div>
+          </div>
+          <p className="text-slate-600 leading-relaxed">
+            Guía lista para escuchar y aplicar mientras paseas o te preparas para irte.
+          </p>
+          <p className="mt-5 inline-flex items-center gap-2 text-sm font-bold px-3 py-2 rounded-full bg-white border border-slate-200">
+            <span className="line-through text-slate-500">9,97€</span>
+            <span className="text-green-700">HOY GRATIS</span>
+          </p>
+        </div>
+
+        <div className="bg-slate-50 rounded-2xl border border-slate-200 p-6 shadow-lg">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">🎬</div>
+            <div>
+              <p className="text-sm font-bold text-slate-500">Bono 3</p>
+              <p className="text-lg font-extrabold leading-snug">
+                Video resumen (5 min) para empezar hoy
+              </p>
+            </div>
+          </div>
+          <p className="text-slate-600 leading-relaxed">
+            La versión visual y concisa del método para aplicarlo incluso con poco tiempo.
+          </p>
+          <p className="mt-5 inline-flex items-center gap-2 text-sm font-bold px-3 py-2 rounded-full bg-white border border-slate-200">
+            <span className="line-through text-slate-500">9,97€</span>
+            <span className="text-green-700">HOY GRATIS</span>
+          </p>
+        </div>
+      </div>
+
+      <div className="text-center mt-10">
+        <p className="text-lg md:text-xl font-bold">
+          Valor total: <span className="line-through text-slate-500">32,91€</span>{" "}
+          <span className="text-green-700">— HOY GRATIS</span>
+        </p>
+        <p className="mt-2 text-slate-700">
+          Te los llevas sin coste adicional. Solo pagas <span className="font-extrabold">19,97€</span> por todo.
+        </p>
+      </div>
+    </div>
+  </FadeIn>
+</Section>
 
       {/* BLOQUE EXTRA - TESTIMONIOS - DARK */}
       <Section className="bg-dark text-white border-y border-white/10">
