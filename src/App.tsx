@@ -288,7 +288,7 @@ export default function App() {
       <Section className="bg-dark text-white">
         <FadeIn>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
-            Lo que vas a desbloquear con <span className="text-primary">Quiero devolverle la calma</span>
+            Lo que vas a desbloquear con <span className="text-primary">Reset Canino</span>
           </h2>
         </FadeIn>
         
