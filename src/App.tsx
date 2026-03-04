@@ -171,29 +171,14 @@ export default function App() {
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
               No es rebeldía. Es <span className="text-primary">ansiedad por separación</span>.
             </h1>
-            <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium">
-              Si tu perro entra en pánico cuando lo dejas solo, aquí tienes el método paso a paso para devolverle la calma.
-            </p>
-            <p className="text-md text-slate-400 mb-8 italic">
-              Recupera la paz en casa con un método práctico para transformar destrozos y ladridos en calma — sin castigos.
-            </p>
+           <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium">
+  Si tu perro entra en pánico cuando lo dejas solo, aquí tienes un método paso a paso para ayudarlo a recuperar la calma incluso cuando no estás en casa.
+</p>
+           
             <p className="text-sm text-slate-400 mb-6">
   ✅ 7 días de garantía • ⭐ 5.0 valorado por dueños • Acceso inmediato
 </p>
-            <div className="mb-10">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-slate-400 line-through text-xl">Antes 29,97€</span>
-                <span className="bg-secondary/20 text-secondary px-3 py-1 rounded-full text-sm font-bold animate-bounce">OFERTA POR TIEMPO LIMITADO</span>
-              </div>
-              <div className="text-5xl font-bold text-white mb-2">Hoy solo 19,97€</div>
-              <div className="flex flex-col gap-1 mb-4">
-                <p className="text-primary text-sm font-bold uppercase tracking-wider">🚀 Oferta de Lanzamiento</p>
-                <p className="text-slate-400 text-xs">Precio Especial por tiempo limitado (Subirá a 29,97€)</p>
-              </div>
-              <p className="text-secondary text-sm font-bold flex items-center gap-2">
-                <Zap className="w-4 h-4 fill-secondary" /> ¡Últimas horas con este precio especial!
-              </p>
-            </div>
+           
 
             <CTAButton className="mb-6" href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero devolverle la calma</CTAButton>
             <p className="text-center text-xs text-slate-300 mt-2">
@@ -225,13 +210,22 @@ export default function App() {
               {/* This is the eBook Mockup Container */}
               <div className="relative aspect-[3/4] bg-slate-800">
                 <img 
-                  src="https://i.postimg.cc/yxr02NC3/Diseno-sin-titulo-(10).png" 
-                  alt="Libro Digital Quiero devolverle la calma" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                  fetchPriority="high"
-                  decoding="async"
-                />
+                {/* Fondo emocional */}
+<img
+  src="/dog-anxiety.jpg"
+  alt="Perro con ansiedad por separación"
+  className="absolute inset-0 w-full h-full object-cover opacity-80"
+/>
+
+{/* Capa oscura para que el texto/badge se lea bien */}
+<div className="absolute inset-0 bg-black/25" />
+
+{/* Ebook encima */}
+<img
+  src="/reset-canino-mockup.png"
+  alt="Reset Canino — Ebook"
+  className="relative z-10 w-full h-full object-contain p-6 drop-shadow-2xl"
+/>
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent"></div>
                 
                 {/* Book Spine Effect */}
