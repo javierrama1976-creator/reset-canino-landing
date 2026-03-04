@@ -169,10 +169,13 @@ export default function App() {
               Método de Reeducación Emocional
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              No es rebeldía. Es <span className="text-primary">ansiedad por separación</span>.
-            </h1>
+              Tu perro no está siendo “malo”… <span className="text-primary">está entrando en pánico cuando te vas.</span>
            <p className="text-lg md:text-xl text-slate-300 mb-8 font-medium">
-  Si tu perro entra en pánico cuando lo dejas solo, aquí tienes un método paso a paso para ayudarlo a recuperar la calma incluso cuando no estás en casa.
+  Descubre el método Reset Canino que ya está ayudando a dueños a eliminar la ansiedad por separación y volver a tener un hogar tranquilo.
+</p>
+
+<p className="text-md text-slate-400 mb-6">
+Cuando cierras la puerta, tu perro no sabe si vas a volver.
 </p>
            
             <p className="text-sm text-slate-400 mb-6">
