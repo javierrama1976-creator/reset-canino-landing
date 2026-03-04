@@ -224,7 +224,7 @@ export default function App() {
 <img
   src="/reset-canino-mockup.png"
   alt="Reset Canino — Ebook"
-  className="relative z-10 w-full h-full object-contain p-6 drop-shadow-2xl"
+  className="relative z-10 w-[70%] mx-auto object-contain drop-shadow-2xl"
 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent"></div>
                 
