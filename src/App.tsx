@@ -188,18 +188,6 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
   🛡️ 7 días de garantía – Prueba sin riesgo
 </p>
             
-            <div className="flex items-center gap-4 text-slate-400 text-sm">
-              <div className="flex -space-x-2">
-                {[1,2,3,4].map(i => (
-                  <img 
-                    key={i} 
-                    src={`https://i.pravatar.cc/100?img=${i+10}`} 
-                    className="w-8 h-8 rounded-full border-2 border-dark" 
-                    alt="User" 
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ))}
               </div>
               <p>Cientos de dueños ya han aplicado este método</p>
             </div>
