@@ -204,19 +204,10 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
 <img
 src="/dog-anxiety-hero.jpeg"
   alt="Perro con ansiedad por separación"
-  className="absolute inset-0 w-full h-full object-cover opacity-80"
+  className="w-full h-auto object-cover opacity-80"
 />
 
-{/* Capa oscura para que el texto/badge se lea bien */}
 
-
-
-              
-    
-            
-            {/* Glow effects */}
-            <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary rounded-full blur-[120px] opacity-20 animate-pulse"></div>
-            <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-secondary rounded-full blur-[120px] opacity-20 animate-pulse"></div>
           </FadeIn>
         </div>
       </Section>
