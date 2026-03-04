@@ -223,17 +223,7 @@ src="/dog-anxiety-hero.jpeg"
 {/* Capa oscura para que el texto/badge se lea bien */}
 <div className="absolute inset-0 bg-black/25" />
 
-{/* Ebook encima */}
-<img
-  src="/reset-canino-mockup.png"
-  alt="Reset Canino — Ebook"
-  className="relative z-10 w-[70%] mx-auto object-contain drop-shadow-2xl"
-/>
-                <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent"></div>
-                
-                {/* Book Spine Effect */}
-                <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-r from-black/40 to-transparent"></div>
-              </div>
+
               
               {/* Badge on image */}
               <div className="absolute top-6 right-6 bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg flex items-center gap-2 z-20">
