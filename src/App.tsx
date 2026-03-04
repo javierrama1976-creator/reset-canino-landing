@@ -474,7 +474,7 @@ src="/dog-anxiety-hero.jpeg"
             </p>
 
             <div className="flex items-center gap-2 text-sm font-bold">
-              <span className="line-through text-slate-400">17€</span>
+              <span className="line-through text-slate-400">19€</span>
               <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
@@ -504,7 +504,7 @@ src="/dog-anxiety-hero.jpeg"
             </p>
 
             <div className="flex items-center gap-2 text-sm font-bold">
-              <span className="line-through text-slate-400">19€</span>
+              <span className="line-through text-slate-400">17€</span>
               <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
@@ -523,10 +523,41 @@ src="/dog-anxiety-hero.jpeg"
                   </p>
                 </div>
               </div>
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800 border border-green-200">
-                HOY GRATIS
-              </span>
-            </div>
+              {/* SUPER BONO IA */}
+<div className="mt-10 bg-blue-50 border border-blue-200 rounded-2xl p-8 shadow-sm">
+
+<h3 className="text-2xl font-bold mb-4">🎁 SUPER BONO ESPECIAL</h3>
+
+<p className="mb-4">
+Al adquirir <b>Reset Canino</b> recibirás acceso a un <b>Asistente Inteligente con IA</b>
+que te acompañará mientras aplicas el método.
+</p>
+
+<p className="mb-4">
+Podrás preguntarle cualquier duda sobre:
+</p>
+
+<ul className="mb-4 space-y-2">
+<li>✔ Cómo aplicar los ejercicios correctamente</li>
+<li>✔ Qué hacer si tu perro sigue ladrando</li>
+<li>✔ Cómo adaptar el método a tu caso</li>
+<li>✔ Resolver cualquier duda sobre el comportamiento de tu perro</li>
+</ul>
+
+<p className="mb-4 font-semibold">
+Disponible 24 horas al día, 7 días a la semana.
+</p>
+
+<p className="mb-6">
+Es como tener un entrenador canino personal acompañándote durante todo el proceso.
+</p>
+
+<div className="text-xl font-bold">
+Valor real: <span className="line-through">39€</span>
+<span className="text-green-600 ml-2">HOY GRATIS</span>
+</div>
+
+</div>
 
             <p className="text-slate-600 leading-relaxed mb-4">
               Si tienes poco tiempo, te deja clarísimo lo esencial para empezar hoy y evitar el ciclo:
@@ -534,7 +565,7 @@ src="/dog-anxiety-hero.jpeg"
             </p>
 
             <div className="flex items-center gap-2 text-sm font-bold">
-              <span className="line-through text-slate-400">9,97€</span>
+              <span className="line-through text-slate-400">19€</span>
               <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
@@ -573,7 +604,7 @@ Es como tener un entrenador canino personal acompañándote durante todo el proc
 </p>
 
 <p className="font-bold">
-Valor de este bono: $39
+Valor de este bono: $39€
 </p>
 
 <p className="text-green-600 font-bold mt-2">
@@ -582,20 +613,20 @@ Pero hoy lo recibes GRATIS con tu acceso a Reset Canino.
 
 <div className="mt-8 text-center">
 
-<p className="text-lg">Programa Reset Canino → $49</p>
+<p className="text-lg">Programa Reset Canino → $49€</p>
 
-<p className="text-lg">Bonus Rutina Anti Ansiedad → $19</p>
-<p className="text-lg">Bonus Juegos Anti Estrés → $17</p>
-<p className="text-lg">Bonus Guía Salidas Tranquilas → $19</p>
+<p className="text-lg">Bonus Rutina Anti Ansiedad → $19€</p>
+<p className="text-lg">Bonus Audio guiado (15 min):Calma antes de salir → $17€</p>
+<p className="text-lg">Bonus Video resumen(5 min): → $19€</p>
 
-<p className="text-lg font-bold">🎁 Asistente Inteligente IA → $39</p>
+<p className="text-lg font-bold">🎁 Asistente Inteligente IA → $39€</p>
 
 <hr className="my-4"/>
 
-<p className="text-lg">Valor total real: $143</p>
+<p className="text-lg">Valor total real: $143€</p>
 
 <p className="text-xl font-bold mt-2">
-Pero hoy no pagarás $143
+Pero hoy no pagarás $143€
 </p>
 
 <p className="text-lg mt-2">
@@ -603,7 +634,7 @@ Hoy puedes acceder a todo por solo:
 </p>
 
 <p className="text-3xl font-extrabold text-green-600 mt-2">
-$19.97
+$19.97€
 </p>
 
 </div>
