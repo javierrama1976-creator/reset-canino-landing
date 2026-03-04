@@ -209,7 +209,7 @@ export default function App() {
             <div className="relative z-10 rounded-r-lg overflow-hidden shadow-[20px_20px_60px_rgba(0,0,0,0.5)] transform transition-all duration-700 group-hover:rotate-y-[-5deg] group-hover:translate-x-2">
               {/* This is the eBook Mockup Container */}
               <div className="relative aspect-[3/4] bg-slate-800">
-                <img 
+               
                 {/* Fondo emocional */}
 <img
   src="/dog-anxiety.jpg"
