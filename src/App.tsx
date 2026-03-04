@@ -484,7 +484,7 @@ src="/dog-anxiety-hero.jpeg"
             </p>
 
             <div className="flex items-center gap-2 text-sm font-bold">
-              <span className="line-through text-slate-400">12,97€</span>
+              <span className="line-through text-slate-400">17€</span>
               <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
@@ -514,7 +514,7 @@ src="/dog-anxiety-hero.jpeg"
             </p>
 
             <div className="flex items-center gap-2 text-sm font-bold">
-              <span className="line-through text-slate-400">9,97€</span>
+              <span className="line-through text-slate-400">19€</span>
               <span className="text-green-700">HOY GRATIS</span>
             </div>
           </div>
@@ -549,7 +549,74 @@ src="/dog-anxiety-hero.jpeg"
             </div>
           </div>
         </div>
+<div className="mt-10 bg-blue-50 border border-blue-200 rounded-2xl p-8 shadow-sm">
 
+<h3 className="text-2xl font-bold mb-4">
+🎁 SUPER BONO ESPECIAL
+</h3>
+
+<p className="mb-4">
+Al adquirir Reset Canino, recibirás acceso a un asistente inteligente exclusivo que te acompañará durante todo el proceso.
+</p>
+
+<p className="mb-4">
+Podrás usarlo para:
+</p>
+
+<ul className="mb-4 space-y-2">
+<li>✔ resolver cualquier duda sobre el método</li>
+<li>✔ adaptar los ejercicios a tu perro</li>
+<li>✔ recibir orientación paso a paso</li>
+<li>✔ obtener ayuda cuando la necesites</li>
+</ul>
+
+<p className="mb-4">
+Disponible 24 horas al día, 7 días a la semana.
+</p>
+
+<p className="mb-4">
+Es como tener un entrenador canino personal acompañándote durante todo el proceso.
+</p>
+
+<p className="mb-4">
+💡 Este asistente fue creado específicamente para complementar el método Reset Canino y ayudarte a obtener mejores resultados.
+</p>
+
+<p className="font-bold">
+Valor de este bono: $39
+</p>
+
+<p className="text-green-600 font-bold mt-2">
+Pero hoy lo recibes GRATIS con tu acceso a Reset Canino.
+</p>
+
+<div className="mt-8 text-center">
+
+<p className="text-lg">Programa Reset Canino → $49</p>
+
+<p className="text-lg">Bonus Rutina Anti Ansiedad → $19</p>
+<p className="text-lg">Bonus Juegos Anti Estrés → $17</p>
+<p className="text-lg">Bonus Guía Salidas Tranquilas → $19</p>
+
+<p className="text-lg font-bold">🎁 Asistente Inteligente IA → $39</p>
+
+<hr className="my-4"/>
+
+<p className="text-lg">Valor total real: $143</p>
+
+<p className="text-xl font-bold mt-2">
+Pero hoy no pagarás $143
+</p>
+
+<p className="text-lg mt-2">
+Hoy puedes acceder a todo por solo:
+</p>
+
+<p className="text-3xl font-extrabold text-green-600 mt-2">
+$19.97
+</p>
+
+</div>
         <div className="mt-8 text-center">
           <p className="text-xl font-extrabold">
             Valor total: <span className="line-through text-slate-400">32,91€</span>{" "}
