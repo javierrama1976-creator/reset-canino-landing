@@ -195,11 +195,11 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
           
           <FadeIn delay={0.2} className="relative group perspective-1000">
             {/* Table Surface Effect */}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-[120%] h-4 bg-black/20 blur-xl rounded-full"></div>
             
-            <div className="relative z-10 rounded-r-lg overflow-hidden shadow-[20px_20px_60px_rgba(0,0,0,0.5)] transform transition-all duration-700 group-hover:rotate-y-[-5deg] group-hover:translate-x-2">
+            
+            <div className="relative z-10 overflow-hidden">
               {/* This is the eBook Mockup Container */}
-              <div className="relative aspect-[3/4] bg-slate-800">
+              <div className="relative aspect-[3/4]">
                
                 {/* Fondo emocional */}
 <img
@@ -213,12 +213,7 @@ src="/dog-anxiety-hero.jpeg"
 
 
               
-              {/* Badge on image */}
-              <div className="absolute top-6 right-6 bg-primary text-white px-4 py-2 rounded-lg font-bold text-sm shadow-lg flex items-center gap-2 z-20">
-                <BookOpen className="w-4 h-4" />
-                LIBRO DIGITAL
-              </div>
-            </div>
+    
             
             {/* Glow effects */}
             <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary rounded-full blur-[120px] opacity-20 animate-pulse"></div>
