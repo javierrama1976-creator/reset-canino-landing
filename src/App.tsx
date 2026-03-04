@@ -709,7 +709,7 @@ $19.97€
             
             <div className="bg-white/5 p-8 rounded-3xl mb-12 text-left border border-white/10">
               <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-white">
-                <BookOpen className="text-primary" /> Acceso inmediato al eBook completo Reset Canino:
+                
               </h3>
               <ul className="grid sm:grid-cols-2 gap-4">
                 <li className="flex items-center gap-3 font-medium text-slate-200"><CheckCircle2 className="text-primary w-5 h-5" /> Método completo paso a paso</li>
