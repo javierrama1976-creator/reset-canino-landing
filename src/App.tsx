@@ -212,7 +212,7 @@ export default function App() {
                
                 {/* Fondo emocional */}
 <img
-  src="/dog-door-anxiety.jpg.jpeg"
+  "/dog-door-anxiety.jpg.jpeg"
   alt="Perro con ansiedad por separación"
   className="absolute inset-0 w-full h-full object-cover opacity-80"
 />
