@@ -209,7 +209,7 @@ src="/dog-anxiety-hero.jpeg"
 />
 
 {/* Capa oscura para que el texto/badge se lea bien */}
-<div className="absolute inset-0 bg-black/25" />
+
 
 
               
