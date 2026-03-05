@@ -201,11 +201,6 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
 <div className="relative">
                
                 {/* Fondo emocional */}
-<img
-src="/dog-anxiety-hero.jpeg"
-  alt="Perro con ansiedad por separación"
-  className="w-full h-auto object-cover opacity-80"
-/>
 
 
           </FadeIn>
