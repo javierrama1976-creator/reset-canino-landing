@@ -11,6 +11,9 @@
   <link rel="dns-prefetch" href="//mascotaequilibrada.com">
   <link rel="preconnect" href="https://mascotaequilibrada.com" crossorigin>
 
+  <!-- (Opcional) Preload de hero si ya tienes la imagen final -->
+  <link rel="preload" as="image" href="/img/hero.webp" imagesrcset="/img/hero.webp" />
+
   <style>
     :root{
       --bg:#ffffff;
@@ -24,13 +27,13 @@
       --ctaText:#ffffff;
       --ok:#0f766e;
       --warn:#b45309;
-
       --container: 980px;
       --radius: 14px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -43,7 +46,6 @@
 
     a{color:inherit}
     img{max-width:100%; height:auto; display:block}
-
     .container{max-width:var(--container); margin:0 auto; padding:0 18px}
     .section{padding:54px 0}
     .section.muted{background:var(--muted)}
@@ -84,7 +86,7 @@
       border-radius:12px;
       background:rgba(255,106,0,.06);
       color:#3b2a1a;
-      font-weight:600;
+      font-weight:700;
     }
 
     .card{
@@ -109,10 +111,7 @@
     }
 
     .checklist{margin:14px 0 0; padding:0; list-style:none; display:grid; gap:10px;}
-    .checklist li{
-      display:flex; gap:10px; align-items:flex-start;
-      color:var(--text);
-    }
+    .checklist li{display:flex; gap:10px; align-items:flex-start; color:var(--text);}
     .check{
       width:22px; height:22px; border-radius:7px;
       display:grid; place-items:center;
@@ -121,6 +120,7 @@
       flex:0 0 auto;
       font-weight:900;
     }
+
     .subnote{font-size:13px; color:var(--sub)}
     .mutedText{color:var(--sub)}
     .center{text-align:center}
@@ -142,7 +142,7 @@
       background:var(--cta);
       color:var(--ctaText);
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.01em;
       border:1px solid rgba(0,0,0,.06);
       box-shadow: 0 12px 24px rgba(255,106,0,.25);
@@ -180,14 +180,9 @@
       background:#fff;
       box-shadow: var(--shadow);
     }
-    .heroMedia .ph{
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, rgba(255,106,0,.10), rgba(15,118,110,.10));
-      display:grid; place-items:center;
-      color:rgba(20,22,26,.55);
-      font-weight:700;
-      padding:12px;
-      text-align:center;
+    .heroMedia img{
+      width:100%;
+      height:auto;
     }
 
     .offer{
@@ -215,7 +210,7 @@
       line-height:1;
     }
     .smallCaps{
-      font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--sub); font-weight:800
+      font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--sub); font-weight:900
     }
 
     .gift{
@@ -228,7 +223,6 @@
       color:#7c2d12;
     }
 
-    /* Credible urgency (no timer) */
     .urgencyBar{
       padding:14px 16px;
       border:1px dashed rgba(180,83,9,.35);
@@ -243,6 +237,7 @@
     .urgencyBar strong{color:var(--warn)}
     .urgencyBar .note{font-size:13px; color:var(--sub); margin-top:4px}
 
+    /* Sticky mobile CTA */
     .sticky{
       position:fixed;
       left:0; right:0; bottom:0;
@@ -256,10 +251,7 @@
       justify-content:space-between;
       z-index:50;
     }
-    .sticky .mini{
-      display:flex; flex-direction:column; gap:2px;
-      min-width: 140px;
-    }
+    .sticky .mini{display:flex; flex-direction:column; gap:2px; min-width: 140px;}
     .sticky .mini .p{font-weight:900; color:var(--text)}
     .sticky .mini .s{font-size:12px; color:var(--sub)}
     .sticky .btn{min-width: 0; width: 100%; padding:14px 14px}
@@ -272,30 +264,26 @@
       overflow:hidden;
       border:1px solid var(--border);
       background:#fff;
+      min-height: 220px;
     }
     .media .ph{aspect-ratio: 16/9; background:linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.02))}
 
     .cv{ content-visibility: auto; contain-intrinsic-size: 900px; }
 
-    .reveal{
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .55s ease, transform .55s ease;
-      will-change: opacity, transform;
-    }
-    .reveal.is-visible{ opacity:1; transform: translateY(0); }
-    .reveal.fade{ transform:none; }
-    .reveal.left{ transform: translateX(-14px); }
-    .reveal.right{ transform: translateX(14px); }
-    .reveal.zoom{ transform: scale(.98); }
+    /* Reveal */
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease; will-change:opacity,transform;}
+    .reveal.is-visible{opacity:1; transform:translateY(0);}
+    .reveal.fade{transform:none;}
+    .reveal.left{transform:translateX(-14px);}
+    .reveal.right{transform:translateX(14px);}
+    .reveal.zoom{transform:scale(.98);}
     @media (prefers-reduced-motion: reduce){
-      .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+      html{scroll-behavior:auto}
+      .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
     }
 
     .miniProofCard{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
+      display:flex; gap:10px; align-items:flex-start;
       padding:12px 14px;
       border:1px solid var(--border);
       border-radius:14px;
@@ -305,7 +293,6 @@
     .miniProofCard b{display:block; margin-bottom:2px}
     .star{color:#f59e0b; font-weight:900}
 
-    /* Psychological trigger block */
     .psy{
       border:2px solid rgba(15,118,110,.20);
       background: linear-gradient(180deg, rgba(15,118,110,.06), rgba(255,255,255,1));
@@ -317,7 +304,6 @@
       margin-bottom:10px;
     }
 
-    /* Proof screenshots grid */
     .shot{
       border-radius:14px;
       border:1px solid var(--border);
@@ -325,16 +311,7 @@
       background:#fff;
       box-shadow: var(--shadow);
     }
-    .shot .ph{
-      aspect-ratio: 4/3;
-      background: linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.02));
-      display:grid;
-      place-items:center;
-      text-align:center;
-      padding:14px;
-      color:rgba(20,22,26,.55);
-      font-weight:800;
-    }
+    .shot img{width:100%; height:auto;}
     .shot .cap{
       padding:12px 14px;
       border-top:1px solid var(--border);
@@ -342,18 +319,23 @@
       color:var(--sub);
     }
 
-    /* Modal (popup) */
-    dialog.modal{
+    /* Modal compatible (sin <dialog>) */
+    .modalOverlay{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.45);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:14px;
+      z-index:80;
+    }
+    .modalOverlay.is-open{display:flex;}
+    .modalBox{
       width:min(560px, calc(100% - 24px));
-      border:none;
+      background:#fff;
       border-radius: 18px;
-      padding:0;
       box-shadow: 0 30px 80px rgba(0,0,0,.25);
       overflow:hidden;
-    }
-    dialog::backdrop{
-      background: rgba(0,0,0,.45);
-      backdrop-filter: blur(2px);
     }
     .modalHead{
       padding:16px 18px;
@@ -376,7 +358,6 @@
       cursor:pointer;
     }
     .modalBody .btn{width:100%; min-width:0}
-    .modalBody .subnote{margin-top:10px}
   </style>
 </head>
 
@@ -388,7 +369,7 @@
       <div class="p">19,97€</div>
       <div class="s">Pago único · Acceso inmediato</div>
     </div>
-    <a class="btn" data-cta="sticky" href="https://mascotaequilibrada.com/cart/57475776184707:1">Empezar ahora</a>
+    <a class="btn" data-cta="sticky" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">Empezar ahora</a>
   </div>
 
   <!-- HERO -->
@@ -400,14 +381,12 @@
 
           <h1 class="reveal">Tu perro no destruye por rebeldía…<br>entra en pánico cuando te vas.</h1>
 
-          <!-- Optimized subheadline (claridad + mecanismo + tiempo) -->
           <p class="lead reveal">
             Un <strong>protocolo simple (10–15 min/día)</strong> de rutinas y regulación emocional para reducir
             <strong>ladridos, destrucción y ansiedad por separación</strong> — <strong>sin castigos</strong>.
             Empieza a notar señales desde la <strong>primera semana</strong>.
           </p>
 
-          <!-- "Para quién" muy temprano (ClickBank pattern) -->
           <div class="card soft mt14 reveal">
             <strong>Ideal si tu perro:</strong>
             <div class="grid cards2 mt14">
@@ -427,18 +406,16 @@
           <div class="empathy reveal">Cuando cierras la puerta, tu perro no sabe si vas a volver.</div>
 
           <div class="ctaRow reveal fade">
-            <a class="btn" data-cta="hero" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
+            <a class="btn" data-cta="hero" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
             <a class="btn secondary" href="#oferta">Ver oferta</a>
           </div>
 
-          <!-- Reduce fricción: "qué recibes" en 3 bullets -->
           <div class="trustRow reveal fade" aria-label="Qué recibes">
             <span>📘 PDF + Plan 7 días</span>
             <span>🎧 Audioguía 15 min</span>
             <span>🤖 Asistente IA (link) 24/7</span>
           </div>
 
-          <!-- Mini proof (mantén, pero sin “inventar” números/estrellas) -->
           <div class="grid miniProof mt18" aria-label="Prueba social rápida">
             <div class="miniProofCard reveal">
               <div class="star">★</div>
@@ -472,21 +449,23 @@
         </div>
 
         <div class="heroMedia" aria-label="Imagen emocional del hero">
-          <!-- Reemplaza este placeholder por tu imagen real -->
-          <div class="ph">
-            <div>
-              Imagen HERO: perro mirando la puerta<br>
-              (casa levemente desordenada)
-              <div class="mutedText mt8">Reemplaza por /img/hero.webp</div>
-            </div>
-          </div>
+          <picture>
+            <source srcset="/img/hero.webp" type="image/webp">
+            <img
+              src="/img/hero.webp"
+              alt="Perro mirando la puerta (ansiedad por separación)"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
         </div>
 
       </div>
     </div>
   </header>
 
-  <!-- PROBLEMA / IDENTIFICACIÓN -->
+  <!-- PROBLEMA -->
   <section id="problema" class="section muted cv">
     <div class="container">
       <div class="reveal">
@@ -518,7 +497,7 @@
     </div>
   </section>
 
-  <!-- BLOQUE PSICOLÓGICO (conversion trigger) -->
+  <!-- BLOQUE PSICOLÓGICO -->
   <section id="bloque-psico" class="section cv">
     <div class="container">
       <div class="card psy reveal">
@@ -550,7 +529,7 @@
           <strong>Lo que sí funciona:</strong>
           <span class="mutedText"> estructura + regulación + repetición diaria (10–15 min) para enseñar calma real.</span>
           <div class="ctaRow mt14">
-            <a class="btn" data-cta="psy" href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero el plan de 7 días</a>
+            <a class="btn" data-cta="psy" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero el plan de 7 días</a>
             <div class="subnote">Acceso inmediato · Pago único · Garantía 7 días</div>
           </div>
         </div>
@@ -558,7 +537,7 @@
     </div>
   </section>
 
-  <!-- PARA QUIÉN ES (dedicada) -->
+  <!-- PARA QUIÉN -->
   <section id="para-quien" class="section muted cv">
     <div class="container">
       <h2 class="reveal">¿Para quién es Reset Canino? (y para quién NO)</h2>
@@ -589,13 +568,13 @@
     </div>
   </section>
 
-  <!-- ROMPER CREENCIA (mejorado) -->
+  <!-- ROMPER CREENCIA -->
   <section class="section cv">
     <div class="container">
       <div class="grid cards2">
         <div>
           <h2 class="reveal">No necesita más estímulos… necesita aprender a regular su mente.</h2>
-          <p class="lead reveal">Esto es contraintuitivo, pero es lo que más desbloquea resultados: menos “activación”, más calma real.</p>
+          <p class="lead reveal">Menos “activación”, más calma real. Este cambio mental sube conversiones porque se siente diferente a lo típico.</p>
 
           <div class="card soft mt14 reveal">
             <div class="lineItem"><span>Más estímulos</span><span class="mutedText">→ más activación</span></div>
@@ -606,7 +585,7 @@
           <p class="mt14 reveal"><strong>Funciona incluso</strong> si ya probaste entrenadores, tutoriales o trucos sin resultados.</p>
 
           <div class="ctaRow reveal fade">
-            <a class="btn" data-cta="belief" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
+            <a class="btn" data-cta="belief" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
           </div>
           <div class="trustRow reveal fade">
             <span>🛡️ Garantía 7 días</span>
@@ -658,57 +637,52 @@
     </div>
   </section>
 
-  <!-- PRUEBA (grid screenshots) -->
+  <!-- PRUEBA (capturas reales) -->
   <section id="prueba" class="section cv">
     <div class="container">
       <h2 class="reveal">Resultados reales (capturas)</h2>
-      <p class="lead reveal">
-        Añade aquí <strong>capturas reales</strong> (WhatsApp/IG/Correo) o fotos “antes/después”.
-        Este bloque suele ser de los que más sube el CVR en frío.
-      </p>
+      <p class="lead reveal">Pon aquí WhatsApp/IG/Correo (nombre oculto). Este bloque suele ser top-3 de conversión en tráfico frío.</p>
 
       <div class="grid shots mt18" aria-label="Grid de capturas">
-        <!-- Reemplaza placeholders por imágenes reales -->
         <figure class="shot reveal left">
-          <div class="ph">Screenshot #1<br><span class="mutedText">Inserta imagen real</span></div>
-          <figcaption class="cap">Ejemplo: “Dejó de arañar la puerta en 6 días.”</figcaption>
+          <img src="/img/shot1.webp" alt="Captura real 1 (testimonio)" loading="lazy" decoding="async" />
+          <figcaption class="cap">“Dejó de arañar la puerta en 6 días.”</figcaption>
         </figure>
 
         <figure class="shot reveal">
-          <div class="ph">Screenshot #2<br><span class="mutedText">Inserta imagen real</span></div>
-          <figcaption class="cap">Ejemplo: “Menos ladridos cuando salgo.”</figcaption>
+          <img src="/img/shot2.webp" alt="Captura real 2 (testimonio)" loading="lazy" decoding="async" />
+          <figcaption class="cap">“Menos ladridos cuando salgo.”</figcaption>
         </figure>
 
         <figure class="shot reveal right">
-          <div class="ph">Screenshot #3<br><span class="mutedText">Inserta imagen real</span></div>
-          <figcaption class="cap">Ejemplo: “Por fin se relaja y duerme más.”</figcaption>
+          <img src="/img/shot3.webp" alt="Captura real 3 (testimonio)" loading="lazy" decoding="async" />
+          <figcaption class="cap">“Por fin se relaja y duerme más.”</figcaption>
         </figure>
 
         <figure class="shot reveal left">
-          <div class="ph">Screenshot #4<br><span class="mutedText">Inserta imagen real</span></div>
-          <figcaption class="cap">Ejemplo: “Rutina de 10–15 min, fácil.”</figcaption>
+          <img src="/img/shot4.webp" alt="Captura real 4 (testimonio)" loading="lazy" decoding="async" />
+          <figcaption class="cap">“Rutina de 10–15 min, fácil.”</figcaption>
         </figure>
 
         <figure class="shot reveal">
-          <div class="ph">Screenshot #5<br><span class="mutedText">Inserta imagen real</span></div>
-          <figcaption class="cap">Ejemplo: “Me bajó la culpa y la ansiedad.”</figcaption>
+          <img src="/img/shot5.webp" alt="Captura real 5 (testimonio)" loading="lazy" decoding="async" />
+          <figcaption class="cap">“Me bajó la culpa y la ansiedad.”</figcaption>
         </figure>
 
         <figure class="shot reveal right">
-          <div class="ph">Screenshot #6<br><span class="mutedText">Inserta imagen real</span></div>
-          <figcaption class="cap">Ejemplo: “Sin castigos, sin gritos.”</figcaption>
+          <img src="/img/shot6.webp" alt="Captura real 6 (testimonio)" loading="lazy" decoding="async" />
+          <figcaption class="cap">“Sin castigos, sin gritos.”</figcaption>
         </figure>
       </div>
 
       <div class="card soft mt18 reveal">
         <strong>Tip para Meta Ads:</strong>
-        <span class="mutedText"> si puedes, usa 2–3 capturas con fecha (tapada parcialmente) y nombre oculto.
-        Aumenta credibilidad sin exponer datos.</span>
+        <span class="mutedText"> 2–3 capturas con fecha (tapada parcialmente) suelen disparar credibilidad sin exponer datos.</span>
       </div>
     </div>
   </section>
 
-  <!-- RESULTADOS (más concreto) -->
+  <!-- SEÑALES -->
   <section class="section muted cv">
     <div class="container">
       <h2 class="reveal">Señales que suelen aparecer en la primera semana</h2>
@@ -738,29 +712,17 @@
     </div>
   </section>
 
-  <!-- OFERTA (sin timer + urgencia creíble) -->
+  <!-- OFERTA -->
   <section id="oferta" class="section cv">
     <div class="container">
       <h2 class="reveal">Hoy obtienes acceso a TODO</h2>
       <p class="lead reveal">Oferta simple, clara y sin distracciones (ideal para tráfico frío de Meta).</p>
 
       <div class="card offer mt18 reveal">
-        <div class="lineItem">
-          <span>📘 Ebook Reset Canino</span>
-          <span class="strike">39,97€</span>
-        </div>
-        <div class="lineItem">
-          <span>🎁 Bono 1 — Errores invisibles con juguetes</span>
-          <span class="strike">19€</span>
-        </div>
-        <div class="lineItem">
-          <span>🎧 Bono 2 — Audioguía Reset Canino (15 min)</span>
-          <span class="strike">27€</span>
-        </div>
-        <div class="lineItem">
-          <span>🎥 Bono 3 — Video resumen del método</span>
-          <span class="strike">19€</span>
-        </div>
+        <div class="lineItem"><span>📘 Ebook Reset Canino</span><span class="strike">39,97€</span></div>
+        <div class="lineItem"><span>🎁 Bono 1 — Errores invisibles con juguetes</span><span class="strike">19€</span></div>
+        <div class="lineItem"><span>🎧 Bono 2 — Audioguía Reset Canino (15 min)</span><span class="strike">27€</span></div>
+        <div class="lineItem"><span>🎥 Bono 3 — Video resumen del método</span><span class="strike">19€</span></div>
 
         <div class="card gift mt18 reveal">
           <div class="title">🎁 BONO ESPECIAL (por tiempo limitado)</div>
@@ -775,7 +737,6 @@
           <p class="mt14"><strong>Valor estimado: 67€</strong> · <span style="color:#9a3412;font-weight:900;">Hoy incluido</span></p>
         </div>
 
-        <!-- Urgencia creíble sin reloj -->
         <div class="urgencyBar reveal" role="status" aria-label="Urgencia del bono">
           <div>
             ⏳ <strong>Bono IA incluido por tiempo limitado</strong>
@@ -809,7 +770,7 @@
         </div>
 
         <div class="ctaRow mt18 reveal fade">
-          <a class="btn" data-cta="offer" href="https://mascotaequilibrada.com/cart/57475776184707:1">EMPEZAR RESET CANINO AHORA</a>
+          <a class="btn" data-cta="offer" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">EMPEZAR RESET CANINO AHORA</a>
         </div>
         <div class="trustRow reveal fade">
           <span>🛡️ Garantía 7 días</span>
@@ -829,13 +790,13 @@
         <p class="subnote">Sin preguntas. Sin complicaciones.</p>
 
         <div class="ctaRow" style="justify-content:center">
-          <a class="btn" data-cta="guarantee" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
+          <a class="btn" data-cta="guarantee" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAQ (agresivo de conversión) -->
+  <!-- FAQ -->
   <section id="faq" class="section cv">
     <div class="container">
       <h2 class="reveal">Preguntas frecuentes (directas)</h2>
@@ -844,65 +805,42 @@
       <div class="grid cards2 mt18">
         <details class="card reveal">
           <summary style="cursor:pointer;font-weight:900;">“Mi perro solo se porta mal cuando me voy. ¿Esto es para mí?”</summary>
-          <p class="mt8">
-            Sí: ese patrón suele ser <strong>ansiedad por separación</strong> o hiperactivación por disparadores.
-            Reset Canino trabaja la <strong>regulación</strong> y la <strong>estructura</strong> para que aprenda a estar en calma.
-          </p>
+          <p class="mt8">Sí: suele ser <strong>ansiedad por separación</strong> o hiperactivación. Trabajamos <strong>regulación</strong> + <strong>estructura</strong> para que aprenda calma real.</p>
         </details>
 
         <details class="card reveal" style="transition-delay:80ms">
           <summary style="cursor:pointer;font-weight:900;">“¿Y si ya probé cansarlo más y no funcionó?”</summary>
-          <p class="mt8">
-            Es normal: más ejercicio/juego puede subir la activación.
-            Aquí el foco no es “agotarlo”, sino <strong>bajar el estado interno</strong> con rutinas y micro-pasos.
-          </p>
+          <p class="mt8">Es normal: más ejercicio puede subir la activación. Aquí el foco es <strong>bajar el estado interno</strong> con rutinas y micro-pasos.</p>
         </details>
 
         <details class="card reveal" style="transition-delay:160ms">
           <summary style="cursor:pointer;font-weight:900;">“¿Necesito jaula/transportín?”</summary>
-          <p class="mt8">
-            No es obligatorio. El método se basa en rutina, regulación y preparación de salidas.
-            Si usas jaula, se integra solo si tu perro ya está cómodo (sin forzarlo).
-          </p>
+          <p class="mt8">No es obligatorio. Si usas jaula, se integra solo si tu perro ya está cómodo (sin forzarlo).</p>
         </details>
 
         <details class="card reveal" style="transition-delay:240ms">
           <summary style="cursor:pointer;font-weight:900;">“¿Cuándo veré resultados?”</summary>
-          <p class="mt8">
-            Muchos dueños notan <strong>señales</strong> en la primera semana (menos activación, menos rascado, más descanso),
-            pero depende del caso y la constancia. El objetivo es progreso medible, no magia.
-          </p>
+          <p class="mt8">Muchos dueños notan <strong>señales</strong> en la primera semana, pero depende del caso y la constancia. Buscamos progreso medible, no magia.</p>
         </details>
 
         <details class="card reveal">
           <summary style="cursor:pointer;font-weight:900;">“¿Sirve si es adulto / rescatado / cachorro?”</summary>
-          <p class="mt8">
-            Sí, porque el enfoque es regulación y rutina (no “trucos” de raza).
-            En perros rescatados puede requerir más paciencia, y por eso el plan te guía paso a paso.
-          </p>
+          <p class="mt8">Sí: el enfoque es regulación y rutina. En rescatados puede requerir más paciencia, por eso el plan guía paso a paso.</p>
         </details>
 
         <details class="card reveal" style="transition-delay:80ms">
           <summary style="cursor:pointer;font-weight:900;">“¿Esto usa castigos o métodos agresivos?”</summary>
-          <p class="mt8">
-            No. La base es <strong>amable</strong> y orientada a reducir estrés.
-            Si tu perro está ansioso, el castigo suele empeorar. Aquí buscamos calma real.
-          </p>
+          <p class="mt8">No. La base es <strong>amable</strong> y orientada a reducir estrés. El castigo suele empeorar la ansiedad.</p>
         </details>
 
         <details class="card reveal" style="transition-delay:160ms">
           <summary style="cursor:pointer;font-weight:900;">“¿Qué pasa si compro y no era lo que esperaba?”</summary>
-          <p class="mt8">
-            Tienes <strong>7 días de garantía</strong>. Si no te sirve, pides reembolso dentro del plazo.
-          </p>
+          <p class="mt8">Tienes <strong>7 días de garantía</strong>. Si no te sirve, pides reembolso dentro del plazo.</p>
         </details>
 
         <details class="card reveal" style="transition-delay:240ms">
           <summary style="cursor:pointer;font-weight:900;">“¿Cómo recibo el Asistente IA?”</summary>
-          <p class="mt8">
-            Tras el pago, recibes un <strong>link de acceso</strong> junto con el ebook y los bonos.
-            Entras cuando quieras y preguntas lo que necesites del método.
-          </p>
+          <p class="mt8">Tras el pago, recibes un <strong>link de acceso</strong> junto con el ebook y los bonos.</p>
         </details>
       </div>
 
@@ -910,7 +848,7 @@
         <h2>Tu perro no quiere destruir tu casa.</h2>
         <p class="lead">Solo necesita aprender a regularse… y confiar en que siempre volverás.</p>
         <div class="ctaRow" style="justify-content:center">
-          <a class="btn" data-cta="final" href="https://mascotaequilibrada.com/cart/57475776184707:1">EMPEZAR AHORA</a>
+          <a class="btn" data-cta="final" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">EMPEZAR AHORA</a>
         </div>
         <div class="trustRow" style="justify-content:center">
           <span>🛡️ Garantía 7 días</span>
@@ -921,39 +859,41 @@
     </div>
   </section>
 
-  <!-- POPUP (80% scroll) -->
-  <dialog class="modal" id="exitModal" aria-label="Antes de irte">
-    <div class="modalHead">
-      <div>
-        <h3>Espera… antes de irte</h3>
-        <p class="subnote mb0">Si tu perro se descontrola al salir, esto te lo pone fácil.</p>
+  <!-- MODAL (overlay) -->
+  <div class="modalOverlay" id="exitOverlay" aria-hidden="true">
+    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Antes de irte">
+      <div class="modalHead">
+        <div>
+          <h3>Espera… antes de irte</h3>
+          <p class="subnote mb0">Si tu perro se descontrola al salir, esto te lo pone fácil.</p>
+        </div>
+        <button class="modalClose" type="button" id="closeModal" aria-label="Cerrar">✕</button>
       </div>
-      <button class="modalClose" type="button" id="closeModal" aria-label="Cerrar">✕</button>
-    </div>
-    <div class="modalBody">
-      <p class="lead" style="margin:0 0 12px;">
-        Tu perro <strong>no es malo</strong>. Está ansioso. Con Reset Canino tienes un plan simple para empezar <strong>hoy</strong> y notar señales en la primera semana.
-      </p>
+      <div class="modalBody">
+        <p class="lead" style="margin:0 0 12px;">
+          Tu perro <strong>no es malo</strong>. Está ansioso. Con Reset Canino tienes un plan simple para empezar <strong>hoy</strong> y notar señales en la primera semana.
+        </p>
 
-      <div class="card soft" style="margin:12px 0;">
-        <strong>Incluye:</strong>
-        <ul class="checklist" style="margin-top:10px">
-          <li><span class="check">✓</span><span>Ebook + Plan 7 días (10–15 min/día)</span></li>
-          <li><span class="check">✓</span><span>3 bonos + Asistente IA 24/7 (link)</span></li>
-          <li><span class="check">✓</span><span>Garantía 7 días</span></li>
-        </ul>
+        <div class="card soft" style="margin:12px 0;">
+          <strong>Incluye:</strong>
+          <ul class="checklist" style="margin-top:10px">
+            <li><span class="check">✓</span><span>Ebook + Plan 7 días (10–15 min/día)</span></li>
+            <li><span class="check">✓</span><span>3 bonos + Asistente IA 24/7 (link)</span></li>
+            <li><span class="check">✓</span><span>Garantía 7 días</span></li>
+          </ul>
+        </div>
+
+        <a class="btn" data-cta="popup" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">Sí, quiero empezar ahora</a>
+        <p class="subnote">Pago único · Acceso inmediato · Sin suscripciones</p>
       </div>
-
-      <a class="btn" data-cta="popup" href="https://mascotaequilibrada.com/cart/57475776184707:1">Sí, quiero empezar ahora</a>
-      <p class="subnote">Pago único · Acceso inmediato · Sin suscripciones</p>
     </div>
-  </dialog>
+  </div>
 
   <script>
     (function(){
       const checkoutUrl = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
-      /* 1) Warmup checkout on interaction (light) */
+      /* 1) Warmup checkout on interaction */
       let warmed = false;
       function warmup(){
         if (warmed) return;
@@ -965,17 +905,14 @@
         document.head.appendChild(l);
       }
 
-      document.addEventListener("pointerdown", function(e){
-        const a = e.target && e.target.closest ? e.target.closest("a[data-cta]") : null;
-        if (a) warmup();
-      }, {passive:true});
+      function isCta(el){
+        return el && el.closest ? el.closest("a[data-cta]") : null;
+      }
 
-      document.addEventListener("mouseover", function(e){
-        const a = e.target && e.target.closest ? e.target.closest("a[data-cta]") : null;
-        if (a) warmup();
-      }, {passive:true});
+      document.addEventListener("pointerdown", (e) => { if (isCta(e.target)) warmup(); }, {passive:true});
+      document.addEventListener("mouseover", (e) => { if (isCta(e.target)) warmup(); }, {passive:true});
 
-      /* 2) Scroll reveal (performant) */
+      /* 2) Scroll reveal */
       const revealItems = document.querySelectorAll(".reveal");
       if (revealItems.length){
         const io = new IntersectionObserver((entries) => {
@@ -990,43 +927,41 @@
         revealItems.forEach(el => io.observe(el));
       }
 
-      /* 3) Popup at 80% scroll (intent-based) */
-      const modal = document.getElementById("exitModal");
+      /* 3) Modal (80% scroll + exit intent si hubo intención) */
+      const overlay = document.getElementById("exitOverlay");
       const closeBtn = document.getElementById("closeModal");
-      const POP_KEY = "rc_popup_shown_v2";
+      const POP_KEY = "rc_popup_shown_v3";
 
       let clickedCta = false;
       let popupShown = localStorage.getItem(POP_KEY) === "1";
 
       document.addEventListener("click", (e) => {
-        const a = e.target && e.target.closest ? e.target.closest("a[data-cta]") : null;
-        if (a) clickedCta = true;
+        if (isCta(e.target)) clickedCta = true;
       }, {passive:true});
 
       function canShowPopup(){
         if (popupShown) return false;
+        if (!overlay) return false;
         if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-        if (!modal || typeof modal.showModal !== "function") return false;
         return true;
       }
 
-      function showPopup(){
+      function openPopup(){
         if (!canShowPopup()) return;
         popupShown = true;
         localStorage.setItem(POP_KEY, "1");
-        modal.showModal();
+        overlay.classList.add("is-open");
+        overlay.setAttribute("aria-hidden", "false");
       }
 
-      if (closeBtn){
-        closeBtn.addEventListener("click", () => modal.close());
+      function closePopup(){
+        overlay.classList.remove("is-open");
+        overlay.setAttribute("aria-hidden", "true");
       }
-      modal && modal.addEventListener("click", (e) => {
-        const rect = modal.getBoundingClientRect();
-        const inDialog = (
-          e.clientX >= rect.left && e.clientX <= rect.right &&
-          e.clientY >= rect.top && e.clientY <= rect.bottom
-        );
-        if (!inDialog) modal.close();
+
+      closeBtn && closeBtn.addEventListener("click", closePopup);
+      overlay && overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closePopup();
       });
 
       let lastCheck = 0;
@@ -1044,15 +979,16 @@
         const progress = scrollTop / maxScroll;
 
         if (progress >= 0.80){
-          showPopup();
+          // A 80% lo mostramos incluso sin click CTA: ya consumió contenido (intención)
+          openPopup();
         }
       }, {passive:true});
 
-      /* Optional: soft exit-intent on desktop only if clicked CTA */
+      // Exit intent desktop: solo si clickeó CTA (intención fuerte)
       document.addEventListener("mouseout", (e) => {
         if (!clickedCta) return;
         if (!canShowPopup()) return;
-        if (e.clientY <= 0) showPopup();
+        if (e.clientY <= 0) openPopup();
       }, {passive:true});
     })();
   </script>
