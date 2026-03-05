@@ -651,14 +651,7 @@ $19.97€
               <div className="bg-white/5 p-8 rounded-3xl border border-white/10 flex flex-col h-full hover:border-primary/50 transition-all">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/30">
-                    <img 
-                      src={testimonial.photo} 
-                      alt={testimonial.name} 
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    
                   </div>
                   <div>
                     <h4 className="font-bold text-white">{testimonial.name}</h4>
