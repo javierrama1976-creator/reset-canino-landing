@@ -379,14 +379,7 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
           
           <FadeIn delay={0.2} className="relative">
             <div className="rounded-3xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
-              <img 
-                src="https://i.postimg.cc/Y0m9RNkN/Diseno-sin-titulo-(12).png" 
-                alt="Transformación Reset Canino" 
-                className="w-full h-auto"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
-              />
+              
             </div>
           </FadeIn>
         </div>
