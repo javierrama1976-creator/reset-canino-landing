@@ -197,7 +197,7 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
             {/* Table Surface Effect */}
             
             
-        <div className="relative">
+        <div>
 <div className="relative">
                
                 {/* Fondo emocional */}
