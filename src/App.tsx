@@ -782,14 +782,7 @@ $19.97€
         <div className="flex flex-col md:flex-row items-center gap-12">
           <FadeIn className="shrink-0">
             <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-8 border-primary/20 shadow-2xl">
-              <img 
-                src="https://i.postimg.cc/MHVVYQzf/Gemini-Generated-Image-z4n2dez4n2dez4n2.png" 
-                alt="Especialista en comportamiento canino" 
-                className="w-full h-full object-cover object-center"
-                referrerPolicy="no-referrer"
-                loading="lazy"
-                decoding="async"
-              />
+              
             </div>
           </FadeIn>
           
