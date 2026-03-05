@@ -195,13 +195,11 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
           
           <FadeIn delay={0.2} className="relative group perspective-1000">
             {/* Table Surface Effect */}
-            
-            
-        <div>
+          
 
 
 206 </FadeIn>
-207 </div>
+
 208 </Section>
 
 
