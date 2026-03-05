@@ -198,14 +198,12 @@ Cuando cierras la puerta, tu perro no sabe si vas a volver.
             
             
         <div>
-<div className="relative">
-               
-                {/* Fondo emocional */}
+200 <div>
 
+206 </FadeIn>
+207 </div>
+208 </Section>
 
-          </FadeIn>
-        </div>
-      </Section>
 
       {/* NEW SECTION: EL DOLOR - DARK */}
       <Section className="bg-dark text-white border-y border-white/10">
