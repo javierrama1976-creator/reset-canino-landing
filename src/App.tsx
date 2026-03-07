@@ -1,997 +1,948 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="description" content="Reset Canino: protocolo simple de rutinas y regulación emocional para reducir ansiedad por separación, hiperactividad y destrucción desde la primera semana. Sin castigos." />
-  <meta name="theme-color" content="#ff6a00" />
-  <title>Reset Canino — Calma real en 7 días</title>
+import React, { useEffect, useState, useRef } from "react";
+import { 
+  CheckCircle2, 
+  XCircle, 
+  ShieldCheck, 
+  ArrowRight, 
+  Star, 
+  BookOpen, 
+  Zap,
+  X, 
+  MessageCircle,
+  PlayCircle,
+  Headphones,
+  Brain,
+  Clock,
+  ChevronDown,
+  ChevronUp,
+  Lock,
+  RefreshCw,
+  Maximize2,
+  Sparkles,
+  Loader2
+} from "lucide-react";
+import { generateHeroImage, editHeroImage } from "./services/imageService";
+import { GoogleGenAI } from "@google/genai";
 
-  <!-- Performance: warm up checkout domain -->
-  <link rel="dns-prefetch" href="//mascotaequilibrada.com">
-  <link rel="preconnect" href="https://mascotaequilibrada.com" crossorigin>
+const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
-  <!-- (Opcional) Preload de hero si ya tienes la imagen final -->
-  <link rel="preload" as="image" href="/img/hero.webp" imagesrcset="/img/hero.webp" />
+// --- Components ---
 
-  <style>
-    :root{
-      --bg:#ffffff;
-      --muted:#f6f7f9;
-      --text:#14161a;
-      --sub:#4b5563;
-      --card:#ffffff;
-      --border:rgba(20,22,26,.12);
-      --shadow:0 10px 30px rgba(20,22,26,.08);
-      --cta:#ff6a00;
-      --ctaText:#ffffff;
-      --ok:#0f766e;
-      --warn:#b45309;
-      --container: 980px;
-      --radius: 14px;
-    }
+const Button = ({ 
+  children, 
+  className = "", 
+  variant = "primary", 
+  onClick,
+  disabled = false
+}: { 
+  children: React.ReactNode, 
+  className?: string, 
+  variant?: "primary" | "secondary" | "outline",
+  onClick?: () => void,
+  disabled?: boolean
+}) => {
+  const baseStyles = "w-full py-4 px-8 rounded-[14px] font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed";
+  const variants = {
+    primary: "bg-primary text-white hover:brightness-110 shadow-soft",
+    secondary: "bg-dark text-white hover:bg-dark/90 shadow-soft",
+    outline: "bg-transparent border border-border text-dark hover:bg-gray-bg"
+  };
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
+  return (
+    <button 
+      onClick={onClick}
+      disabled={disabled}
+      className={`${baseStyles} ${variants[variant]} ${className}`}
+    >
+      {children}
+    </button>
+  );
+};
 
-    a{color:inherit}
-    img{max-width:100%; height:auto; display:block}
-    .container{max-width:var(--container); margin:0 auto; padding:0 18px}
-    .section{padding:54px 0}
-    .section.muted{background:var(--muted)}
-    .grid{display:grid; gap:22px; align-items:center}
-
-    @media (min-width: 960px){
-      .grid.hero{grid-template-columns: 1.1fr .9fr;}
-      .grid.cards3{grid-template-columns: repeat(3,1fr);}
-      .grid.cards2{grid-template-columns: repeat(2,1fr);}
-      .grid.cards4{grid-template-columns: repeat(4,1fr);}
-      .grid.cards5{grid-template-columns: repeat(5,1fr);}
-      .grid.phases{grid-template-columns: repeat(3,1fr);}
-      .grid.miniProof{grid-template-columns: repeat(3, 1fr);}
-      .grid.shots{grid-template-columns: repeat(3, 1fr);}
-      .grid.forwho{grid-template-columns: repeat(2,1fr);}
-    }
-
-    h1,h2,h3{margin:0 0 10px}
-    h1{
-      font-size: clamp(30px, 4vw, 44px);
-      line-height:1.08;
-      letter-spacing:-.02em;
-    }
-    h2{
-      font-size: clamp(22px, 2.4vw, 30px);
-      letter-spacing:-.01em;
-      line-height:1.15;
-    }
-    h3{font-size:18px}
-    p{margin:0 0 12px; color:var(--sub)}
-    .lead{font-size: 18px; color:var(--sub)}
-    .kicker{font-weight:700; color:var(--ok); font-size:13px; letter-spacing:.08em; text-transform:uppercase}
-
-    .empathy{
-      margin-top:12px;
-      padding:12px 14px;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:rgba(255,106,0,.06);
-      color:#3b2a1a;
-      font-weight:700;
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow: var(--shadow);
-    }
-    .card.soft{box-shadow:none}
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background:#fff;
-      font-size:13px;
-      color:var(--sub);
-      white-space:nowrap;
-    }
-
-    .checklist{margin:14px 0 0; padding:0; list-style:none; display:grid; gap:10px;}
-    .checklist li{display:flex; gap:10px; align-items:flex-start; color:var(--text);}
-    .check{
-      width:22px; height:22px; border-radius:7px;
-      display:grid; place-items:center;
-      background:rgba(15,118,110,.12);
-      color:var(--ok);
-      flex:0 0 auto;
-      font-weight:900;
-    }
-
-    .subnote{font-size:13px; color:var(--sub)}
-    .mutedText{color:var(--sub)}
-    .center{text-align:center}
-    .tight{margin-bottom:6px}
-    .mt8{margin-top:8px}
-    .mt14{margin-top:14px}
-    .mt18{margin-top:18px}
-    .mt24{margin-top:24px}
-    .mb0{margin-bottom:0}
-
-    .ctaRow{display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:16px}
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:16px 18px;
-      border-radius:14px;
-      background:var(--cta);
-      color:var(--ctaText);
-      text-decoration:none;
-      font-weight:900;
-      letter-spacing:.01em;
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow: 0 12px 24px rgba(255,106,0,.25);
-      min-width: 220px;
-      will-change: transform;
-      transform: translateZ(0);
-      cursor:pointer;
-    }
-    .btn:active{transform: scale(.99)}
-    .btn.secondary{
-      background:#111827;
-      box-shadow: 0 12px 24px rgba(17,24,39,.18);
-    }
-
-    .trustRow{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
-    .trustRow span{font-size:13px; color:var(--sub)}
-
-    .anchorLinks{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-    .anchorLinks a{
-      font-size:13px;
-      color:var(--sub);
-      text-decoration:none;
-      border-bottom:1px dashed rgba(75,85,99,.45);
-    }
-
-    .btn:focus-visible, a:focus-visible, summary:focus-visible{
-      outline: 3px solid rgba(255,106,0,.45);
-      outline-offset: 3px;
-    }
-
-    .heroMedia{
-      border-radius:var(--radius);
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:#fff;
-      box-shadow: var(--shadow);
-    }
-    .heroMedia img{
-      width:100%;
-      height:auto;
-    }
-
-    .offer{
-      border:2px solid rgba(255,106,0,.28);
-      background: linear-gradient(180deg, rgba(255,106,0,.06), rgba(255,255,255,1));
-    }
-    .lineItem{
-      display:flex; justify-content:space-between; gap:12px;
-      padding:10px 0; border-bottom:1px solid var(--border);
-      color:var(--text);
-    }
-    .lineItem:last-child{border-bottom:none}
-    .strike{color:var(--sub); text-decoration:line-through; white-space:nowrap}
-    .valueRow{
-      margin-top:14px;
-      padding-top:14px;
-      border-top:1px solid var(--border);
-      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
-    }
-    .price{
-      font-size: clamp(34px, 4vw, 52px);
-      letter-spacing:-.02em;
-      font-weight:900;
-      color:var(--cta);
-      line-height:1;
-    }
-    .smallCaps{
-      font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--sub); font-weight:900
-    }
-
-    .gift{
-      background: #fff7ed;
-      border:2px solid rgba(180,83,9,.22);
-    }
-    .gift .title{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900;
-      color:#7c2d12;
-    }
-
-    .urgencyBar{
-      padding:14px 16px;
-      border:1px dashed rgba(180,83,9,.35);
-      border-radius:14px;
-      background:#fff;
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      justify-content:space-between;
-    }
-    .urgencyBar strong{color:var(--warn)}
-    .urgencyBar .note{font-size:13px; color:var(--sub); margin-top:4px}
-
-    /* Sticky mobile CTA */
-    .sticky{
-      position:fixed;
-      left:0; right:0; bottom:0;
-      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(10px);
-      border-top:1px solid var(--border);
-      display:flex;
-      gap:10px;
-      align-items:center;
-      justify-content:space-between;
-      z-index:50;
-    }
-    .sticky .mini{display:flex; flex-direction:column; gap:2px; min-width: 140px;}
-    .sticky .mini .p{font-weight:900; color:var(--text)}
-    .sticky .mini .s{font-size:12px; color:var(--sub)}
-    .sticky .btn{min-width: 0; width: 100%; padding:14px 14px}
-
-    @media (min-width: 960px){ .sticky{display:none} }
-    @media (max-width: 959px){ body{padding-bottom:78px} }
-
-    .media{
-      border-radius:14px;
-      overflow:hidden;
-      border:1px solid var(--border);
-      background:#fff;
-      min-height: 220px;
-    }
-    .media .ph{aspect-ratio: 16/9; background:linear-gradient(135deg, rgba(0,0,0,.04), rgba(0,0,0,.02))}
-
-    .cv{ content-visibility: auto; contain-intrinsic-size: 900px; }
-
-    /* Reveal */
-    .reveal{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease; will-change:opacity,transform;}
-    .reveal.is-visible{opacity:1; transform:translateY(0);}
-    .reveal.fade{transform:none;}
-    .reveal.left{transform:translateX(-14px);}
-    .reveal.right{transform:translateX(14px);}
-    .reveal.zoom{transform:scale(.98);}
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
-    }
-
-    .miniProofCard{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:12px 14px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:#fff;
-      box-shadow: var(--shadow);
-    }
-    .miniProofCard b{display:block; margin-bottom:2px}
-    .star{color:#f59e0b; font-weight:900}
-
-    .psy{
-      border:2px solid rgba(15,118,110,.20);
-      background: linear-gradient(180deg, rgba(15,118,110,.06), rgba(255,255,255,1));
-    }
-    .psy .headline{
-      display:flex; gap:10px; align-items:flex-start;
-      font-weight:900;
-      color:#064e3b;
-      margin-bottom:10px;
-    }
-
-    .shot{
-      border-radius:14px;
-      border:1px solid var(--border);
-      overflow:hidden;
-      background:#fff;
-      box-shadow: var(--shadow);
-    }
-    .shot img{width:100%; height:auto;}
-    .shot .cap{
-      padding:12px 14px;
-      border-top:1px solid var(--border);
-      font-size:13px;
-      color:var(--sub);
-    }
-
-    /* Modal compatible (sin <dialog>) */
-    .modalOverlay{
-      position:fixed; inset:0;
-      background: rgba(0,0,0,.45);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:14px;
-      z-index:80;
-    }
-    .modalOverlay.is-open{display:flex;}
-    .modalBox{
-      width:min(560px, calc(100% - 24px));
-      background:#fff;
-      border-radius: 18px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.25);
-      overflow:hidden;
-    }
-    .modalHead{
-      padding:16px 18px;
-      background: linear-gradient(180deg, rgba(255,106,0,.10), #fff);
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .modalHead h3{margin:0; font-size:18px}
-    .modalBody{padding:16px 18px}
-    .modalClose{
-      appearance:none;
-      border:1px solid var(--border);
-      background:#fff;
-      border-radius:12px;
-      padding:8px 10px;
-      font-weight:900;
-      cursor:pointer;
-    }
-    .modalBody .btn{width:100%; min-width:0}
-  </style>
-</head>
-
-<body>
-
-  <!-- Sticky CTA (mobile) -->
-  <div class="sticky" role="region" aria-label="Acceso rápido al checkout">
-    <div class="mini">
-      <div class="p">19,97€</div>
-      <div class="s">Pago único · Acceso inmediato</div>
-    </div>
-    <a class="btn" data-cta="sticky" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">Empezar ahora</a>
-  </div>
-
-  <!-- HERO -->
-  <header class="section">
-    <div class="container">
-      <div class="grid hero">
-        <div>
-          <div class="kicker reveal fade">RESET CANINO</div>
-
-          <h1 class="reveal">Tu perro no destruye por rebeldía…<br>entra en pánico cuando te vas.</h1>
-
-          <p class="lead reveal">
-            Un <strong>protocolo simple (10–15 min/día)</strong> de rutinas y regulación emocional para reducir
-            <strong>ladridos, destrucción y ansiedad por separación</strong> — <strong>sin castigos</strong>.
-            Empieza a notar señales desde la <strong>primera semana</strong>.
-          </p>
-
-          <div class="card soft mt14 reveal">
-            <strong>Ideal si tu perro:</strong>
-            <div class="grid cards2 mt14">
-              <ul class="checklist" style="margin:0">
-                <li><span class="check">✓</span><span>Rasca puertas/paredes al salir</span></li>
-                <li><span class="check">✓</span><span>Ladra o llora sin parar</span></li>
-                <li><span class="check">✓</span><span>Te sigue como “sombra”</span></li>
-              </ul>
-              <ul class="checklist" style="margin:0">
-                <li><span class="check">✓</span><span>Rompe cojines o muebles</span></li>
-                <li><span class="check">✓</span><span>No sabe relajarse solo</span></li>
-                <li><span class="check">✓</span><span>Se activa cuando coges llaves/bolso</span></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="empathy reveal">Cuando cierras la puerta, tu perro no sabe si vas a volver.</div>
-
-          <div class="ctaRow reveal fade">
-            <a class="btn" data-cta="hero" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
-            <a class="btn secondary" href="#oferta">Ver oferta</a>
-          </div>
-
-          <div class="trustRow reveal fade" aria-label="Qué recibes">
-            <span>📘 PDF + Plan 7 días</span>
-            <span>🎧 Audioguía 15 min</span>
-            <span>🤖 Asistente IA (link) 24/7</span>
-          </div>
-
-          <div class="grid miniProof mt18" aria-label="Prueba social rápida">
-            <div class="miniProofCard reveal">
-              <div class="star">★</div>
-              <div><b>Menos caos</b><span class="mutedText">Más estructura en casa.</span></div>
-            </div>
-            <div class="miniProofCard reveal" style="transition-delay:80ms">
-              <div class="star">★</div>
-              <div><b>Más calma</b><span class="mutedText">Rutinas cortas diarias.</span></div>
-            </div>
-            <div class="miniProofCard reveal" style="transition-delay:160ms">
-              <div class="star">★</div>
-              <div><b>Sin castigos</b><span class="mutedText">Enfoque amable.</span></div>
-            </div>
-          </div>
-
-          <div class="trustRow reveal fade" aria-label="Confianza">
-            <span>🛡️ Garantía 7 días</span>
-            <span>💳 Pago seguro</span>
-            <span>✅ Pago único (sin suscripciones)</span>
-          </div>
-
-          <div class="anchorLinks reveal fade" aria-label="Secciones">
-            <a href="#problema">¿Te pasa esto?</a>
-            <a href="#bloque-psico">Por qué pasa</a>
-            <a href="#para-quien">Para quién es</a>
-            <a href="#metodo">Cómo funciona</a>
-            <a href="#prueba">Resultados reales</a>
-            <a href="#oferta">Oferta</a>
-            <a href="#faq">FAQ</a>
-          </div>
-        </div>
-
-        <div class="heroMedia" aria-label="Imagen emocional del hero">
-          <picture>
-            <source srcset="/img/hero.webp" type="image/webp">
-            <img
-              src="/img/hero.webp"
-              alt="Perro mirando la puerta (ansiedad por separación)"
-              loading="eager"
-              decoding="async"
-              fetchpriority="high"
-            />
-          </picture>
-        </div>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- PROBLEMA -->
-  <section id="problema" class="section muted cv">
-    <div class="container">
-      <div class="reveal">
-        <h2>¿Te pasa esto cuando estás por salir o cuando ya te fuiste?</h2>
-        <p>Si te suena familiar, no estás solo. Y casi nunca es “mala conducta”.</p>
-      </div>
-
-      <div class="grid cards2 mt18">
-        <div class="card soft reveal left">
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Rasca la puerta o paredes</span></li>
-            <li><span class="check">✓</span><span>Ladra / llora sin parar</span></li>
-            <li><span class="check">✓</span><span>Rompe cojines o muebles</span></li>
-          </ul>
-        </div>
-        <div class="card soft reveal right">
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Jadea, se agita, babea</span></li>
-            <li><span class="check">✓</span><span>Te sigue como una sombra</span></li>
-            <li><span class="check">✓</span><span>No logra relajarse solo</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card mt18 reveal">
-        <strong>Esto suele ser ansiedad por separación / hiperactivación.</strong>
-        <span class="mutedText"> La buena noticia: se puede mejorar cuando tu perro aprende a regularse con rutina y micro-pasos.</span>
-      </div>
+const Section = ({ 
+  children, 
+  className = "", 
+  id = "", 
+  bg = "white" 
+}: { 
+  children: React.ReactNode, 
+  className?: string, 
+  id?: string,
+  bg?: "white" | "gray" | "dark"
+}) => (
+  <section 
+    id={id} 
+    className={`py-16 md:py-24 ${bg === "gray" ? "bg-gray-bg" : bg === "dark" ? "bg-dark" : "bg-white"} ${className}`}
+    style={{ contentVisibility: "auto", containIntrinsicSize: "auto 500px" }}
+  >
+    <div className="container-custom">
+      {children}
     </div>
   </section>
-
-  <!-- BLOQUE PSICOLÓGICO -->
-  <section id="bloque-psico" class="section cv">
-    <div class="container">
-      <div class="card psy reveal">
-        <div class="headline">
-          🧠 <span>No es tu culpa. Y no es “rebeldía”: es un sistema nervioso en alarma.</span>
-        </div>
-
-        <div class="grid cards2 mt14">
-          <div class="card soft reveal left">
-            <div class="badge">Lo que está pasando</div>
-            <ul class="checklist">
-              <li><span class="check">✓</span><span>Tu salida se convierte en un “disparador” (llaves, bolso, puerta).</span></li>
-              <li><span class="check">✓</span><span>El cuerpo entra en estrés: ladridos, rascado, destrucción.</span></li>
-              <li><span class="check">✓</span><span>No “elige” hacerlo: <strong>no sabe autorregularse</strong>.</span></li>
-            </ul>
-          </div>
-
-          <div class="card soft reveal right">
-            <div class="badge">Lo que suele empeorarlo</div>
-            <ul class="checklist">
-              <li><span class="check">✓</span><span><strong>Cansarlo más</strong> (más activación/cortisol).</span></li>
-              <li><span class="check">✓</span><span><strong>Corregirlo</strong> al volver (asocia tu regreso con tensión).</span></li>
-              <li><span class="check">✓</span><span>“Que se acostumbre” a base de pánico repetido.</span></li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="card soft mt18 reveal">
-          <strong>Lo que sí funciona:</strong>
-          <span class="mutedText"> estructura + regulación + repetición diaria (10–15 min) para enseñar calma real.</span>
-          <div class="ctaRow mt14">
-            <a class="btn" data-cta="psy" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">Quiero el plan de 7 días</a>
-            <div class="subnote">Acceso inmediato · Pago único · Garantía 7 días</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARA QUIÉN -->
-  <section id="para-quien" class="section muted cv">
-    <div class="container">
-      <h2 class="reveal">¿Para quién es Reset Canino? (y para quién NO)</h2>
-      <p class="lead reveal">Esto filtra compradores, reduce devoluciones y mejora CVR en tráfico frío.</p>
-
-      <div class="grid forwho mt18">
-        <div class="card reveal left">
-          <div class="badge">✅ Es para ti si…</div>
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Tu perro se activa cuando te preparas para salir.</span></li>
-            <li><span class="check">✓</span><span>Hay ladridos, llanto, rascado o destrucción estando solo.</span></li>
-            <li><span class="check">✓</span><span>Quieres un método <strong>amable</strong> (sin castigos ni gritos).</span></li>
-            <li><span class="check">✓</span><span>Necesitas algo <strong>simple</strong>: 10–15 min/día.</span></li>
-          </ul>
-        </div>
-
-        <div class="card reveal right">
-          <div class="badge">❌ No es para ti si…</div>
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Buscas una “solución mágica” sin aplicar rutinas.</span></li>
-            <li><span class="check">✓</span><span>Quieres métodos duros/agresivos para “dominar”.</span></li>
-            <li><span class="check">✓</span><span>No puedes dedicar ni 10 minutos al día durante una semana.</span></li>
-            <li><span class="check">✓</span><span>Tu caso requiere atención veterinaria urgente (dolor, enfermedad).</span></li>
-          </ul>
-          <p class="subnote mt14">Si hay síntomas físicos preocupantes, consulta a un veterinario.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ROMPER CREENCIA -->
-  <section class="section cv">
-    <div class="container">
-      <div class="grid cards2">
-        <div>
-          <h2 class="reveal">No necesita más estímulos… necesita aprender a regular su mente.</h2>
-          <p class="lead reveal">Menos “activación”, más calma real. Este cambio mental sube conversiones porque se siente diferente a lo típico.</p>
-
-          <div class="card soft mt14 reveal">
-            <div class="lineItem"><span>Más estímulos</span><span class="mutedText">→ más activación</span></div>
-            <div class="lineItem"><span>Más correcciones</span><span class="mutedText">→ más miedo</span></div>
-            <div class="lineItem"><span><strong>Rutina + regulación</strong></span><span class="mutedText">→ calma real</span></div>
-          </div>
-
-          <p class="mt14 reveal"><strong>Funciona incluso</strong> si ya probaste entrenadores, tutoriales o trucos sin resultados.</p>
-
-          <div class="ctaRow reveal fade">
-            <a class="btn" data-cta="belief" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
-          </div>
-          <div class="trustRow reveal fade">
-            <span>🛡️ Garantía 7 días</span>
-            <span>💳 Pago seguro</span>
-          </div>
-        </div>
-
-        <div class="media reveal zoom" aria-label="Imagen transformacional">
-          <div class="ph" aria-hidden="true"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MÉTODO -->
-  <section id="metodo" class="section muted cv">
-    <div class="container">
-      <h2 class="reveal">Reset Canino: sistema paso a paso para recuperar la calma en casa</h2>
-      <p class="lead reveal">Diseñado para dueños normales. Sin castigos. Sin gritos. Sin métodos agresivos.</p>
-
-      <div class="grid cards5 mt18" aria-label="Qué desbloqueas">
-        <div class="card reveal"><strong>✅ Regulación Canina</strong><p class="mb0">Baja activación y evita explosiones de energía.</p></div>
-        <div class="card reveal" style="transition-delay:80ms"><strong>✅ Rutina Anti-Hiperactividad</strong><p class="mb0">Estructura diaria simple para calma real.</p></div>
-        <div class="card reveal" style="transition-delay:160ms"><strong>✅ Comunicación Clara</strong><p class="mb0">Evita errores que confunden y empeoran todo.</p></div>
-        <div class="card reveal" style="transition-delay:240ms"><strong>✅ Redirigir Conductas</strong><p class="mb0">Canaliza energía sin caos ni destrucción.</p></div>
-        <div class="card reveal" style="transition-delay:320ms"><strong>✅ Plan Reset 7 Días</strong><p class="mb0">Primer paso práctico desde hoy.</p></div>
-      </div>
-
-      <h3 class="mt24 reveal">Cómo funciona (3 fases)</h3>
-      <div class="grid phases mt14" aria-label="Fases">
-        <div class="card reveal left">
-          <div class="badge">Fase 1</div>
-          <h3 class="tight">Detecta disparadores</h3>
-          <p class="mb0">Qué lo activa y en qué momentos exactos ocurre.</p>
-        </div>
-        <div class="card reveal">
-          <div class="badge">Fase 2</div>
-          <h3 class="tight">Baja la activación</h3>
-          <p class="mb0">Ejercicios simples para reducir estrés y recuperar control emocional.</p>
-        </div>
-        <div class="card reveal right">
-          <div class="badge">Fase 3</div>
-          <h3 class="tight">Entrena calma real</h3>
-          <p class="mb0">Rutinas que enseñan a tu perro a relajarse cuando toca.</p>
-        </div>
-      </div>
-
-      <p class="subnote mt14 reveal fade">⏱️ La mayoría de rutinas toman 10–15 min/día.</p>
-    </div>
-  </section>
-
-  <!-- PRUEBA (capturas reales) -->
-  <section id="prueba" class="section cv">
-    <div class="container">
-      <h2 class="reveal">Resultados reales (capturas)</h2>
-      <p class="lead reveal">Pon aquí WhatsApp/IG/Correo (nombre oculto). Este bloque suele ser top-3 de conversión en tráfico frío.</p>
-
-      <div class="grid shots mt18" aria-label="Grid de capturas">
-        <figure class="shot reveal left">
-          <img src="/img/shot1.webp" alt="Captura real 1 (testimonio)" loading="lazy" decoding="async" />
-          <figcaption class="cap">“Dejó de arañar la puerta en 6 días.”</figcaption>
-        </figure>
-
-        <figure class="shot reveal">
-          <img src="/img/shot2.webp" alt="Captura real 2 (testimonio)" loading="lazy" decoding="async" />
-          <figcaption class="cap">“Menos ladridos cuando salgo.”</figcaption>
-        </figure>
-
-        <figure class="shot reveal right">
-          <img src="/img/shot3.webp" alt="Captura real 3 (testimonio)" loading="lazy" decoding="async" />
-          <figcaption class="cap">“Por fin se relaja y duerme más.”</figcaption>
-        </figure>
-
-        <figure class="shot reveal left">
-          <img src="/img/shot4.webp" alt="Captura real 4 (testimonio)" loading="lazy" decoding="async" />
-          <figcaption class="cap">“Rutina de 10–15 min, fácil.”</figcaption>
-        </figure>
-
-        <figure class="shot reveal">
-          <img src="/img/shot5.webp" alt="Captura real 5 (testimonio)" loading="lazy" decoding="async" />
-          <figcaption class="cap">“Me bajó la culpa y la ansiedad.”</figcaption>
-        </figure>
-
-        <figure class="shot reveal right">
-          <img src="/img/shot6.webp" alt="Captura real 6 (testimonio)" loading="lazy" decoding="async" />
-          <figcaption class="cap">“Sin castigos, sin gritos.”</figcaption>
-        </figure>
-      </div>
-
-      <div class="card soft mt18 reveal">
-        <strong>Tip para Meta Ads:</strong>
-        <span class="mutedText"> 2–3 capturas con fecha (tapada parcialmente) suelen disparar credibilidad sin exponer datos.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEÑALES -->
-  <section class="section muted cv">
-    <div class="container">
-      <h2 class="reveal">Señales que suelen aparecer en la primera semana</h2>
-      <p class="lead reveal">No prometemos “perfección en 7 días”. Prometemos un <strong>inicio claro</strong> y señales medibles.</p>
-
-      <div class="grid cards2 mt18">
-        <div class="card soft reveal left">
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Menos activación al coger llaves/bolso</span></li>
-            <li><span class="check">✓</span><span>Menos rascado/puerta/ventanas</span></li>
-            <li><span class="check">✓</span><span>Más pausas y momentos de descanso</span></li>
-          </ul>
-        </div>
-        <div class="card soft reveal right">
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Menos ladridos/llanto al salir</span></li>
-            <li><span class="check">✓</span><span>Más calma dentro de casa</span></li>
-            <li><span class="check">✓</span><span>Menos culpa, más control del día a día</span></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card mt18 reveal">
-        <strong>No es “solo un ebook”.</strong>
-        <span class="mutedText"> Es un sistema para recuperar paz en casa con pasos claros y aplicables.</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- OFERTA -->
-  <section id="oferta" class="section cv">
-    <div class="container">
-      <h2 class="reveal">Hoy obtienes acceso a TODO</h2>
-      <p class="lead reveal">Oferta simple, clara y sin distracciones (ideal para tráfico frío de Meta).</p>
-
-      <div class="card offer mt18 reveal">
-        <div class="lineItem"><span>📘 Ebook Reset Canino</span><span class="strike">39,97€</span></div>
-        <div class="lineItem"><span>🎁 Bono 1 — Errores invisibles con juguetes</span><span class="strike">19€</span></div>
-        <div class="lineItem"><span>🎧 Bono 2 — Audioguía Reset Canino (15 min)</span><span class="strike">27€</span></div>
-        <div class="lineItem"><span>🎥 Bono 3 — Video resumen del método</span><span class="strike">19€</span></div>
-
-        <div class="card gift mt18 reveal">
-          <div class="title">🎁 BONO ESPECIAL (por tiempo limitado)</div>
-          <h3 class="tight mt8">Asistente Virtual Reset Canino (IA) 24/7</h3>
-          <p>Te acompaña para resolver dudas del método y adaptar los pasos a tu caso.</p>
-          <ul class="checklist">
-            <li><span class="check">✓</span><span>Qué hacer hoy exactamente</span></li>
-            <li><span class="check">✓</span><span>Ajustes según tu perro y tu rutina</span></li>
-            <li><span class="check">✓</span><span>Respuestas rápidas 24/7</span></li>
-            <li><span class="check">✓</span><span>Acceso vía <strong>link</strong> (tras el pago)</span></li>
-          </ul>
-          <p class="mt14"><strong>Valor estimado: 67€</strong> · <span style="color:#9a3412;font-weight:900;">Hoy incluido</span></p>
-        </div>
-
-        <div class="urgencyBar reveal" role="status" aria-label="Urgencia del bono">
-          <div>
-            ⏳ <strong>Bono IA incluido por tiempo limitado</strong>
-            <div class="note">Cuando se retire, el pack seguirá disponible pero sin el asistente 24/7.</div>
-          </div>
-          <div class="badge">Edición actual</div>
-        </div>
-
-        <div class="card soft mt18 reveal">
-          <strong>✅ Recibes hoy mismo:</strong>
-          <ul class="checklist" style="margin-top:10px">
-            <li><span class="check">✓</span><span>Descarga inmediata del eBook (PDF)</span></li>
-            <li><span class="check">✓</span><span>Acceso al audio (audioguía)</span></li>
-            <li><span class="check">✓</span><span>Acceso al video resumen</span></li>
-            <li><span class="check">✓</span><span>Link del Asistente IA 24/7</span></li>
-          </ul>
-          <p class="subnote mb0">Todo llega al instante tras el pago.</p>
-        </div>
-
-        <div class="valueRow reveal fade">
-          <div>
-            <div class="smallCaps">Valor total</div>
-            <div style="font-weight:900;font-size:20px;color:#111827;">171,97€</div>
-            <div class="subnote">Comparación: 1 sesión con adiestrador suele costar mucho más.</div>
-          </div>
-          <div>
-            <div class="smallCaps">Hoy por solo</div>
-            <div class="price">19,97€</div>
-            <div class="subnote">Pago único · Acceso inmediato</div>
-          </div>
-        </div>
-
-        <div class="ctaRow mt18 reveal fade">
-          <a class="btn" data-cta="offer" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">EMPEZAR RESET CANINO AHORA</a>
-        </div>
-        <div class="trustRow reveal fade">
-          <span>🛡️ Garantía 7 días</span>
-          <span>💳 Pago seguro</span>
-          <span>✅ Sin suscripciones</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GARANTÍA -->
-  <section class="section muted cv">
-    <div class="container">
-      <div class="card center reveal">
-        <h2 class="mb0">🛡️ Garantía de 7 días</h2>
-        <p class="lead mt8">Pruébalo. Si no estás satisfecho, solicitas reembolso dentro de 7 días.</p>
-        <p class="subnote">Sin preguntas. Sin complicaciones.</p>
-
-        <div class="ctaRow" style="justify-content:center">
-          <a class="btn" data-cta="guarantee" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">QUIERO EMPEZAR AHORA</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq" class="section cv">
-    <div class="container">
-      <h2 class="reveal">Preguntas frecuentes (directas)</h2>
-      <p class="lead reveal">Resolvemos objeciones típicas antes de que te frenen.</p>
-
-      <div class="grid cards2 mt18">
-        <details class="card reveal">
-          <summary style="cursor:pointer;font-weight:900;">“Mi perro solo se porta mal cuando me voy. ¿Esto es para mí?”</summary>
-          <p class="mt8">Sí: suele ser <strong>ansiedad por separación</strong> o hiperactivación. Trabajamos <strong>regulación</strong> + <strong>estructura</strong> para que aprenda calma real.</p>
-        </details>
-
-        <details class="card reveal" style="transition-delay:80ms">
-          <summary style="cursor:pointer;font-weight:900;">“¿Y si ya probé cansarlo más y no funcionó?”</summary>
-          <p class="mt8">Es normal: más ejercicio puede subir la activación. Aquí el foco es <strong>bajar el estado interno</strong> con rutinas y micro-pasos.</p>
-        </details>
-
-        <details class="card reveal" style="transition-delay:160ms">
-          <summary style="cursor:pointer;font-weight:900;">“¿Necesito jaula/transportín?”</summary>
-          <p class="mt8">No es obligatorio. Si usas jaula, se integra solo si tu perro ya está cómodo (sin forzarlo).</p>
-        </details>
-
-        <details class="card reveal" style="transition-delay:240ms">
-          <summary style="cursor:pointer;font-weight:900;">“¿Cuándo veré resultados?”</summary>
-          <p class="mt8">Muchos dueños notan <strong>señales</strong> en la primera semana, pero depende del caso y la constancia. Buscamos progreso medible, no magia.</p>
-        </details>
-
-        <details class="card reveal">
-          <summary style="cursor:pointer;font-weight:900;">“¿Sirve si es adulto / rescatado / cachorro?”</summary>
-          <p class="mt8">Sí: el enfoque es regulación y rutina. En rescatados puede requerir más paciencia, por eso el plan guía paso a paso.</p>
-        </details>
-
-        <details class="card reveal" style="transition-delay:80ms">
-          <summary style="cursor:pointer;font-weight:900;">“¿Esto usa castigos o métodos agresivos?”</summary>
-          <p class="mt8">No. La base es <strong>amable</strong> y orientada a reducir estrés. El castigo suele empeorar la ansiedad.</p>
-        </details>
-
-        <details class="card reveal" style="transition-delay:160ms">
-          <summary style="cursor:pointer;font-weight:900;">“¿Qué pasa si compro y no era lo que esperaba?”</summary>
-          <p class="mt8">Tienes <strong>7 días de garantía</strong>. Si no te sirve, pides reembolso dentro del plazo.</p>
-        </details>
-
-        <details class="card reveal" style="transition-delay:240ms">
-          <summary style="cursor:pointer;font-weight:900;">“¿Cómo recibo el Asistente IA?”</summary>
-          <p class="mt8">Tras el pago, recibes un <strong>link de acceso</strong> junto con el ebook y los bonos.</p>
-        </details>
-      </div>
-
-      <div class="card center mt24 reveal">
-        <h2>Tu perro no quiere destruir tu casa.</h2>
-        <p class="lead">Solo necesita aprender a regularse… y confiar en que siempre volverás.</p>
-        <div class="ctaRow" style="justify-content:center">
-          <a class="btn" data-cta="final" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">EMPEZAR AHORA</a>
-        </div>
-        <div class="trustRow" style="justify-content:center">
-          <span>🛡️ Garantía 7 días</span>
-          <span>💳 Pago seguro</span>
-          <span>✅ Pago único</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- MODAL (overlay) -->
-  <div class="modalOverlay" id="exitOverlay" aria-hidden="true">
-    <div class="modalBox" role="dialog" aria-modal="true" aria-label="Antes de irte">
-      <div class="modalHead">
-        <div>
-          <h3>Espera… antes de irte</h3>
-          <p class="subnote mb0">Si tu perro se descontrola al salir, esto te lo pone fácil.</p>
-        </div>
-        <button class="modalClose" type="button" id="closeModal" aria-label="Cerrar">✕</button>
-      </div>
-      <div class="modalBody">
-        <p class="lead" style="margin:0 0 12px;">
-          Tu perro <strong>no es malo</strong>. Está ansioso. Con Reset Canino tienes un plan simple para empezar <strong>hoy</strong> y notar señales en la primera semana.
-        </p>
-
-        <div class="card soft" style="margin:12px 0;">
-          <strong>Incluye:</strong>
-          <ul class="checklist" style="margin-top:10px">
-            <li><span class="check">✓</span><span>Ebook + Plan 7 días (10–15 min/día)</span></li>
-            <li><span class="check">✓</span><span>3 bonos + Asistente IA 24/7 (link)</span></li>
-            <li><span class="check">✓</span><span>Garantía 7 días</span></li>
-          </ul>
-        </div>
-
-        <a class="btn" data-cta="popup" rel="noopener" href="https://mascotaequilibrada.com/cart/57475776184707:1">Sí, quiero empezar ahora</a>
-        <p class="subnote">Pago único · Acceso inmediato · Sin suscripciones</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      const checkoutUrl = "https://mascotaequilibrada.com/cart/57475776184707:1";
-
-      /* 1) Warmup checkout on interaction */
-      let warmed = false;
-      function warmup(){
-        if (warmed) return;
-        warmed = true;
-        const l = document.createElement("link");
-        l.rel = "prefetch";
-        l.as = "document";
-        l.href = checkoutUrl;
-        document.head.appendChild(l);
-      }
-
-      function isCta(el){
-        return el && el.closest ? el.closest("a[data-cta]") : null;
-      }
-
-      document.addEventListener("pointerdown", (e) => { if (isCta(e.target)) warmup(); }, {passive:true});
-      document.addEventListener("mouseover", (e) => { if (isCta(e.target)) warmup(); }, {passive:true});
-
-      /* 2) Scroll reveal */
-      const revealItems = document.querySelectorAll(".reveal");
-      if (revealItems.length){
-        const io = new IntersectionObserver((entries) => {
-          for (const ent of entries) {
-            if (ent.isIntersecting) {
-              ent.target.classList.add("is-visible");
-              io.unobserve(ent.target);
-            }
-          }
-        }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
-
-        revealItems.forEach(el => io.observe(el));
-      }
-
-      /* 3) Modal (80% scroll + exit intent si hubo intención) */
-      const overlay = document.getElementById("exitOverlay");
-      const closeBtn = document.getElementById("closeModal");
-      const POP_KEY = "rc_popup_shown_v3";
-
-      let clickedCta = false;
-      let popupShown = localStorage.getItem(POP_KEY) === "1";
-
-      document.addEventListener("click", (e) => {
-        if (isCta(e.target)) clickedCta = true;
-      }, {passive:true});
-
-      function canShowPopup(){
-        if (popupShown) return false;
-        if (!overlay) return false;
-        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-        return true;
-      }
-
-      function openPopup(){
-        if (!canShowPopup()) return;
-        popupShown = true;
-        localStorage.setItem(POP_KEY, "1");
-        overlay.classList.add("is-open");
-        overlay.setAttribute("aria-hidden", "false");
-      }
-
-      function closePopup(){
-        overlay.classList.remove("is-open");
-        overlay.setAttribute("aria-hidden", "true");
-      }
-
-      closeBtn && closeBtn.addEventListener("click", closePopup);
-      overlay && overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) closePopup();
-      });
-
-      let lastCheck = 0;
-      window.addEventListener("scroll", () => {
-        const t = performance.now();
-        if (t - lastCheck < 120) return;
-        lastCheck = t;
-
-        const doc = document.documentElement;
-        const scrollTop = doc.scrollTop || document.body.scrollTop;
-        const scrollHeight = doc.scrollHeight || document.body.scrollHeight;
-        const clientHeight = doc.clientHeight || window.innerHeight;
-
-        const maxScroll = Math.max(1, scrollHeight - clientHeight);
-        const progress = scrollTop / maxScroll;
-
-        if (progress >= 0.80){
-          // A 80% lo mostramos incluso sin click CTA: ya consumió contenido (intención)
-          openPopup();
+);
+
+const Reveal = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target);
         }
-      }, {passive:true});
+      },
+      { threshold: 0.1 }
+    );
 
-      // Exit intent desktop: solo si clickeó CTA (intención fuerte)
-      document.addEventListener("mouseout", (e) => {
-        if (!clickedCta) return;
-        if (!canShowPopup()) return;
-        if (e.clientY <= 0) openPopup();
-      }, {passive:true});
-    })();
-  </script>
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
 
-</body>
-</html>
+  return (
+    <div ref={ref} className={`reveal ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border-b border-border py-4">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between text-left font-bold text-lg py-2"
+      >
+        <span>{question}</span>
+        {isOpen ? <ChevronUp className="w-5 h-5 text-gray-text" /> : <ChevronDown className="w-5 h-5 text-gray-text" />}
+      </button>
+      {isOpen && (
+        <div className="mt-2 text-gray-text leading-relaxed pb-4">
+          {answer}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// --- Main App ---
+
+export default function App() {
+  const [showPopup, setShowPopup] = useState(false);
+  const [hasClickedCTA, setHasClickedCTA] = useState(false);
+  const [heroImage, setHeroImage] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const imageUrlToBase64 = async (url: string): Promise<string> => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  };
+
+  const handleGenerateImage = async () => {
+    setIsGenerating(true);
+    try {
+      const img = await generateHeroImage();
+      if (img) setHeroImage(img);
+    } catch (error) {
+      console.error("Error generating image:", error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const handleOutpaintImage = async () => {
+    if (!heroImage && !document.querySelector('img[alt="Perro arañando la puerta por ansiedad"]')) return;
+    
+    setIsGenerating(true);
+    try {
+      const currentSrc = heroImage || (document.querySelector('img[alt="Perro arañando la puerta por ansiedad"]') as HTMLImageElement).src;
+      const base64 = await imageUrlToBase64(currentSrc);
+      const extendedImg = await editHeroImage(base64);
+      if (extendedImg) setHeroImage(extendedImg);
+    } catch (error) {
+      console.error("Error outpainting image:", error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  useEffect(() => {
+    // handleGenerateImage(); // Removed to use the static hero image requested by the user
+  }, []);
+
+  const handleCheckout = () => {
+    setHasClickedCTA(true);
+    window.location.href = CHECKOUT_URL;
+  };
+
+  const scrollToOffer = () => {
+    setHasClickedCTA(true);
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Popup Logic
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+      if (scrollPercent > 0.8 && !localStorage.getItem("popup_shown")) {
+        setShowPopup(true);
+        localStorage.setItem("popup_shown", "true");
+      }
+    };
+
+    const handleExitIntent = (e: MouseEvent) => {
+      if (e.clientY <= 0 && hasClickedCTA && !localStorage.getItem("popup_shown")) {
+        setShowPopup(true);
+        localStorage.setItem("popup_shown", "true");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    document.addEventListener("mouseleave", handleExitIntent);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mouseleave", handleExitIntent);
+    };
+  }, [hasClickedCTA]);
+
+  return (
+    <div className="min-h-screen">
+      {/* 1) HERO (Impacto inmediato) */}
+      <Section className="pt-12 md:pt-16 pb-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <p className="text-primary font-bold uppercase tracking-[0.2em] mb-4 text-sm">
+              Atención: Si tu perro sufre cuando te vas...
+            </p>
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-dark tracking-tight">
+              ¿Tu perro ladra, destruye cosas o araña puertas cuando sales de casa?
+            </h1>
+            <p className="text-2xl md:text-3xl font-bold text-primary mb-6">
+              No es desobediencia. Es ansiedad por separación.
+            </p>
+            <p className="text-xl md:text-2xl text-gray-text mb-8 leading-relaxed max-w-2xl mx-auto">
+              Con el método Reset Canino aprenderás cómo ayudar a tu perro a recuperar la calma en casa en solo 10-15 minutos al día.
+            </p>
+            
+            <div className="max-w-md mx-auto mb-8">
+              <Button onClick={scrollToOffer} className="text-xl py-6 shadow-xl mb-4">
+                Quiero ayudar a mi perro ahora
+              </Button>
+              <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest">
+                <span className="flex items-center gap-1">✔ Acceso inmediato</span>
+                <span className="flex items-center gap-1">✔ Pago seguro</span>
+                <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+              </div>
+            </div>
+
+            <div className="bg-gray-bg p-6 rounded-[14px] border border-border mb-8 inline-block text-left">
+              <p className="text-lg text-dark leading-relaxed">
+                Aprenderá a calmarse solo en casa sin necesidad de fármacos ni métodos costosos.
+              </p>
+              <p className="mt-4 font-bold text-dark flex flex-wrap gap-4">
+                <span>Sin castigos.</span>
+                <span>Sin métodos agresivos.</span>
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 1.5) VIDEO + CTA + GARANTÍAS */}
+      <Section className="pt-0 pb-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <Reveal>
+            <p className="text-lg font-bold text-dark mb-6">
+              🔊 Activa el sonido. En menos de 30 segundos entenderás por qué tu perro se descontrola cuando sales de casa.
+            </p>
+            <div className="mb-10 shadow-2xl overflow-hidden rounded-[20px] border border-border max-w-[320px] mx-auto bg-black">
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline 
+                preload="auto" 
+                className="w-full aspect-[9/16] object-cover cursor-pointer" 
+                style={{ borderRadius: "20px" }}
+                onClick={(e) => {
+                  e.currentTarget.muted = false;
+                  e.currentTarget.play();
+                }}
+              >
+                <source src="/video-rc-3.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            <Button onClick={scrollToOffer} className="mb-6 text-xl py-6 max-w-md mx-auto">
+              Quiero empezar Reset Canino ahora
+            </Button>
+
+            <div className="flex flex-wrap justify-center gap-6 text-sm font-bold text-gray-text uppercase tracking-wider">
+              <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+              <span className="flex items-center gap-1">✔ Pago seguro</span>
+              <span className="flex items-center gap-1">✔ Acceso inmediato</span>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 1.55) LA HISTORIA DETRÁS DEL MÉTODO */}
+      <Section bg="gray">
+        <div className="max-w-3xl mx-auto">
+          <Reveal>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">La razón por la que creé Reset Canino</h2>
+            <div className="space-y-6 text-lg text-gray-text leading-relaxed">
+              <p>
+                Todo empezó con Bruno. Cada vez que cogía las llaves, su mirada cambiaba. Al volver, encontraba la puerta arañada y a Bruno agotado de tanto ladrar.
+              </p>
+              <p>
+                Pensaba que era exceso de energía y lo paseaba más, pero nada funcionaba. Fue entonces cuando entendí que el problema no era físico, sino <strong>ansiedad anticipatoria</strong>.
+              </p>
+              <p>
+                Bruno no era un "perro malo", solo estaba aterrorizado por mi ausencia. Diseñé estas rutinas para enseñarle a sentirse seguro solo. Hoy, Bruno duerme tranquilo mientras yo no estoy, y esa paz es la que quiero para ti y tu perro.
+              </p>
+            </div>
+            <div className="mt-12 text-center">
+              <Button onClick={scrollToOffer} className="max-w-md mx-auto">
+                Empezar Reset Canino ahora
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 1.6) IMAGEN DEL PERRO ARAÑANDO */}
+      <Section className="pt-0 pb-16">
+        <div className="max-w-xl mx-auto">
+          <Reveal>
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-primary/10 rounded-[20px] blur-2xl -z-10" />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] shadow-2xl border border-border">
+                <img 
+                  src={heroImage || "/perro-puerta.jpg"} 
+                  alt="Perro arañando la puerta por ansiedad" 
+                  className={`w-full h-full object-cover transition-all duration-700 ${isGenerating ? 'opacity-40 scale-105 blur-sm' : 'opacity-100 scale-100 blur-0'}`}
+                  fetchPriority="high"
+                  loading="eager"
+                  referrerPolicy="no-referrer"
+                />
+                {isGenerating && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-sm">
+                    <div className="flex flex-col items-center gap-3">
+                      <RefreshCw className="w-10 h-10 text-primary animate-spin" />
+                      <span className="text-sm font-bold text-dark bg-white/80 px-3 py-1 rounded-full">Adaptando formato 1080x1350...</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="absolute bottom-4 right-4 flex gap-2">
+                <button 
+                  onClick={handleOutpaintImage}
+                  disabled={isGenerating}
+                  className="bg-white/90 hover:bg-white text-dark p-3 rounded-full shadow-lg transition-all active:scale-90 disabled:opacity-50 z-10 border border-border"
+                  title="Adaptar a formato vertical (1080x1350)"
+                >
+                  <Maximize2 className={`w-5 h-5 ${isGenerating ? 'animate-pulse' : ''}`} />
+                </button>
+                <button 
+                  onClick={handleGenerateImage}
+                  disabled={isGenerating}
+                  className="bg-white/90 hover:bg-white text-dark p-3 rounded-full shadow-lg transition-all active:scale-90 disabled:opacity-50 z-10 border border-border"
+                  title="Regenerar imagen"
+                >
+                  <RefreshCw className={`w-5 h-5 ${isGenerating ? 'animate-spin' : ''}`} />
+                </button>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+
+      {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
+      <Section bg="gray">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Si tu perro hace esto cuando te vas…</h2>
+          <div className="grid sm:grid-cols-2 gap-4 text-left mt-8">
+            {[
+              "Araña la puerta cuando sales",
+              "Ladra o llora durante horas",
+              "Rompe cosas en casa",
+              "Se activa cuando coges las llaves",
+              "No sabe relajarse solo"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white p-5 rounded-[14px] border border-border shadow-soft">
+                <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
+                <span className="font-bold text-dark">{item}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal className="text-center">
+          <div className="inline-block bg-white p-8 rounded-[14px] border border-border shadow-soft max-w-2xl">
+            <p className="text-xl font-bold text-dark mb-4">Esto no es mala conducta.</p>
+            <p className="text-lg text-gray-text leading-relaxed">
+              Es un problema de <span className="text-primary font-bold">activación emocional</span> y ansiedad anticipatoria.
+            </p>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* PARA QUIÉN ES / PARA QUIÉN NO */}
+      <Section>
+        <Reveal className="text-center max-w-2xl mx-auto mb-12">
+          <h2 className="text-3xl font-bold mb-4">¿Para quién es Reset Canino? (y para quién NO)</h2>
+        </Reveal>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div className="bg-white p-8 rounded-[14px] border border-border shadow-soft">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-green-600">
+              <CheckCircle2 className="w-6 h-6" /> Es para ti si…
+            </h3>
+            <ul className="space-y-4">
+              {[
+                "Se activa cuando te preparas para salir.",
+                "Hay ladridos, llanto, rascado o destrucción estando solo.",
+                "Quieres un método amable (sin castigos ni gritos).",
+                "Necesitas algo simple: 10–15 min/día."
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3 text-gray-text leading-relaxed">
+                  <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-white p-8 rounded-[14px] border border-border shadow-soft">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-red-600">
+              <XCircle className="w-6 h-6" /> No es para ti si…
+            </h3>
+            <ul className="space-y-4">
+              {[
+                "Buscas una “solución mágica” sin aplicar rutinas.",
+                "Quieres métodos duros/agresivos para “dominar”.",
+                "No puedes dedicar ni 10 minutos al día durante una semana.",
+                "Tu caso requiere atención veterinaria urgente (dolor, enfermedad)."
+              ].map((item, i) => (
+                <li key={i} className="flex gap-3 text-gray-text leading-relaxed">
+                  <div className="w-1.5 h-1.5 bg-red-600 rounded-full mt-2 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      {/* 2.5) VISUALIZACIÓN DE LA TRANSFORMACIÓN (ESTÁTICA) */}
+      <Section bg="dark">
+        <div className="max-w-xl mx-auto text-center">
+          <Reveal>
+            <div className="w-[90%] md:w-full mx-auto">
+              <div className="relative aspect-[9/16] rounded-[20px] overflow-hidden border border-white/10 shadow-2xl mb-8">
+                <img 
+                  src="/ayd-1.jpg" 
+                  alt="Transformación Reset Canino: Antes y Después" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                {/* Overlay labels for clarity since it's a single image */}
+                <div className="absolute top-6 left-6">
+                  <span className="bg-red-600/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                    ANTES
+                  </span>
+                </div>
+                <div className="absolute bottom-6 left-6">
+                  <span className="bg-green-600/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
+                    DESPUÉS
+                  </span>
+                </div>
+              </div>
+              
+              <div className="space-y-2 text-center">
+                <p className="text-gray-400 text-lg font-medium">
+                  ANTES: ansiedad y destrucción cuando te vas
+                </p>
+                <p className="text-primary text-lg font-bold">
+                  DESPUÉS: calma y tranquilidad en casa
+                </p>
+              </div>
+            </div>
+            
+            <div className="mt-12">
+              <Button onClick={scrollToOffer} className="max-w-md mx-auto">
+                Sí, quiero que mi perro esté tranquilo
+              </Button>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 3) CAMBIO DE PERSPECTIVA */}
+      <Section>
+        <div className="max-w-4xl mx-auto">
+          <Reveal>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">El error que cometen la mayoría de dueños</h2>
+            <div className="space-y-6 text-lg text-gray-text leading-relaxed">
+              <p>Muchos intentan cansar más al perro.</p>
+              <div className="flex flex-col gap-2 font-bold text-dark">
+                <span>Más paseos.</span>
+                <span>Más juego.</span>
+              </div>
+              <p>Pero eso no soluciona la activación mental.</p>
+              <p className="bg-primary/5 p-6 rounded-[14px] border-l-4 border-primary text-dark font-medium">
+                Tu perro necesita aprender a <span className="text-primary font-bold">regularse emocionalmente</span>. Eso es lo que enseña Reset Canino.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 4) PRESENTACIÓN DEL MÉTODO */}
+      <Section bg="gray">
+        <Reveal className="text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">Reset Canino: sistema paso a paso para recuperar la calma en casa</h2>
+          <p className="text-lg text-primary font-bold mb-8">
+            Basado en principios de comportamiento canino y aplicado por más de 1.000 dueños que querían ayudar a su perro a quedarse tranquilo en casa.
+          </p>
+          <p className="text-xl text-gray-text mb-12">Diseñado para dueños normales.</p>
+          <div className="flex flex-wrap justify-center gap-8 text-lg font-bold text-dark">
+            <div className="flex items-center gap-2"><XCircle className="text-primary" /> Sin castigos</div>
+            <div className="flex items-center gap-2"><XCircle className="text-primary" /> Sin gritos</div>
+            <div className="flex items-center gap-2"><XCircle className="text-primary" /> Sin métodos agresivos</div>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* 5) LOS PILARES DEL SISTEMA */}
+      <Section>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            { 
+              title: "Regulación Canina", 
+              desc: "Tu perro aprende a bajar su activación antes de que explote.",
+              icon: <Brain className="w-8 h-8" />
+            },
+            { 
+              title: "Rutina Anti-Hiperactividad", 
+              desc: "10-15 minutos diarios que cambian su estado mental.",
+              icon: <Zap className="w-8 h-8" />
+            },
+            { 
+              title: "Comunicación Clara", 
+              desc: "Tu perro entiende qué esperar cuando sales.",
+              icon: <MessageCircle className="w-8 h-8" />
+            },
+            { 
+              title: "Redirección de Conductas", 
+              desc: "Canalizas su energía sin destruir tu casa.",
+              icon: <ArrowRight className="w-8 h-8" />
+            }
+          ].map((item, i) => (
+            <div key={i}>
+              <Reveal className="bg-white p-8 rounded-[14px] border border-border shadow-soft h-full flex flex-col">
+                <div className="text-primary mb-6">{item.icon}</div>
+                <h3 className="text-xl font-bold mb-4 text-dark">{item.title}</h3>
+                <p className="text-gray-text leading-relaxed">{item.desc}</p>
+              </Reveal>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* 6) CÓMO FUNCIONA */}
+      <Section bg="gray">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Cómo funciona el Reset Canino</h2>
+        </Reveal>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
+          {[
+            { phase: "Fase 1", title: "Detectar disparadores" },
+            { phase: "Fase 2", title: "Bajar activación emocional" },
+            { phase: "Fase 3", title: "Entrenar calma real" }
+          ].map((item, i) => (
+            <div key={i}>
+              <Reveal className="bg-white p-8 rounded-[14px] border border-border shadow-soft text-center relative">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
+                  {item.phase}
+                </div>
+                <h4 className="text-xl font-bold text-dark mt-4">{item.title}</h4>
+              </Reveal>
+            </div>
+          ))}
+        </div>
+        <Reveal className="mt-16 text-center">
+          <p className="text-2xl font-bold text-primary">Solo 10-15 minutos al día.</p>
+        </Reveal>
+      </Section>
+
+      {/* 7) RESULTADOS */}
+      <Section>
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Resultados que muchos dueños empiezan a notar en la primera semana</h2>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {[
+            "Menos activación al coger llaves",
+            "Menos arañazos en puertas",
+            "Menos ladridos al salir",
+            "Más momentos de calma",
+            "Mejor descanso en casa"
+          ].map((item, i) => (
+            <div key={i}>
+              <Reveal className="flex items-center gap-4 bg-gray-bg p-6 rounded-[14px] border border-border">
+                <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0" />
+                <span className="font-bold text-dark">{item}</span>
+              </Reveal>
+            </div>
+          ))}
+        </div>
+
+        {/* 7.5) PRECIO TEASER */}
+        <Reveal className="mt-20 max-w-2xl mx-auto text-center bg-primary/5 p-10 rounded-[24px] border border-primary/20">
+          <h2 className="text-3xl font-bold mb-4 text-dark">Empieza a aplicar Reset Canino hoy</h2>
+          <p className="text-lg text-gray-text mb-6">
+            Accede al sistema completo para ayudar a tu perro a relajarse cuando se queda solo en casa.
+          </p>
+          <p className="text-xl font-bold text-primary mb-8">
+            Por menos de lo que cuesta un juguete para perros.
+          </p>
+          <Button onClick={scrollToOffer} className="max-w-md mx-auto">
+            Ver cómo empezar hoy
+          </Button>
+        </Reveal>
+      </Section>
+
+      {/* 8) TESTIMONIOS */}
+      <Section bg="gray">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Prueba Social</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Más de 1.000 dueños ya han aplicado Reset Canino para recuperar la calma en casa.</h2>
+          <p className="text-gray-text">Historias reales de personas que han recuperado la paz en sus hogares.</p>
+        </Reveal>
+        <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {[
+            {
+              name: "Laura Martínez",
+              province: "Madrid",
+              story: "Mi perro destrozaba el sofá cada vez que me iba a trabajar. Probé de todo, pero solo con Reset Canino logré que se quedara durmiendo tranquilo en su cama. En menos de una semana el cambio fue radical.",
+              img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150"
+            },
+            {
+              name: "Carlos Rodríguez",
+              province: "Barcelona",
+              story: "Los vecinos se quejaban por los ladridos constantes. Estaba desesperado. Empecé el plan de 7 días y desde el tercer día los ladridos cesaron. Ahora puedo salir a cenar sin mirar la cámara cada 5 minutos.",
+              img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150"
+            },
+            {
+              name: "Elena Sánchez",
+              province: "Sevilla",
+              story: "Lola me seguía como una sombra y entraba en pánico al ver las llaves. Gracias a las rutinas de regulación emocional, ahora entiende que volveré y se queda relajada. Es una paz que no tiene precio.",
+              img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=150&h=150"
+            },
+            {
+              name: "Javier Torres",
+              province: "Valencia",
+              story: "Pensaba que mi perro era rebelde, pero era ansiedad pura. Reset Canino me enseñó a comunicarme con él sin gritos. Los arañazos en la puerta son cosa del pasado. ¡Totalmente recomendado!",
+              img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
+            }
+          ].map((testimonial, i) => (
+            <div key={i}>
+              <Reveal className="bg-white p-8 rounded-[14px] border border-border shadow-soft flex flex-col h-full hover:border-primary/30 transition-colors">
+                <div className="flex items-center gap-4 mb-6">
+                  <img 
+                    src={testimonial.img} 
+                    alt={testimonial.name} 
+                    className="w-14 h-14 rounded-full object-cover border-2 border-primary/10"
+                    loading="lazy"
+                  />
+                  <div>
+                    <h4 className="font-bold text-dark leading-tight">{testimonial.name}</h4>
+                    <p className="text-xs text-gray-text font-medium">{testimonial.province}, España</p>
+                  </div>
+                </div>
+                <div className="flex text-primary mb-4">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                </div>
+                <p className="text-gray-text leading-relaxed italic">“{testimonial.story}”</p>
+                <div className="mt-auto pt-6 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  <span className="text-[10px] font-bold text-gray-text uppercase tracking-widest">Compra Verificada</span>
+                </div>
+              </Reveal>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* BONUS IA */}
+      <Section bg="gray">
+        <Reveal className="max-w-4xl mx-auto">
+          <div className="bg-white p-8 md:p-12 rounded-[24px] border-2 border-primary/20 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-primary text-white px-6 py-1 font-bold text-xs uppercase tracking-widest">
+              BONUS EXCLUSIVO
+            </div>
+            <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="w-full md:w-1/3">
+                <div className="aspect-square rounded-full flex items-center justify-center relative overflow-hidden border-4 border-primary/10 shadow-xl">
+                  <img 
+                    src="/movil-1.jpg" 
+                    alt="Asistente Virtual Reset Canino" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-2/3">
+                <h2 className="text-3xl font-bold mb-6 text-dark flex items-center gap-3">
+                  🤖 Asistente Virtual Reset Canino (IA 24/7)
+                </h2>
+                <p className="text-lg text-gray-text mb-8 leading-relaxed">
+                  Tendrás acceso a un asistente inteligente disponible 24/7 que responderá todas tus dudas sobre el comportamiento de tu perro.
+                </p>
+                <div className="bg-gray-bg p-6 rounded-[14px] border border-border mb-8">
+                  <p className="font-bold text-dark mb-4">Podrás preguntarle cosas como:</p>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3 text-gray-text">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                      ¿Por qué mi perro ladra cuando me voy?
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-text">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                      ¿Qué hago si araña la puerta?
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-text">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                      ¿Estoy aplicando bien el método?
+                    </li>
+                    <li className="flex items-center gap-3 text-gray-text">
+                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                      ¿Cómo aplico la rutina correctamente?
+                    </li>
+                  </ul>
+                </div>
+                <p className="text-sm font-medium text-primary italic">
+                  Este asistente ha sido entrenado con todo el contenido del programa Reset Canino.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* 9) OFERTA */}
+      <Section id="oferta">
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">Lo que recibes hoy al unirte</h2>
+          <div className="mt-8 mb-12 flex justify-center">
+            <img 
+              src="https://i.postimg.cc/yxr02NC3/Diseno-sin-titulo-(10).png" 
+              alt="Mockup Libro Digital Reset Canino" 
+              className="w-full max-w-sm h-auto rounded-[14px] shadow-soft"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+        </Reveal>
+        
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-white p-8 md:p-12 rounded-[20px] border-2 border-border shadow-soft relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-primary text-white px-8 py-2 rotate-45 translate-x-8 translate-y-4 font-bold text-sm">
+              OFERTA HOY
+            </div>
+            
+            <ul className="space-y-6 mb-12">
+              {[
+                { name: "Ebook Reset Canino", value: 39 },
+                { name: "Audio guía paso a paso", value: 27 },
+                { name: "Video resumen del método", value: 19 },
+                { name: "Bonus: errores invisibles al usar juguetes", value: 19 },
+                { name: "🤖 Asistente virtual Reset Canino IA 24/7", value: 67 }
+              ].map((item, i) => (
+                <li key={i} className="text-lg font-bold text-dark flex items-center justify-between gap-3 border-b border-border pb-4">
+                  <span className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    {item.name}
+                  </span>
+                  <span className="text-gray-text font-medium">valor {item.value}€</span>
+                </li>
+              ))}
+            </ul>
+ 
+            <div className="border-t border-border pt-12 text-center">
+              <p className="text-2xl text-gray-text line-through mb-2">Valor total: 171€</p>
+              <p className="text-6xl font-black text-dark mb-4 tracking-tighter">
+                Hoy solo <span className="text-primary">19,97€</span>
+              </p>
+              <div className="space-y-2 mb-8">
+                <p className="text-primary font-bold animate-pulse">
+                  Oferta de lanzamiento disponible por tiempo limitado.
+                </p>
+                <p className="text-sm text-gray-text font-medium italic">
+                  Cuando termine el lanzamiento el precio volverá a 39€.
+                </p>
+              </div>
+              <Button onClick={handleCheckout} className="text-2xl py-8 shadow-xl">
+                👉 Empezar Reset Canino ahora
+              </Button>
+              <p className="mt-6 text-sm font-bold text-gray-text uppercase tracking-widest">
+                Acceso inmediato · Pago único · Sin cuotas
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* 10) GARANTÍA */}
+      <Section bg="gray">
+        <Reveal className="max-w-2xl mx-auto bg-white p-10 md:p-16 rounded-[20px] border border-border shadow-soft text-center">
+          <ShieldCheck className="w-20 h-20 text-primary mx-auto mb-8" />
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Garantía de 7 días</h2>
+          <p className="text-xl text-dark font-bold mb-4">Pruébalo sin riesgo.</p>
+          <p className="text-lg text-gray-text mb-10 leading-relaxed">
+            Si no ves cambios o no estás satisfecho, puedes pedir reembolso. <span className="font-bold text-dark">Sin preguntas.</span>
+          </p>
+          <Button onClick={handleCheckout} variant="outline">QUIERO EMPEZAR AHORA</Button>
+        </Reveal>
+      </Section>
+
+      {/* 11) FAQ */}
+      <Section>
+        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Preguntas Frecuentes</h2>
+        </Reveal>
+        <div className="max-w-3xl mx-auto">
+          <FAQItem 
+            question="¿Mi perro solo se porta mal cuando me voy. ¿Esto es para mí?" 
+            answer="Sí. Eso es precisamente ansiedad por separación. Reset Canino está diseñado para atacar ese pánico que siente cuando te preparas para salir." 
+          />
+          <FAQItem 
+            question="¿Y si ya probé cansarlo más y no funcionó?" 
+            answer="Cansarlo físicamente a veces aumenta el cortisol (estrés). Aquí trabajamos la regulación mental, que es lo que realmente permite que se relaje." 
+          />
+          <FAQItem 
+            question="¿Necesito jaula/transportín?" 
+            answer="No es obligatorio. El método se adapta a tu espacio y a cómo vivas con tu perro." 
+          />
+          <FAQItem 
+            question="¿Cuándo veré resultados?" 
+            answer="Muchos dueños notan las primeras señales (menos activación al coger llaves) en los primeros 3-5 días si aplican las rutinas." 
+          />
+          <FAQItem 
+            question="¿Sirve si es adulto / rescatado / cachorro?" 
+            answer="Sí. El sistema nervioso canino funciona igual. Solo adaptamos la intensidad de las rutinas según su edad y energía." 
+          />
+          <FAQItem 
+            question="¿Esto usa castigos o métodos agresivos?" 
+            answer="Rotundamente no. El miedo no cura la ansiedad. Usamos refuerzo de calma y estructura clara." 
+          />
+          <FAQItem 
+            question="¿Qué pasa si compro y no era lo que esperaba?" 
+            answer="Tienes 7 días de garantía total. Nos escribes y te devolvemos el 100% de tu dinero." 
+          />
+          <FAQItem 
+            question="¿Cómo recibo el Asistente IA?" 
+            answer="Tras el pago, recibirás un PDF con un enlace directo para empezar a chatear con tu asistente 24/7." 
+          />
+        </div>
+      </Section>
+
+      {/* 12) CTA FINAL */}
+      <Section bg="gray" className="pb-40">
+        <Reveal className="max-w-3xl mx-auto text-center">
+          <div className="mb-12 space-y-4">
+            <p className="text-2xl font-bold text-dark">Tu perro no está intentando portarse mal.</p>
+            <p className="text-xl text-gray-text">Está intentando manejar una emoción que no sabe controlar.</p>
+            <p className="text-xl font-bold text-primary">
+              Con las rutinas correctas puedes enseñarle a sentirse seguro y tranquilo incluso cuando se queda solo en casa.
+            </p>
+          </div>
+          
+          <h2 className="text-3xl md:text-5xl font-black mb-6 text-dark tracking-tight">
+            Tu perro no quiere destruir tu casa.
+          </h2>
+          <p className="text-2xl text-gray-text mb-6">Solo necesita aprender a regularse.</p>
+          <p className="text-xl font-bold text-primary mb-12">
+            Empieza hoy y ayuda a tu perro a recuperar la calma en casa.
+          </p>
+          <div className="max-w-md mx-auto">
+            <Button onClick={handleCheckout} className="text-xl py-6 shadow-2xl mb-4">
+              Empezar Reset Canino ahora
+            </Button>
+            <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest">
+              <span className="flex items-center gap-1">✔ Acceso inmediato</span>
+              <span className="flex items-center gap-1">✔ Pago seguro</span>
+              <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* FOOTER */}
+      <footer className="bg-white border-t border-border py-16 px-6 text-center text-gray-text text-sm">
+        <div className="container-custom">
+          <p className="mb-6 font-bold">© {new Date().getFullYear()} Reset Canino. Todos los derechos reservados.</p>
+          <p className="max-w-3xl mx-auto opacity-50 text-[10px] leading-relaxed uppercase tracking-widest">
+            Este sitio no forma parte del sitio web de Facebook o Facebook Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de FACEBOOK, Inc.
+          </p>
+        </div>
+      </footer>
+
+      {/* STICKY CTA (Mobile) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-border p-5 z-50 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+        <div>
+          <p className="text-2xl font-black text-dark">19,97€</p>
+          <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
+        </div>
+        <button 
+          onClick={handleCheckout}
+          className="bg-primary text-white px-8 py-4 rounded-[14px] font-bold text-sm active:scale-95 transition-transform shadow-lg"
+        >
+          Empezar ahora
+        </button>
+      </div>
+
+      {/* POPUP / MODAL (Exit Intent) */}
+      {showPopup && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div 
+            className="absolute inset-0 bg-dark/90 backdrop-blur-md" 
+            onClick={() => setShowPopup(false)}
+          />
+          <div className="relative bg-white w-full max-w-lg rounded-[20px] p-10 md:p-16 shadow-2xl overflow-hidden text-center">
+            <button 
+              onClick={() => setShowPopup(false)}
+              className="absolute top-6 right-6 text-gray-text hover:text-dark transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <h2 className="text-3xl font-black mb-4 text-dark">Antes de irte…</h2>
+            <p className="text-lg text-gray-text mb-6 leading-relaxed">
+              Tu perro seguirá sintiendo ansiedad cada vez que salgas de casa.
+            </p>
+            <p className="text-xl font-bold text-dark mb-10 leading-relaxed">
+              Pero hoy puedes empezar a ayudarlo con el método Reset Canino.
+            </p>
+            <div className="flex flex-col gap-4">
+              <Button onClick={handleCheckout}>Quiero ayudar a mi perro ahora</Button>
+              <button 
+                onClick={() => setShowPopup(false)}
+                className="text-gray-text font-bold hover:text-dark transition-colors"
+              >
+                Ahora no
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
