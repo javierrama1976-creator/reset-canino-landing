@@ -281,7 +281,7 @@ export default function App() {
               </video>
             </div>
 
-            <Button onClick={scrollToOffer} className="mb-6 text-xl py-6 max-w-md mx-auto">
+            <Button onClick={handleCheckout} className="mb-6 text-xl py-6 max-w-md mx-auto">
               Quiero empezar Reset Canino ahora
             </Button>
 
