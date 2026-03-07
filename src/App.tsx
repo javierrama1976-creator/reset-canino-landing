@@ -478,7 +478,7 @@ export default function App() {
             </div>
             
             <div className="mt-12">
-              <Button onClick={scrollToOffer} className="max-w-md mx-auto">
+              <Button onClick={handleCheckout} className="max-w-md mx-auto">
                 Sí, quiero que mi perro esté tranquilo
               </Button>
             </div>
