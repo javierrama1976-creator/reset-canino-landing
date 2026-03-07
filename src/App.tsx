@@ -233,7 +233,7 @@ export default function App() {
             </p>
             
             <div className="max-w-md mx-auto mb-8">
-              <Button onClick={scrollToOffer} className="text-xl py-6 shadow-xl mb-4">
+              <Button onClick={handleCheckout} className="text-xl py-6 shadow-xl mb-4">
                 Quiero ayudar a mi perro ahora
               </Button>
               <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest">
