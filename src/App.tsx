@@ -615,7 +615,7 @@ export default function App() {
           <p className="text-xl font-bold text-primary mb-8">
             Por menos de lo que cuesta un juguete para perros.
           </p>
-          <Button onClick={scrollToOffer} className="max-w-md mx-auto">
+          <Button onClick={handleCheckout} className="max-w-md mx-auto">
             Ver cómo empezar hoy
           </Button>
         </Reveal>
