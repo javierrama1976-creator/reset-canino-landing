@@ -286,7 +286,24 @@ export default function App() {
             </Button>
 
             <div className="flex flex-wrap justify-center gap-6 text-sm font-bold text-gray-text uppercase tracking-wider">
-              <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+              <span c
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                lassName="flex items-center gap-1">✔ Garantía 7 días</span>
               <span className="flex items-center gap-1">✔ Pago seguro</span>
               <span className="flex items-center gap-1">✔ Acceso inmediato</span>
             </div>
@@ -310,11 +327,7 @@ export default function App() {
                 Bruno no era un "perro malo", solo estaba aterrorizado por mi ausencia. Diseñé estas rutinas para enseñarle a sentirse seguro solo. Hoy, Bruno duerme tranquilo mientras yo no estoy, y esa paz es la que quiero para ti y tu perro.
               </p>
             </div>
-            <div className="mt-12 text-center">
-              <Button onClick={handleCheckout} className="max-w-md mx-auto">
-                Empezar Reset Canino ahora
-              </Button>
-            </div>
+            
           </Reveal>
         </div>
       </Section>
@@ -790,12 +803,7 @@ export default function App() {
                   Cuando termine el lanzamiento el precio volverá a 39€.
                 </p>
               </div>
-              <Button onClick={handleCheckout} className="text-2xl py-8 shadow-xl">
-                👉 Empezar Reset Canino ahora
-              </Button>
-              <p className="mt-6 text-sm font-bold text-gray-text uppercase tracking-widest">
-                Acceso inmediato · Pago único · Sin cuotas
-              </p>
+            
             </div>
           </div>
         </div>
