@@ -5,25 +5,17 @@ import {
   ShieldCheck, 
   ArrowRight, 
   Star, 
-  BookOpen, 
+  
   Zap,
   X, 
   MessageCircle,
-  PlayCircle,
-  Headphones,
+  
   Brain,
-  Clock,
-  ChevronDown,
+  
   ChevronUp,
-  Lock,
-  RefreshCw,
+  
   Maximize2,
-  Sparkles,
-  Loader2
-} from "lucide-react";
-import { generateHeroImage, editHeroImage } from "./services/imageService";
-import { GoogleGenAI } from "@google/genai";
-
+  
 const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
 // --- Components ---
@@ -131,61 +123,21 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [hasClickedCTA, setHasClickedCTA] = useState(false);
-  const [heroImage, setHeroImage] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
+  
+  const handleCheckout = (source = "unknown") => {
+  setHasClickedCTA(true);
 
-  const imageUrlToBase64 = async (url: string): Promise<string> => {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-  };
+  if (typeof window !== "undefined" && (window as any).fbq) {
+    (window as any).fbq("trackCustom", "CTA_Click", { source });
+    (window as any).fbq("track", "InitiateCheckout");
+  }
 
-  const handleGenerateImage = async () => {
-    setIsGenerating(true);
-    try {
-      const img = await generateHeroImage();
-      if (img) setHeroImage(img);
-    } catch (error) {
-      console.error("Error generating image:", error);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
-  const handleOutpaintImage = async () => {
-    if (!heroImage && !document.querySelector('img[alt="Perro arañando la puerta por ansiedad"]')) return;
-    
-    setIsGenerating(true);
-    try {
-      const currentSrc = heroImage || (document.querySelector('img[alt="Perro arañando la puerta por ansiedad"]') as HTMLImageElement).src;
-      const base64 = await imageUrlToBase64(currentSrc);
-      const extendedImg = await editHeroImage(base64);
-      if (extendedImg) setHeroImage(extendedImg);
-    } catch (error) {
-      console.error("Error outpainting image:", error);
-    } finally {
-      setIsGenerating(false);
-    }
-  };
-
-  useEffect(() => {
-    // handleGenerateImage(); // Removed to use the static hero image requested by the user
-  }, []);
-
-  const handleCheckout = () => {
-    setHasClickedCTA(true);
-    window.location.href = CHECKOUT_URL;
-  };
-
+  window.location.href = CHECKOUT_URL;
+};
   const scrollToOffer = () => {
-    setHasClickedCTA(true);
-    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
-  };
+  setHasClickedCTA(true);
+  document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
+};
 
   // Popup Logic
   useEffect(() => {
@@ -216,43 +168,50 @@ export default function App() {
   return (
     <div className="min-h-screen">
       {/* 1) HERO (Impacto inmediato) */}
-      <Section className="pt-12 md:pt-16 pb-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <p className="text-primary font-bold uppercase tracking-[0.2em] mb-4 text-sm">
-              Atención: Si tu perro sufre cuando te vas...
-            </p>
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-dark tracking-tight">
-              ¿Tu perro ladra, destruye cosas o araña puertas cuando sales de casa?
-            </h1>
-            <p className="text-2xl md:text-3xl font-bold text-primary mb-6">
-              No es desobediencia. Es ansiedad por separación.
-            </p>
-            <p className="text-xl md:text-2xl text-gray-text mb-8 leading-relaxed max-w-2xl mx-auto">
-              Con el método Reset Canino aprenderás cómo ayudar a tu perro a recuperar la calma en casa en solo 10-15 minutos al día.
-            </p>
-            
-            <div className="max-w-md mx-auto mb-8">
-            
-              <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest">
-                <span className="flex items-center gap-1">✔ Acceso inmediato</span>
-                <span className="flex items-center gap-1">✔ Pago seguro</span>
-                <span className="flex items-center gap-1">✔ Garantía 7 días</span>
-              </div>
-            </div>
+        <Section className="pt-12 md:pt-16 pb-8">
+  <div className="max-w-4xl mx-auto text-center">
+    <Reveal>
+      <p className="text-primary font-bold uppercase tracking-[0.2em] mb-4 text-sm">
+        Para dueños con perros que no saben quedarse solos
+      </p>
 
-            <div className="bg-gray-bg p-6 rounded-[14px] border border-border mb-8 inline-block text-left">
-              <p className="text-lg text-dark leading-relaxed">
-                Aprenderá a calmarse solo en casa sin necesidad de fármacos ni métodos costosos.
-              </p>
-              <p className="mt-4 font-bold text-dark flex flex-wrap gap-4">
-                <span>Sin castigos.</span>
-                <span>Sin métodos agresivos.</span>
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
+      <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-dark tracking-tight">
+        Ayuda a tu perro a quedarse tranquilo en casa sin ladridos, destrozos ni ansiedad cuando sales
+      </h1>
+
+      <p className="text-2xl md:text-3xl font-bold text-primary mb-6">
+        Método práctico, amable y fácil de aplicar en solo 10-15 minutos al día
+      </p>
+
+      <p className="text-xl md:text-2xl text-gray-text mb-8 leading-relaxed max-w-2xl mx-auto">
+        Reset Canino te enseña paso a paso cómo reducir la ansiedad por separación y ayudar a tu perro a recuperar la calma cuando se queda solo.
+      </p>
+
+      <div className="max-w-md mx-auto mb-8">
+        <Button onClick={() => handleCheckout("hero")} className="text-xl py-6">
+          Quiero ayudar a mi perro desde hoy
+        </Button>
+      </div>
+
+      <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest mb-8 flex-wrap">
+        <span className="flex items-center gap-1">✔ Acceso inmediato</span>
+        <span className="flex items-center gap-1">✔ Pago seguro</span>
+        <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+      </div>
+
+      <div className="bg-gray-bg p-6 rounded-[14px] border border-border mb-8 inline-block text-left max-w-2xl">
+        <p className="text-lg text-dark leading-relaxed">
+          Ideal si tu perro ladra, araña puertas, rompe cosas o entra en pánico cada vez que te vas de casa.
+        </p>
+        <p className="mt-4 font-bold text-dark flex flex-wrap gap-4">
+          <span>Sin castigos.</span>
+          <span>Sin gritos.</span>
+          <span>Sin métodos agresivos.</span>
+        </p>
+      </div>
+    </Reveal>
+  </div>
+</Section>
 
       {/* 1.5) VIDEO + CTA + GARANTÍAS */}
       <Section className="pt-0 pb-16">
@@ -279,106 +238,20 @@ export default function App() {
               </video>
             </div>
 
-            <Button onClick={handleCheckout} className="mb-6 text-xl py-6 max-w-md mx-auto">
+            <Button onClick={() => handleCheckout("video")} className="mb-6 text-xl py-6 max-w-md mx-auto">
               Quiero empezar Reset Canino ahora
             </Button>
 
             <div className="flex flex-wrap justify-center gap-6 text-sm font-bold text-gray-text uppercase tracking-wider">
-              <span c
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                lassName="flex items-center gap-1">✔ Garantía 7 días</span>
-              <span className="flex items-center gap-1">✔ Pago seguro</span>
-              <span className="flex items-center gap-1">✔ Acceso inmediato</span>
-            </div>
+              <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+<span className="flex items-center gap-1">✔ Pago seguro</span>
+<span className="flex items-center gap-1">✔ Acceso inmediato</span>
+     </div>          
           </Reveal>
         </div>
       </Section>
 
-      {/* 1.55) LA HISTORIA DETRÁS DEL MÉTODO */}
-      <Section bg="gray">
-        <div className="max-w-3xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">La razón por la que creé Reset Canino</h2>
-            <div className="space-y-6 text-lg text-gray-text leading-relaxed">
-              <p>
-                Todo empezó con Bruno. Cada vez que cogía las llaves, su mirada cambiaba. Al volver, encontraba la puerta arañada y a Bruno agotado de tanto ladrar.
-              </p>
-              <p>
-                Pensaba que era exceso de energía y lo paseaba más, pero nada funcionaba. Fue entonces cuando entendí que el problema no era físico, sino <strong>ansiedad anticipatoria</strong>.
-              </p>
-              <p>
-                Bruno no era un "perro malo", solo estaba aterrorizado por mi ausencia. Diseñé estas rutinas para enseñarle a sentirse seguro solo. Hoy, Bruno duerme tranquilo mientras yo no estoy, y esa paz es la que quiero para ti y tu perro.
-              </p>
-            </div>
-            
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* 1.6) IMAGEN DEL PERRO ARAÑANDO */}
-      <Section className="pt-0 pb-16">
-        <div className="max-w-xl mx-auto">
-          <Reveal>
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-primary/10 rounded-[20px] blur-2xl -z-10" />
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[14px] shadow-2xl border border-border">
-                <img 
-                  src={heroImage || "/perro-puerta.jpg"} 
-                  alt="Perro arañando la puerta por ansiedad" 
-                  className={`w-full h-full object-cover transition-all duration-700 ${isGenerating ? 'opacity-40 scale-105 blur-sm' : 'opacity-100 scale-100 blur-0'}`}
-                  fetchPriority="high"
-                  loading="eager"
-                  referrerPolicy="no-referrer"
-                />
-                {isGenerating && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-white/20 backdrop-blur-sm">
-                    <div className="flex flex-col items-center gap-3">
-                      <RefreshCw className="w-10 h-10 text-primary animate-spin" />
-                      <span className="text-sm font-bold text-dark bg-white/80 px-3 py-1 rounded-full">Adaptando formato 1080x1350...</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-              
-              <div className="absolute bottom-4 right-4 flex gap-2">
-                <button 
-                  onClick={handleOutpaintImage}
-                  disabled={isGenerating}
-                  className="bg-white/90 hover:bg-white text-dark p-3 rounded-full shadow-lg transition-all active:scale-90 disabled:opacity-50 z-10 border border-border"
-                  title="Adaptar a formato vertical (1080x1350)"
-                >
-                  <Maximize2 className={`w-5 h-5 ${isGenerating ? 'animate-pulse' : ''}`} />
-                </button>
-                <button 
-                  onClick={handleGenerateImage}
-                  disabled={isGenerating}
-                  className="bg-white/90 hover:bg-white text-dark p-3 rounded-full shadow-lg transition-all active:scale-90 disabled:opacity-50 z-10 border border-border"
-                  title="Regenerar imagen"
-                >
-                  <RefreshCw className={`w-5 h-5 ${isGenerating ? 'animate-spin' : ''}`} />
-                </button>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-
+      
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
@@ -799,6 +672,14 @@ export default function App() {
                 </p>
                 <p className="text-sm text-gray-text font-medium italic">
                   Cuando termine el lanzamiento el precio volverá a 39€.
+                  <div className="mt-8 flex justify-center">
+  <Button
+    onClick={() => handleCheckout("oferta")}
+    className="text-xl px-8 py-4"
+  >
+    QUIERO EMPEZAR RESET CANINO AHORA
+  </Button>
+</div>
                 </p>
               </div>
             
@@ -816,7 +697,7 @@ export default function App() {
           <p className="text-lg text-gray-text mb-10 leading-relaxed">
             Si no ves cambios o no estás satisfecho, puedes pedir reembolso. <span className="font-bold text-dark">Sin preguntas.</span>
           </p>
-          <Button onClick={handleCheckout} variant="outline">QUIERO EMPEZAR AHORA</Button>
+          <Button onClick={() => handleCheckout("garantia")} variant="outline">
         </Reveal>
       </Section>
 
