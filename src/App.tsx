@@ -15,6 +15,7 @@ import {
   ChevronUp,
   
   ChevronDown,
+  } from "lucide-react";
   
 const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
