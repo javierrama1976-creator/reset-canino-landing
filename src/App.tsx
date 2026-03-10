@@ -13,6 +13,12 @@ import {
   Lock
 } from "lucide-react";
 
+declare global {
+  interface Window {
+    fbq: any;
+  }
+}
+
 const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
 // --- Components ---
@@ -137,6 +143,16 @@ export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [hasClickedCTA, setHasClickedCTA] = useState(false);
 
+  const handleCheckout = () => {
+    setHasClickedCTA(true);
+
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "InitiateCheckout");
+    }
+
+    window.location.href = CHECKOUT_URL;
+  };
+
   // Popup Logic
   useEffect(() => {
     const handleScroll = () => {
@@ -220,7 +236,7 @@ export default function App() {
               </div>
             </div>
 
-            <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)} className="mb-8 text-xl py-6 max-w-md mx-auto">
+            <Button onClick={handleCheckout} className="mb-8 text-xl py-6 max-w-md mx-auto">
               Empezar Reset Canino ahora
             </Button>
 
@@ -415,7 +431,7 @@ export default function App() {
           ))}
         </div>
         <Reveal className="mt-16 text-center">
-          <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)} className="max-w-md mx-auto">
+          <Button onClick={handleCheckout} className="max-w-md mx-auto">
             Quiero empezar el cambio hoy
           </Button>
         </Reveal>
@@ -466,7 +482,7 @@ export default function App() {
                   Un perro que te ve salir y se tumba a descansar. Una casa intacta. La libertad de poder irte sabiendo que tu mejor amigo está en paz.
                 </p>
               </div>
-              <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)}>
+              <Button onClick={handleCheckout}>
                 Quiero esta transformación para mi perro
               </Button>
             </div>
@@ -649,8 +665,7 @@ export default function App() {
                     AHORRAS 151,03€ (88% DTO)
                   </div>
                   <Button 
-                    href={CHECKOUT_URL} 
-                    onClick={() => setHasClickedCTA(true)} 
+                    onClick={handleCheckout} 
                     className="text-lg md:text-xl py-5 md:py-6 shadow-2xl hover:scale-[1.02] active:scale-95"
                   >
                     SÍ, QUIERO TODO EL PACK
@@ -677,7 +692,7 @@ export default function App() {
           <p className="text-xl text-gray-text mb-12 leading-relaxed">
             Si después de aplicar el método sientes que no es para ti o que tu perro no ha mejorado, escríbenos. Te devolveremos cada céntimo. <span className="font-bold text-dark">Sin preguntas, sin complicaciones.</span>
           </p>
-          <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)} variant="outline" className="max-w-md mx-auto">
+          <Button onClick={handleCheckout} variant="outline" className="max-w-md mx-auto">
             PROBAR RESET CANINO SIN RIESGO
           </Button>
         </Reveal>
@@ -737,13 +752,12 @@ export default function App() {
             </h3>
 
             <div className="max-w-sm mx-auto">
-              <a
-                href={CHECKOUT_URL}
-                onClick={() => setHasClickedCTA(true)}
+              <button
+                onClick={handleCheckout}
                 className="inline-block bg-white text-primary font-bold text-sm md:text-base py-3 px-8 rounded-[14px] shadow-lg active:scale-95 transition-transform"
               >
                 QUIERO AYUDAR A MI PERRO
-              </a>
+              </button>
 
               <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.2em] opacity-90">
                 Acceso inmediato • Garantía de 7 días
@@ -775,13 +789,12 @@ export default function App() {
           <p className="text-2xl font-black text-dark">19,97€</p>
           <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
         </div>
-        <a 
-          href={CHECKOUT_URL}
-          onClick={() => setHasClickedCTA(true)}
+        <button 
+          onClick={handleCheckout}
           className="bg-primary text-white px-8 py-4 rounded-[16px] font-bold text-sm active:scale-95 transition-transform shadow-lg"
         >
           Empezar ahora
-        </a>
+        </button>
       </div>
 
       {/* POPUP / MODAL (Exit Intent) */}
@@ -806,7 +819,7 @@ export default function App() {
               Aprovecha hoy el precio de lanzamiento y cambia su vida.
             </p>
             <div className="flex flex-col gap-5">
-              <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)}>SÍ, QUIERO AYUDARLO</Button>
+              <Button onClick={handleCheckout}>SÍ, QUIERO AYUDARLO</Button>
               <button 
                 onClick={() => setShowPopup(false)}
                 className="text-gray-text font-bold hover:text-dark transition-colors text-sm uppercase tracking-widest"
