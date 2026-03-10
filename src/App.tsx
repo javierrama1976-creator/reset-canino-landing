@@ -216,9 +216,6 @@ export default function App() {
               Un sistema práctico de 10-15 minutos al día para reducir su ansiedad por separación y devolverte la paz, incluso si ya has probado otros métodos.
             </p>
 
-            <Button onClick={() => handleCheckout('hero')} className="mb-12 text-xl py-6 max-w-md mx-auto">
-              Quiero que mi perro se quede tranquilo
-            </Button>
 
             <div className="bg-primary/5 p-6 rounded-[20px] border border-primary/10 inline-block text-center md:text-left max-w-3xl">
               <p className="text-lg text-dark font-medium leading-relaxed">
@@ -475,11 +472,6 @@ export default function App() {
             </div>
           ))}
         </div>
-        <Reveal className="mt-16 text-center">
-          <Button onClick={() => handleCheckout('pillars')} className="max-w-md mx-auto">
-            Quiero ayudar a mi perro hoy
-          </Button>
-        </Reveal>
       </Section>
 
       {/* OBJECTIONS SECTION */}
@@ -552,9 +544,6 @@ export default function App() {
                   Un perro que te ve salir y se tumba a descansar. Una casa intacta. La libertad de poder irte sabiendo que tu mejor amigo está en paz.
                 </p>
               </div>
-              <Button onClick={() => handleCheckout('transformation')}>
-                Quiero esta transformación para mi perro
-              </Button>
             </div>
           </div>
         </div>
