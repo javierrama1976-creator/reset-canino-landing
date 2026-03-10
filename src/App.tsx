@@ -729,9 +729,6 @@ QUIERO EMPEZAR RESET CANINO AHORA
 </Button>
 </div>
 </div>
-
-</div>
-</div>
 </Section>
 
       {/* 10) GARANTÍA */}
