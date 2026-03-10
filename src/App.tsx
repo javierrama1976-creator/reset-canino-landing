@@ -728,20 +728,11 @@ className="text-xl px-8 py-4"
 QUIERO EMPEZAR RESET CANINO AHORA
 </Button>
 </div>
-  <Button
-    onClick={() => handleCheckout("oferta")}
-    className="text-xl px-8 py-4"
-  >
-    QUIERO EMPEZAR RESET CANINO AHORA
-  </Button>
 </div>
-                </p>
-              </div>
-            
-            </div>
-          </div>
-        </div>
-      </Section>
+
+</div>
+</div>
+</Section>
 
       {/* 10) GARANTÍA */}
       <Section bg="gray">
