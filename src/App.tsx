@@ -716,8 +716,17 @@ export default function App() {
                   Oferta de lanzamiento disponible por tiempo limitado.
                 </p>
                 <p className="text-sm text-gray-text font-medium italic">
-                  Cuando termine el lanzamiento el precio volverá a 39€.
-                  <div className="mt-8 flex justify-center">
+Cuando termine el lanzamiento el precio volverá a 39€.
+</p>
+
+<div className="mt-8 flex justify-center">
+<Button
+onClick={() => handleCheckout("oferta")}
+className="text-xl px-8 py-4"
+>
+QUIERO EMPEZAR RESET CANINO AHORA
+</Button>
+</div>
   <Button
     onClick={() => handleCheckout("oferta")}
     className="text-xl px-8 py-4"
