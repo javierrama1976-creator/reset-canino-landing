@@ -284,9 +284,6 @@ export default function App() {
                 <span className="text-gray-400 line-through text-sm">Valor real: 171€</span>
               </div>
             </div>
-            <Button onClick={() => handleCheckout('early_offer')} className="md:w-auto px-12">
-              ¡Lo quiero ahora!
-            </Button>
           </div>
         </Reveal>
       </Section>
