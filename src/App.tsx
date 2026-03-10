@@ -3,20 +3,16 @@ import {
   CheckCircle2, 
   XCircle, 
   ShieldCheck, 
-  ArrowRight, 
   Star, 
-  
   Zap,
   X, 
   MessageCircle,
-  
   Brain,
-  
-  ChevronUp,
-  
   ChevronDown,
-  } from "lucide-react";
-  
+  ChevronUp,
+  Lock
+} from "lucide-react";
+
 const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
 // --- Components ---
@@ -26,12 +22,14 @@ const Button = ({
   className = "", 
   variant = "primary", 
   onClick,
+  href,
   disabled = false
 }: { 
   children: React.ReactNode, 
   className?: string, 
   variant?: "primary" | "secondary" | "outline",
   onClick?: () => void,
+  href?: string,
   disabled?: boolean
 }) => {
   const baseStyles = "w-full py-4 px-8 rounded-[14px] font-bold text-lg transition-all duration-300 flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed";
@@ -41,11 +39,25 @@ const Button = ({
     outline: "bg-transparent border border-border text-dark hover:bg-gray-bg"
   };
 
+  const combinedClassName = `${baseStyles} ${variants[variant]} ${className}`;
+
+  if (href) {
+    return (
+      <a 
+        href={href}
+        onClick={onClick}
+        className={combinedClassName}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
     <button 
       onClick={onClick}
       disabled={disabled}
-      className={`${baseStyles} ${variants[variant]} ${className}`}
+      className={combinedClassName}
     >
       {children}
     </button>
@@ -124,21 +136,6 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [hasClickedCTA, setHasClickedCTA] = useState(false);
-  
-  const handleCheckout = (source = "unknown") => {
-  setHasClickedCTA(true);
-
-  if (typeof window !== "undefined" && (window as any).fbq) {
-    (window as any).fbq("trackCustom", "CTA_Click", { source });
-    (window as any).fbq("track", "InitiateCheckout");
-  }
-
-  window.location.href = CHECKOUT_URL;
-};
-  const scrollToOffer = () => {
-  setHasClickedCTA(true);
-  document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth" });
-};
 
   // Popup Logic
   useEffect(() => {
@@ -168,60 +165,40 @@ export default function App() {
 
   return (
     <div className="min-h-screen">
-      {/* 1) HERO (Impacto inmediato) */}
-        <Section className="pt-12 md:pt-16 pb-8">
-  <div className="max-w-4xl mx-auto text-center">
-    <Reveal>
-      <p className="text-primary font-bold uppercase tracking-[0.2em] mb-4 text-sm">
-        Para dueños con perros que no saben quedarse solos
-      </p>
+      {/* 1) HERO SECTION */}
+      <Section className="pt-12 md:pt-20 pb-12">
+        <div className="max-w-5xl mx-auto text-center">
+          <Reveal>
+            <p className="text-primary font-bold uppercase tracking-[0.2em] mb-6 text-sm">
+              RESET CANINO · MÉTODO PARA PERROS CON ANSIEDAD POR SEPARACIÓN
+            </p>
 
-      <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-dark tracking-tight">
-        Ayuda a tu perro a quedarse tranquilo en casa sin ladridos, destrozos ni ansiedad cuando sales
-      </h1>
+            <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-8 text-dark tracking-tight">
+              Tu perro no llora, ladra o destruye cosas para fastidiarte.
+              <span className="block text-primary mt-2">Está entrando en pánico cuando siente que te vas.</span>
+            </h1>
 
-      <p className="text-2xl md:text-3xl font-bold text-primary mb-6">
-        Método práctico, amable y fácil de aplicar en solo 10-15 minutos al día
-      </p>
+            <p className="text-xl md:text-3xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
+              Aprende a ayudarlo a quedarse solo, tranquilo y en calma, sin castigos, sin gritos y sin métodos agresivos, dedicando solo 10-15 minutos al día.
+            </p>
 
-      <p className="text-xl md:text-2xl text-gray-text mb-8 leading-relaxed max-w-2xl mx-auto">
-        Reset Canino te enseña paso a paso cómo reducir la ansiedad por separación y ayudar a tu perro a recuperar la calma cuando se queda solo.
-      </p>
+            <div className="bg-primary/5 p-6 rounded-[20px] border border-primary/10 inline-block text-center md:text-left max-w-3xl">
+              <p className="text-lg text-dark font-medium leading-relaxed">
+                Si tu perro se altera cuando coges las llaves, rompe cosas, araña la puerta o no puede relajarse si no estás, este método está diseñado para vosotros.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
 
-      <div className="max-w-md mx-auto mb-8">
-        <Button onClick={() => handleCheckout("hero")} className="text-xl py-6">
-          Quiero ayudar a mi perro desde hoy
-        </Button>
-      </div>
-
-      <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest mb-8 flex-wrap">
-        <span className="flex items-center gap-1">✔ Acceso inmediato</span>
-        <span className="flex items-center gap-1">✔ Pago seguro</span>
-        <span className="flex items-center gap-1">✔ Garantía 7 días</span>
-      </div>
-
-      <div className="bg-gray-bg p-6 rounded-[14px] border border-border mb-8 inline-block text-left max-w-2xl">
-        <p className="text-lg text-dark leading-relaxed">
-          Ideal si tu perro ladra, araña puertas, rompe cosas o entra en pánico cada vez que te vas de casa.
-        </p>
-        <p className="mt-4 font-bold text-dark flex flex-wrap gap-4">
-          <span>Sin castigos.</span>
-          <span>Sin gritos.</span>
-          <span>Sin métodos agresivos.</span>
-        </p>
-      </div>
-    </Reveal>
-  </div>
-</Section>
-
-      {/* 1.5) VIDEO + CTA + GARANTÍAS */}
+      {/* 1.5) VIDEO SECTION */}
       <Section className="pt-0 pb-16">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <p className="text-lg font-bold text-dark mb-6">
-              🔊 Activa el sonido. En menos de 30 segundos entenderás por qué tu perro se descontrola cuando sales de casa.
+            <p className="text-lg font-bold text-dark mb-8">
+              🔊 Mira este vídeo de 30 segundos y entiende por qué tu perro entra en pánico cuando siente que te vas.
             </p>
-            <div className="mb-10 shadow-2xl overflow-hidden rounded-[20px] border border-border max-w-[320px] mx-auto bg-black">
+            <div className="mb-12 shadow-2xl overflow-hidden rounded-[24px] border border-border max-w-[320px] mx-auto bg-black group relative">
               <video 
                 autoPlay 
                 muted 
@@ -229,7 +206,6 @@ export default function App() {
                 playsInline 
                 preload="auto" 
                 className="w-full aspect-[9/16] object-cover cursor-pointer" 
-                style={{ borderRadius: "20px" }}
                 onClick={(e) => {
                   e.currentTarget.muted = false;
                   e.currentTarget.play();
@@ -237,375 +213,326 @@ export default function App() {
               >
                 <source src="/video-rc-3.mp4" type="video/mp4" />
               </video>
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
+                <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full">
+                  <Lock className="w-8 h-8 text-white" />
+                </div>
+              </div>
             </div>
 
-            <Button onClick={() => handleCheckout("video")} className="mb-6 text-xl py-6 max-w-md mx-auto">
-              Quiero empezar Reset Canino ahora
+            <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)} className="mb-8 text-xl py-6 max-w-md mx-auto">
+              Empezar Reset Canino ahora
             </Button>
 
-            <div className="flex flex-wrap justify-center gap-6 text-sm font-bold text-gray-text uppercase tracking-wider">
-              <span className="flex items-center gap-1">✔ Garantía 7 días</span>
-<span className="flex items-center gap-1">✔ Pago seguro</span>
-<span className="flex items-center gap-1">✔ Acceso inmediato</span>
-     </div>          
+            <div className="flex flex-wrap justify-center gap-8 text-xs font-bold text-gray-text uppercase tracking-widest">
+              <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> Garantía total</span>
+              <span className="flex items-center gap-2"><Lock className="w-4 h-4 text-primary" /> Encriptación SSL</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Acceso de por vida</span>
+            </div>
           </Reveal>
         </div>
       </Section>
 
-      
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Si tu perro hace esto cuando te vas…</h2>
-          <div className="grid sm:grid-cols-2 gap-4 text-left mt-8">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">Tu perro no te está castigando. Está sufriendo.</h2>
+          <p className="text-xl text-gray-text mb-12">
+            Si te sientes identificado con alguna de estas situaciones, no estás solo. Esto es lo que vive un perro con ansiedad por separación:
+          </p>
+          <div className="grid gap-4 text-left">
             {[
-              "Araña la puerta cuando sales",
-              "Ladra o llora durante horas",
-              "Rompe cosas en casa",
-              "Se activa cuando coges las llaves",
-              "No sabe relajarse solo"
+              "Araña el marco de la puerta o el suelo hasta hacerse daño.",
+              "Ladra, llora o aúlla sin parar, generando problemas con los vecinos.",
+              "Destruye objetos que huelen a ti (ropa, cojines, mandos).",
+              "Entra en pánico en cuanto te pones los zapatos o coges las llaves.",
+              "Te sigue por toda la casa como una sombra, incapaz de relajarse si no estás cerca."
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white p-5 rounded-[14px] border border-border shadow-soft">
-                <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
-                <span className="font-bold text-dark">{item}</span>
+              <div key={i} className="flex items-start gap-4 bg-white p-6 rounded-[18px] border border-border shadow-soft">
+                <XCircle className="w-6 h-6 text-primary shrink-0 mt-0.5" />
+                <span className="font-bold text-dark text-lg">{item}</span>
               </div>
             ))}
           </div>
         </Reveal>
         <Reveal className="text-center">
-          <div className="inline-block bg-white p-8 rounded-[14px] border border-border shadow-soft max-w-2xl">
-            <p className="text-xl font-bold text-dark mb-4">Esto no es mala conducta.</p>
-            <p className="text-lg text-gray-text leading-relaxed">
-              Es un problema de <span className="text-primary font-bold">activación emocional</span> y ansiedad anticipatoria.
+          <div className="inline-block bg-dark text-white p-10 rounded-[24px] shadow-2xl max-w-2xl">
+            <p className="text-2xl font-bold mb-4 italic">"¿Por qué lo hace si sabe que está mal?"</p>
+            <p className="text-lg text-gray-300 leading-relaxed">
+              No es una conducta de venganza ni falta de dominancia. Es una <span className="text-primary font-bold">respuesta fisiológica al miedo</span>. Su cerebro entra en modo supervivencia y no puede evitarlo.
             </p>
           </div>
         </Reveal>
-      </Section>
-
-      {/* PARA QUIÉN ES / PARA QUIÉN NO */}
-      <Section>
-        <Reveal className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl font-bold mb-4">¿Para quién es Reset Canino? (y para quién NO)</h2>
-        </Reveal>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="bg-white p-8 rounded-[14px] border border-border shadow-soft">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-green-600">
-              <CheckCircle2 className="w-6 h-6" /> Es para ti si…
-            </h3>
-            <ul className="space-y-4">
-              {[
-                "Se activa cuando te preparas para salir.",
-                "Hay ladridos, llanto, rascado o destrucción estando solo.",
-                "Quieres un método amable (sin castigos ni gritos).",
-                "Necesitas algo simple: 10–15 min/día."
-              ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-gray-text leading-relaxed">
-                  <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-white p-8 rounded-[14px] border border-border shadow-soft">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-red-600">
-              <XCircle className="w-6 h-6" /> No es para ti si…
-            </h3>
-            <ul className="space-y-4">
-              {[
-                "Buscas una “solución mágica” sin aplicar rutinas.",
-                "Quieres métodos duros/agresivos para “dominar”.",
-                "No puedes dedicar ni 10 minutos al día durante una semana.",
-                "Tu caso requiere atención veterinaria urgente (dolor, enfermedad)."
-              ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-gray-text leading-relaxed">
-                  <div className="w-1.5 h-1.5 bg-red-600 rounded-full mt-2 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      {/* 2.5) VISUALIZACIÓN DE LA TRANSFORMACIÓN (ESTÁTICA) */}
-      <Section bg="dark">
-        <div className="max-w-xl mx-auto text-center">
-          <Reveal>
-            <div className="w-[90%] md:w-full mx-auto">
-              <div className="relative aspect-[9/16] rounded-[20px] overflow-hidden border border-white/10 shadow-2xl mb-8">
-                <img 
-                  src="/ayd-1.jpg" 
-                  alt="Transformación Reset Canino: Antes y Después" 
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-                {/* Overlay labels for clarity since it's a single image */}
-                <div className="absolute top-6 left-6">
-                  <span className="bg-red-600/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
-                    ANTES
-                  </span>
-                </div>
-                <div className="absolute bottom-6 left-6">
-                  <span className="bg-green-600/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full">
-                    DESPUÉS
-                  </span>
-                </div>
-              </div>
-              
-              <div className="space-y-2 text-center">
-                <p className="text-gray-400 text-lg font-medium">
-                  ANTES: ansiedad y destrucción cuando te vas
-                </p>
-                <p className="text-primary text-lg font-bold">
-                  DESPUÉS: calma y tranquilidad en casa
-                </p>
-              </div>
-            </div>
-            
-            <div className="mt-12">
-              <Button onClick={handleCheckout} className="max-w-md mx-auto">
-                Sí, quiero que mi perro esté tranquilo
-              </Button>
-            </div>
-          </Reveal>
-        </div>
       </Section>
 
       {/* 3) CAMBIO DE PERSPECTIVA */}
       <Section>
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">El error que cometen la mayoría de dueños</h2>
-            <div className="space-y-6 text-lg text-gray-text leading-relaxed">
-              <p>Muchos intentan cansar más al perro.</p>
-              <div className="flex flex-col gap-2 font-bold text-dark">
-                <span>Más paseos.</span>
-                <span>Más juego.</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">El mito del "perro cansado"</h2>
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6 text-lg text-gray-text leading-relaxed">
+                <p>
+                  Muchos dueños intentan cansar más a su perro con paseos interminables o sesiones de juego intensas antes de salir.
+                </p>
+                <p className="font-bold text-dark">
+                  Pero la ansiedad por separación no se cura con ejercicio físico.
+                </p>
+                <p>
+                  De hecho, a veces el exceso de ejercicio aumenta el cortisol (la hormona del estrés), haciendo que el perro esté aún más activado cuando te vas.
+                </p>
+                <div className="bg-primary/5 p-8 rounded-[20px] border-l-4 border-primary">
+                  <p className="text-dark font-bold text-xl mb-2">La solución real:</p>
+                  <p className="text-dark">
+                    Tu perro necesita aprender a <span className="text-primary font-bold">regularse emocionalmente</span> y a entender que tu ausencia no es una amenaza.
+                  </p>
+                </div>
               </div>
-              <p>Pero eso no soluciona la activación mental.</p>
-              <p className="bg-primary/5 p-6 rounded-[14px] border-l-4 border-primary text-dark font-medium">
-                Tu perro necesita aprender a <span className="text-primary font-bold">regularse emocionalmente</span>. Eso es lo que enseña Reset Canino.
-              </p>
+              <div className="relative">
+                <div className="absolute -inset-4 bg-primary/10 rounded-[30px] blur-2xl -z-10" />
+                <img 
+                  src="/perro-mirando.jpg" 
+                  alt="Perro tranquilo en casa" 
+                  className="rounded-[24px] shadow-2xl border border-border"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 12) SECCIÓN DE AUTORIDAD (JULIETA MÁRQUEZ) */}
+      <Section bg="gray">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <div className="flex flex-col md:flex-row gap-12 items-center bg-white p-8 md:p-16 rounded-[32px] border border-border shadow-xl">
+              <div className="w-full md:w-2/5">
+                <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden shadow-2xl border-4 border-white">
+                  <img 
+                    src="/julieta-marquez.jpg" 
+                    alt="Julieta Márquez - Creadora de Reset Canino" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800";
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-3/5">
+                <h3 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">La cara detrás del método</h3>
+                <h2 className="text-4xl font-bold mb-6 text-dark">Julieta Márquez</h2>
+                <p className="text-primary font-bold mb-6">
+                  Creadora de Reset Canino
+                </p>
+                <div className="space-y-6 text-lg text-gray-text leading-relaxed">
+                  <p>
+                    Julieta Márquez es una apasionada del bienestar animal y de la convivencia consciente entre humanos y perros. A lo largo de su experiencia, ha observado cómo muchos problemas de comportamiento canino no surgen por "malos perros", sino por falta de información, rutinas desordenadas y una comunicación inadecuada.
+                  </p>
+                  <p>
+                    <strong>Reset Canino</strong> nace de la necesidad de ofrecer una guía clara, empática y aplicable en casa, pensada para dueños reales que aman a sus perros, pero se sienten agotados, frustrados o culpables por no saber cómo ayudarlos.
+                  </p>
+                  <p className="italic border-l-4 border-primary/30 pl-6 py-2">
+                    "Mi misión es devolverle la tranquilidad a tu hogar, trabajando desde el respeto y la regulación emocional, nunca desde el castigo."
+                  </p>
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
       </Section>
 
       {/* 4) PRESENTACIÓN DEL MÉTODO */}
-      <Section bg="gray">
-        <Reveal className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Reset Canino: sistema paso a paso para recuperar la calma en casa</h2>
-          <p className="text-lg text-primary font-bold mb-8">
-            Basado en principios de comportamiento canino y aplicado por más de 1.000 dueños que querían ayudar a su perro a quedarse tranquilo en casa.
+      <Section>
+        <Reveal className="text-center max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">Reset Canino: El camino hacia la independencia emocional</h2>
+          <p className="text-xl text-gray-text mb-12 leading-relaxed">
+            Un sistema estructurado, amable y lógico diseñado para que cualquier dueño pueda aplicarlo sin necesidad de conocimientos previos en educación canina.
           </p>
-          <p className="text-xl text-gray-text mb-12">Diseñado para dueños normales.</p>
-          <div className="flex flex-wrap justify-center gap-8 text-lg font-bold text-dark">
-            <div className="flex items-center gap-2"><XCircle className="text-primary" /> Sin castigos</div>
-            <div className="flex items-center gap-2"><XCircle className="text-primary" /> Sin gritos</div>
-            <div className="flex items-center gap-2"><XCircle className="text-primary" /> Sin métodos agresivos</div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { 
+                phase: "Fase 1", 
+                title: "Desactivación", 
+                desc: "Identificamos y eliminamos los disparadores que ponen a tu perro en alerta máxima antes de que salgas." 
+              },
+              { 
+                phase: "Fase 2", 
+                title: "Regulación", 
+                desc: "Enseñamos a tu perro herramientas de calma para que aprenda a bajar sus pulsaciones por sí mismo." 
+              },
+              { 
+                phase: "Fase 3", 
+                title: "Autonomía", 
+                desc: "Consolidamos la seguridad de tu perro para que la soledad sea un momento de descanso, no de pánico." 
+              }
+            ].map((item, i) => (
+              <div key={i} className="bg-gray-bg p-8 rounded-[24px] border border-border text-center relative group hover:border-primary/50 transition-colors">
+                <div className="bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase mb-6 inline-block">
+                  {item.phase}
+                </div>
+                <h4 className="text-2xl font-bold text-dark mb-4">{item.title}</h4>
+                <p className="text-gray-text leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </Reveal>
       </Section>
-      {/* AUTORIDAD */}
-<Section>
-  <Reveal className="max-w-5xl mx-auto">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
 
-      <div className="flex justify-center">
-        <img
-          src="/julieta.jpg"
-          alt="Julieta Márquez - Reset Canino"
-          className="w-72 h-72 object-cover rounded-[20px] shadow-soft"
-        />
-      </div>
-
-      <div>
-        <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">
-          Sobre la creadora
-        </p>
-
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dark">
-          Julieta Márquez
-        </h2>
-
-        <p className="text-lg text-gray-text leading-relaxed mb-6">
-          Julieta Márquez es una apasionada del bienestar animal y de la convivencia
-          consciente entre humanos y perros.
-        </p>
-
-        <p className="text-lg text-gray-text leading-relaxed mb-6">
-          A lo largo de su experiencia ha observado que muchos problemas de
-          comportamiento canino no surgen por “malos perros”, sino por falta de
-          información, rutinas desordenadas y una comunicación inadecuada entre
-          el perro y su entorno humano.
-        </p>
-
-        <p className="text-lg text-gray-text leading-relaxed">
-          Por eso creó <span className="font-bold text-dark">Reset Canino</span>,
-          una guía clara, empática y fácil de aplicar en casa para dueños que aman
-          a sus perros pero necesitan herramientas prácticas para ayudarlos a
-          recuperar la calma.
-        </p>
-      </div>
-
-    </div>
-  </Reveal>
-</Section>
-
-      {/* 5) LOS PILARES DEL SISTEMA */}
-      <Section>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* 5) PILARES / BENEFICIOS */}
+      <Section bg="dark">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { 
-              title: "Regulación Canina", 
-              desc: "Tu perro aprende a bajar su activación antes de que explote.",
-              icon: <Brain className="w-8 h-8" />
+              title: "Calma desde la raíz", 
+              desc: "No tapamos el síntoma. Trabajamos la emoción para que el cambio sea real y duradero.",
+              icon: <Brain className="w-10 h-10" />
             },
             { 
-              title: "Rutina Anti-Hiperactividad", 
-              desc: "10-15 minutos diarios que cambian su estado mental.",
-              icon: <Zap className="w-8 h-8" />
+              title: "Rutinas de 15 minutos", 
+              desc: "Diseñado para personas con vidas ocupadas. Eficacia máxima en tiempo mínimo.",
+              icon: <Zap className="w-10 h-10" />
             },
             { 
-              title: "Comunicación Clara", 
-              desc: "Tu perro entiende qué esperar cuando sales.",
-              icon: <MessageCircle className="w-8 h-8" />
+              title: "Comunicación sin Estrés", 
+              desc: "Aprende a decirle a tu perro que vas a volver sin necesidad de palabras.",
+              icon: <MessageCircle className="w-10 h-10" />
             },
             { 
-              title: "Redirección de Conductas", 
-              desc: "Canalizas su energía sin destruir tu casa.",
-              icon: <ArrowRight className="w-8 h-8" />
+              title: "Paz Mental para Ti", 
+              desc: "Vuelve a salir a cenar o a trabajar sin la angustia de qué encontrarás al volver.",
+              icon: <CheckCircle2 className="w-10 h-10" />
             }
           ].map((item, i) => (
             <div key={i}>
-              <Reveal className="bg-white p-8 rounded-[14px] border border-border shadow-soft h-full flex flex-col">
+              <Reveal className="bg-white/5 backdrop-blur-sm p-8 rounded-[24px] border border-white/10 h-full flex flex-col hover:bg-white/10 transition-colors">
                 <div className="text-primary mb-6">{item.icon}</div>
-                <h3 className="text-xl font-bold mb-4 text-dark">{item.title}</h3>
-                <p className="text-gray-text leading-relaxed">{item.desc}</p>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* 6) CÓMO FUNCIONA */}
-      <Section bg="gray">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Cómo funciona el Reset Canino</h2>
-        </Reveal>
-        <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-8">
-          {[
-            { phase: "Fase 1", title: "Detectar disparadores" },
-            { phase: "Fase 2", title: "Bajar activación emocional" },
-            { phase: "Fase 3", title: "Entrenar calma real" }
-          ].map((item, i) => (
-            <div key={i}>
-              <Reveal className="bg-white p-8 rounded-[14px] border border-border shadow-soft text-center relative">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase">
-                  {item.phase}
-                </div>
-                <h4 className="text-xl font-bold text-dark mt-4">{item.title}</h4>
+                <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
+                <p className="text-gray-400 leading-relaxed">{item.desc}</p>
               </Reveal>
             </div>
           ))}
         </div>
         <Reveal className="mt-16 text-center">
-          <p className="text-2xl font-bold text-primary">Solo 10-15 minutos al día.</p>
-        </Reveal>
-      </Section>
-
-      {/* 7) RESULTADOS */}
-      <Section>
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Resultados que muchos dueños empiezan a notar en la primera semana</h2>
-        </Reveal>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {[
-            "Menos activación al coger llaves",
-            "Menos arañazos en puertas",
-            "Menos ladridos al salir",
-            "Más momentos de calma",
-            "Mejor descanso en casa"
-          ].map((item, i) => (
-            <div key={i}>
-              <Reveal className="flex items-center gap-4 bg-gray-bg p-6 rounded-[14px] border border-border">
-                <CheckCircle2 className="w-6 h-6 text-green-600 shrink-0" />
-                <span className="font-bold text-dark">{item}</span>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-
-        {/* 7.5) PRECIO TEASER */}
-        <Reveal className="mt-20 max-w-2xl mx-auto text-center bg-primary/5 p-10 rounded-[24px] border border-primary/20">
-          <h2 className="text-3xl font-bold mb-4 text-dark">Empieza a aplicar Reset Canino hoy</h2>
-          <p className="text-lg text-gray-text mb-6">
-            Accede al sistema completo para ayudar a tu perro a relajarse cuando se queda solo en casa.
-          </p>
-          <p className="text-xl font-bold text-primary mb-8">
-            Por menos de lo que cuesta un juguete para perros.
-          </p>
-          <Button onClick={handleCheckout} className="max-w-md mx-auto">
-            Ver cómo empezar hoy
+          <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)} className="max-w-md mx-auto">
+            Quiero empezar el cambio hoy
           </Button>
         </Reveal>
       </Section>
 
+      {/* 2.5) TRANSFORMACIÓN VISUAL */}
+      <Section>
+        <div className="max-w-5xl mx-auto">
+          <Reveal className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">De la destrucción a la calma absoluta</h2>
+            <p className="text-xl text-gray-text">Mira la transformación que Reset Canino puede lograr en tu hogar.</p>
+          </Reveal>
+          <div className="flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-full md:w-1/2">
+              <div className="relative aspect-[9/16] rounded-[32px] overflow-hidden border border-border shadow-2xl">
+                <img 
+                  src="/ayd-1.jpg" 
+                  alt="Transformación Reset Canino" 
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute top-8 left-8">
+                  <span className="bg-red-600 text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+                    ANTES
+                  </span>
+                </div>
+                <div className="absolute bottom-8 left-8">
+                  <span className="bg-green-600 text-white text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+                    DESPUÉS
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 space-y-8">
+              <div className="bg-gray-bg p-8 rounded-[24px] border border-border">
+                <h4 className="text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                  <XCircle className="text-red-500" /> El Escenario Actual
+                </h4>
+                <p className="text-gray-text leading-relaxed">
+                  Puertas arañadas, vecinos molestos, un perro agotado por el estrés y tú sintiendo una culpa constante cada vez que sales de casa.
+                </p>
+              </div>
+              <div className="bg-primary/5 p-8 rounded-[24px] border border-primary/20">
+                <h4 className="text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                  <CheckCircle2 className="text-green-500" /> El Nuevo Escenario
+                </h4>
+                <p className="text-gray-text leading-relaxed">
+                  Un perro que te ve salir y se tumba a descansar. Una casa intacta. La libertad de poder irte sabiendo que tu mejor amigo está en paz.
+                </p>
+              </div>
+              <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)}>
+                Quiero esta transformación para mi perro
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       {/* 8) TESTIMONIOS */}
       <Section bg="gray">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Prueba Social</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Más de 1.000 dueños ya han aplicado Reset Canino para recuperar la calma en casa.</h2>
-          <p className="text-gray-text">Historias reales de personas que han recuperado la paz en sus hogares.</p>
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Historias de Éxito</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Más de 1.000 dueños ya han recuperado la paz en sus hogares</h2>
+          <p className="text-xl text-gray-text leading-relaxed">
+            No son casos aislados. Son personas reales que, como tú, sentían que no había salida.
+          </p>
         </Reveal>
-        <div className="grid sm:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {[
             {
               name: "Laura Martínez",
               province: "Madrid",
-              story: "Mi perro destrozaba el sofá cada vez que me iba a trabajar. Probé de todo, pero solo con Reset Canino logré que se quedara durmiendo tranquilo en su cama. En menos de una semana el cambio fue radical.",
+              story: "Mi perro destrozaba el sofá cada vez que me iba a trabajar. Probé de todo, pero solo con Reset Canino logré que se quedara durmiendo tranquilo en su cama. En menos de una semana el cambio fue radical. El alivio que siento es indescriptible.",
               img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150"
             },
             {
               name: "Carlos Rodríguez",
               province: "Barcelona",
-              story: "Los vecinos se quejaban por los ladridos constantes. Estaba desesperado. Empecé el plan de 7 días y desde el tercer día los ladridos cesaron. Ahora puedo salir a cenar sin mirar la cámara cada 5 minutos.",
+              story: "Los vecinos se quejaban por los ladridos constantes. Estaba desesperado y con miedo a que me echaran del piso. Empecé el plan y desde el tercer día los ladridos cesaron. Ahora puedo salir a cenar sin mirar la cámara cada 5 minutos.",
               img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150"
             },
             {
               name: "Elena Sánchez",
               province: "Sevilla",
-              story: "Lola me seguía como una sombra y entraba en pánico al ver las llaves. Gracias a las rutinas de regulación emocional, ahora entiende que volveré y se queda relajada. Es una paz que no tiene precio.",
+              story: "Lola me seguía como una sombra y entraba en pánico al ver las llaves. Gracias a las rutinas de regulación emocional, ahora entiende que volveré y se queda relajada. Es una paz que no tiene precio para las dos.",
               img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=150&h=150"
             },
             {
               name: "Javier Torres",
               province: "Valencia",
-              story: "Pensaba que mi perro era rebelde, pero era ansiedad pura. Reset Canino me enseñó a comunicarme con él sin gritos. Los arañazos en la puerta son cosa del pasado. ¡Totalmente recomendado!",
+              story: "Pensaba que mi perro era rebelde, pero era ansiedad pura. Reset Canino me enseñó a comunicarme con él sin gritos ni castigos. Los arañazos en la puerta son cosa del pasado. ¡Totalmente recomendado!",
               img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
             }
           ].map((testimonial, i) => (
             <div key={i}>
-              <Reveal className="bg-white p-8 rounded-[14px] border border-border shadow-soft flex flex-col h-full hover:border-primary/30 transition-colors">
-                <div className="flex items-center gap-4 mb-6">
+              <Reveal className="bg-white p-10 rounded-[28px] border border-border shadow-soft flex flex-col h-full hover:border-primary/30 transition-all hover:shadow-xl">
+                <div className="flex items-center gap-5 mb-8">
                   <img 
                     src={testimonial.img} 
                     alt={testimonial.name} 
-                    className="w-14 h-14 rounded-full object-cover border-2 border-primary/10"
+                    className="w-16 h-16 rounded-full object-cover border-4 border-primary/10"
                     loading="lazy"
                   />
                   <div>
-                    <h4 className="font-bold text-dark leading-tight">{testimonial.name}</h4>
-                    <p className="text-xs text-gray-text font-medium">{testimonial.province}, España</p>
+                    <h4 className="font-bold text-dark text-lg leading-tight">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-text font-medium">{testimonial.province}, España</p>
                   </div>
                 </div>
-                <div className="flex text-primary mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                <div className="flex text-primary mb-6">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
                 </div>
-                <p className="text-gray-text leading-relaxed italic">“{testimonial.story}”</p>
-                <div className="mt-auto pt-6 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  <span className="text-[10px] font-bold text-gray-text uppercase tracking-widest">Compra Verificada</span>
+                <p className="text-gray-text text-lg leading-relaxed italic mb-8">“{testimonial.story}”</p>
+                <div className="mt-auto pt-6 flex items-center gap-3 border-t border-border">
+                  <div className="bg-green-100 p-1 rounded-full">
+                    <CheckCircle2 className="w-4 h-4 text-green-600" />
+                  </div>
+                  <span className="text-xs font-bold text-gray-text uppercase tracking-widest">Compra Verificada</span>
                 </div>
               </Reveal>
             </div>
@@ -614,15 +541,15 @@ export default function App() {
       </Section>
 
       {/* BONUS IA */}
-      <Section bg="gray">
-        <Reveal className="max-w-4xl mx-auto">
-          <div className="bg-white p-8 md:p-12 rounded-[24px] border-2 border-primary/20 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-primary text-white px-6 py-1 font-bold text-xs uppercase tracking-widest">
+      <Section>
+        <Reveal className="max-w-5xl mx-auto">
+          <div className="bg-dark p-8 md:p-16 rounded-[40px] shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-primary text-white px-10 py-2 font-bold text-sm uppercase tracking-[0.2em]">
               BONUS EXCLUSIVO
             </div>
-            <div className="flex flex-col md:flex-row gap-12 items-center">
-              <div className="w-full md:w-1/3">
-                <div className="aspect-square rounded-full flex items-center justify-center relative overflow-hidden border-4 border-primary/10 shadow-xl">
+            <div className="flex flex-col md:flex-row gap-16 items-center">
+              <div className="w-full md:w-2/5">
+                <div className="relative aspect-square rounded-[32px] overflow-hidden border-8 border-white/5 shadow-2xl">
                   <img 
                     src="/movil-1.jpg" 
                     alt="Asistente Virtual Reset Canino" 
@@ -631,36 +558,31 @@ export default function App() {
                   />
                 </div>
               </div>
-              <div className="w-full md:w-2/3">
-                <h2 className="text-3xl font-bold mb-6 text-dark flex items-center gap-3">
-                  🤖 Asistente Virtual Reset Canino (IA 24/7)
+              <div className="w-full md:w-3/5">
+                <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white flex items-center gap-4">
+                  🤖 Tu Soporte 24/7 con IA
                 </h2>
-                <p className="text-lg text-gray-text mb-8 leading-relaxed">
-                  Tendrás acceso a un asistente inteligente disponible 24/7 que responderá todas tus dudas sobre el comportamiento de tu perro.
+                <p className="text-xl text-gray-400 mb-10 leading-relaxed">
+                  No estarás solo en este proceso. Tendrás acceso a un asistente inteligente entrenado con todo el método Reset Canino para resolver tus dudas en segundos, a cualquier hora.
                 </p>
-                <div className="bg-gray-bg p-6 rounded-[14px] border border-border mb-8">
-                  <p className="font-bold text-dark mb-4">Podrás preguntarle cosas como:</p>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-gray-text">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                      ¿Por qué mi perro ladra cuando me voy?
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-text">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                      ¿Qué hago si araña la puerta?
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-text">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                      ¿Estoy aplicando bien el método?
-                    </li>
-                    <li className="flex items-center gap-3 text-gray-text">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                      ¿Cómo aplico la rutina correctamente?
-                    </li>
+                <div className="bg-white/5 backdrop-blur-md p-8 rounded-[24px] border border-white/10 mb-10">
+                  <p className="font-bold text-white mb-6 text-xl">Resuelve dudas al instante:</p>
+                  <ul className="grid gap-4">
+                    {[
+                      "¿Por qué mi perro ladra justo al cerrar la puerta?",
+                      "¿Qué hago si hoy ha tenido una recaída?",
+                      "¿Cómo adapto la rutina si tengo poco tiempo hoy?",
+                      "¿Cómo sé si está relajado o solo resignado?"
+                    ].map((q, i) => (
+                      <li key={i} className="flex items-center gap-4 text-gray-300">
+                        <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
+                        {q}
+                      </li>
+                    ))}
                   </ul>
                 </div>
-                <p className="text-sm font-medium text-primary italic">
-                  Este asistente ha sido entrenado con todo el contenido del programa Reset Canino.
+                <p className="text-primary font-bold italic text-lg">
+                  Es como tener a Julieta Márquez en tu bolsillo, disponible siempre que la necesites.
                 </p>
               </div>
             </div>
@@ -668,208 +590,228 @@ export default function App() {
         </Reveal>
       </Section>
 
-      {/* 9) OFERTA */}
-      <Section id="oferta">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Lo que recibes hoy al unirte</h2>
-          <div className="mt-8 mb-12 flex justify-center">
-            <img 
-              src="https://i.postimg.cc/yxr02NC3/Diseno-sin-titulo-(10).png" 
-              alt="Mockup Libro Digital Reset Canino" 
-              className="w-full max-w-sm h-auto rounded-[14px] shadow-soft"
-              loading="lazy"
-              referrerPolicy="no-referrer"
-            />
-          </div>
+      {/* 9) OFERTA IRRESISTIBLE - PREMIUM BUNDLE MOCKUP */}
+      <Section bg="gray" id="oferta">
+        <Reveal className="text-center max-w-4xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 text-dark tracking-tight leading-tight">
+            No es solo un libro, es el <span className="text-primary">sistema completo</span> para recuperar tu libertad
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-text max-w-3xl mx-auto leading-relaxed">
+            Llévate hoy el pack "Reset Canino AIRMIND" con todos sus bonos exclusivos y empieza a transformar la vida de tu perro desde el primer minuto.
+          </p>
         </Reveal>
         
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white p-8 md:p-12 rounded-[20px] border-2 border-border shadow-soft relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-primary text-white px-8 py-2 rotate-45 translate-x-8 translate-y-4 font-bold text-sm">
-              OFERTA HOY
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white p-6 md:p-16 rounded-[40px] border border-border shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-primary text-white px-12 py-3 rotate-45 translate-x-12 translate-y-6 font-bold text-sm tracking-widest z-50">
+              OFERTA ESPECIAL
             </div>
             
-            <ul className="space-y-6 mb-12">
-              {[
-                { name: "Ebook Reset Canino", value: 39 },
-                { name: "Audio guía paso a paso", value: 27 },
-                { name: "Video resumen del método", value: 19 },
-                { name: "Bonus: errores invisibles al usar juguetes", value: 19 },
-                { name: "🤖 Asistente virtual Reset Canino IA 24/7", value: 67 }
-              ].map((item, i) => (
-                <li key={i} className="text-lg font-bold text-dark flex items-center justify-between gap-3 border-b border-border pb-4">
-                  <span className="flex items-center gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary" />
-                    {item.name}
-                  </span>
-                  <span className="text-gray-text font-medium">valor {item.value}€</span>
-                </li>
-              ))}
-            </ul>
- 
-            <div className="border-t border-border pt-12 text-center">
-              <p className="text-2xl text-gray-text line-through mb-2">Valor total: 171€</p>
-              <p className="text-6xl font-black text-dark mb-4 tracking-tighter">
-                Hoy solo <span className="text-primary">19,97€</span>
-              </p>
-              <div className="space-y-2 mb-8">
-                <p className="text-primary font-bold animate-pulse">
-                  Oferta de lanzamiento disponible por tiempo limitado.
-                </p>
-                <p className="text-sm text-gray-text font-medium italic">
-Cuando termine el lanzamiento el precio volverá a 39€.
-</p>
+            {/* Mockup Visual Composition - Single Image */}
+            <div className="relative py-12 md:py-16 mb-12">
+              <img 
+                src="/reset-canino-portada.jpg" 
+                alt="Reset Canino AIRMIND" 
+                className="w-full max-w-md mx-auto rounded-[24px] shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
 
-<div className="mt-8 flex justify-center">
-<Button
-onClick={() => handleCheckout("oferta")}
-className="text-xl px-8 py-4"
->
-QUIERO EMPEZAR RESET CANINO AHORA
-</Button>
-</div>
-</div>
-</Section>
+            {/* Price and CTA Block */}
+            <div className="border-t border-border pt-12 text-center">
+              <div className="grid md:grid-cols-2 gap-8 items-center text-left mb-12">
+                <div className="space-y-4">
+                  <h4 className="text-2xl font-bold text-dark">Lo que te llevas hoy:</h4>
+                  <ul className="space-y-3">
+                    {[
+                      { name: "Sistema Reset Canino AIRMIND", val: 39 },
+                      { name: "Bono 1: Guía Errores Invisibles", val: 19 },
+                      { name: "Bono 2: Audio Guía Regulación", val: 27 },
+                      { name: "Bono 3: Masterclass Vídeo Paso a Paso", val: 19 },
+                      { name: "Bono 4: Asistente IA 24/7 (Soporte)", val: 67 }
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center justify-between gap-4 text-sm md:text-base">
+                        <span className="flex items-center gap-2 text-gray-text">
+                          <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                          {item.name}
+                        </span>
+                        <span className="text-gray-400 font-medium line-through">{item.val}€</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-gray-bg p-8 rounded-[32px] text-center border border-border">
+                  <p className="text-sm uppercase tracking-widest text-gray-text font-bold mb-2">Valor Total: 171€</p>
+                  <p className="text-6xl md:text-7xl font-black text-dark tracking-tighter mb-4">
+                    19,97€
+                  </p>
+                  <div className="bg-primary text-white inline-block px-4 py-1 rounded-lg font-bold text-sm mb-6">
+                    AHORRAS 151,03€ (88% DTO)
+                  </div>
+                  <Button 
+                    href={CHECKOUT_URL} 
+                    onClick={() => setHasClickedCTA(true)} 
+                    className="text-lg md:text-xl py-5 md:py-6 shadow-2xl hover:scale-[1.02] active:scale-95"
+                  >
+                    SÍ, QUIERO TODO EL PACK
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-gray-text uppercase tracking-widest">
+                <span className="flex items-center gap-2"><Lock className="w-4 h-4 text-primary" /> Pago Seguro SSL</span>
+                <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Acceso Inmediato</span>
+                <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> Garantía 7 Días</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       {/* 10) GARANTÍA */}
-      <Section bg="gray">
-        <Reveal className="max-w-2xl mx-auto bg-white p-10 md:p-16 rounded-[20px] border border-border shadow-soft text-center">
-          <ShieldCheck className="w-20 h-20 text-primary mx-auto mb-8" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Garantía de 7 días</h2>
-          <p className="text-xl text-dark font-bold mb-4">Pruébalo sin riesgo.</p>
-          <p className="text-lg text-gray-text mb-10 leading-relaxed">
-            Si no ves cambios o no estás satisfecho, puedes pedir reembolso. <span className="font-bold text-dark">Sin preguntas.</span>
+      <Section>
+        <Reveal className="max-w-3xl mx-auto bg-gray-bg p-12 md:p-20 rounded-[40px] border border-border text-center">
+          <ShieldCheck className="w-24 h-24 text-primary mx-auto mb-10" />
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 text-dark">Tu tranquilidad es lo primero</h2>
+          <p className="text-2xl text-dark font-bold mb-6">Pruébalo durante 7 días sin compromiso.</p>
+          <p className="text-xl text-gray-text mb-12 leading-relaxed">
+            Si después de aplicar el método sientes que no es para ti o que tu perro no ha mejorado, escríbenos. Te devolveremos cada céntimo. <span className="font-bold text-dark">Sin preguntas, sin complicaciones.</span>
           </p>
-          <Button onClick={() => handleCheckout("garantia")} variant="outline">
-          QUIERO EMPEZAR RESET CANINO
-</Button>
-        </Reveal>  
+          <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)} variant="outline" className="max-w-md mx-auto">
+            PROBAR RESET CANINO SIN RIESGO
+          </Button>
+        </Reveal>
       </Section>
 
       {/* 11) FAQ */}
-      <Section>
+      <Section bg="gray">
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Preguntas Frecuentes</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Resolvemos tus dudas</h2>
+          <p className="text-xl text-gray-text">Todo lo que necesitas saber antes de empezar.</p>
         </Reveal>
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-[32px] border border-border shadow-soft">
           <FAQItem 
-            question="¿Mi perro solo se porta mal cuando me voy. ¿Esto es para mí?" 
-            answer="Sí. Eso es precisamente ansiedad por separación. Reset Canino está diseñado para atacar ese pánico que siente cuando te preparas para salir." 
+            question="¿Funciona con perros adultos o rescatados?" 
+            answer="Absolutamente. El sistema nervioso canino mantiene su capacidad de aprendizaje durante toda la vida. Solo adaptamos la intensidad de las rutinas, pero el proceso de regulación emocional es el mismo." 
           />
           <FAQItem 
-            question="¿Y si ya probé cansarlo más y no funcionó?" 
-            answer="Cansarlo físicamente a veces aumenta el cortisol (estrés). Aquí trabajamos la regulación mental, que es lo que realmente permite que se relaje." 
+            question="¿Y si ya he probado otros métodos o educadores?" 
+            answer="Muchos métodos fallan porque se centran en el síntoma (el ladrido) y no en la emoción (el pánico). Reset Canino trabaja desde la raíz emocional, por eso funciona donde otros fallan." 
           />
           <FAQItem 
-            question="¿Necesito jaula/transportín?" 
-            answer="No es obligatorio. El método se adapta a tu espacio y a cómo vivas con tu perro." 
+            question="¿Necesito mucho tiempo al día?" 
+            answer="No. El método está diseñado para dueños reales con vidas ocupadas. Con 10-15 minutos de rutinas enfocadas al día es suficiente para ver cambios reales." 
           />
           <FAQItem 
-            question="¿Cuándo veré resultados?" 
-            answer="Muchos dueños notan las primeras señales (menos activación al coger llaves) en los primeros 3-5 días si aplican las rutinas." 
+            question="¿Es un método amable?" 
+            answer="Sí, 100%. No usamos castigos, ni collares de impulsos, ni encierros forzados. Trabajamos desde la seguridad y el refuerzo de la calma." 
           />
           <FAQItem 
-            question="¿Sirve si es adulto / rescatado / cachorro?" 
-            answer="Sí. El sistema nervioso canino funciona igual. Solo adaptamos la intensidad de las rutinas según su edad y energía." 
+            question="¿Cuándo empezaré a notar cambios?" 
+            answer="Cada perro es un mundo, pero la mayoría de dueños notan una reducción en la activación previa a la salida (al coger llaves o zapatos) en los primeros 3 a 5 días." 
           />
           <FAQItem 
-            question="¿Esto usa castigos o métodos agresivos?" 
-            answer="Rotundamente no. El miedo no cura la ansiedad. Usamos refuerzo de calma y estructura clara." 
-          />
-          <FAQItem 
-            question="¿Qué pasa si compro y no era lo que esperaba?" 
-            answer="Tienes 7 días de garantía total. Nos escribes y te devolvemos el 100% de tu dinero." 
-          />
-          <FAQItem 
-            question="¿Cómo recibo el Asistente IA?" 
-            answer="Tras el pago, recibirás un PDF con un enlace directo para empezar a chatear con tu asistente 24/7." 
+            question="¿Cómo recibo el contenido?" 
+            answer="Inmediatamente después del pago recibirás un correo con acceso a todo el material digital y al asistente de IA para que puedas empezar hoy mismo." 
           />
         </div>
       </Section>
 
       {/* 12) CTA FINAL */}
-      <Section bg="gray" className="pb-40">
-        <Reveal className="max-w-3xl mx-auto text-center">
-          <div className="mb-12 space-y-4">
-            <p className="text-2xl font-bold text-dark">Tu perro no está intentando portarse mal.</p>
-            <p className="text-xl text-gray-text">Está intentando manejar una emoción que no sabe controlar.</p>
-            <p className="text-xl font-bold text-primary">
-              Con las rutinas correctas puedes enseñarle a sentirse seguro y tranquilo incluso cuando se queda solo en casa.
+      <Section className="pb-40 md:pb-48">
+        <Reveal className="max-w-4xl mx-auto text-center">
+          <div className="mb-12 md:mb-16 space-y-5 md:space-y-6">
+            <h2 className="text-4xl md:text-7xl font-black text-dark tracking-tight leading-none">
+              No dejes que el miedo controle la vida de tu perro.
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-text max-w-2xl mx-auto">
+              Tú mereces salir de casa tranquilo y tu perro merece sentirse seguro en su hogar.
             </p>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-black mb-6 text-dark tracking-tight">
-            Tu perro no quiere destruir tu casa.
-          </h2>
-          <p className="text-2xl text-gray-text mb-6">Solo necesita aprender a regularse.</p>
-          <p className="text-xl font-bold text-primary mb-12">
-            Empieza hoy y ayuda a tu perro a recuperar la calma en casa.
-          </p>
-          <div className="max-w-md mx-auto">
-            <Button onClick={handleCheckout} className="text-xl py-6 shadow-2xl mb-4">
-              Empezar Reset Canino ahora
-            </Button>
-            <div className="flex justify-center gap-4 text-[10px] font-bold text-gray-text uppercase tracking-widest">
-              <span className="flex items-center gap-1">✔ Acceso inmediato</span>
-              <span className="flex items-center gap-1">✔ Pago seguro</span>
-              <span className="flex items-center gap-1">✔ Garantía 7 días</span>
+          <div className="bg-primary px-6 py-10 md:px-10 md:py-14 rounded-[28px] md:rounded-[40px] shadow-2xl text-white relative overflow-hidden max-w-3xl mx-auto">
+            <div className="absolute top-0 left-0 w-full h-full bg-white/5 pointer-events-none" />
+            
+            <h3 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
+              Recupera la calma hoy por solo 19,97€
+            </h3>
+
+            <div className="max-w-sm mx-auto">
+              <a
+                href={CHECKOUT_URL}
+                onClick={() => setHasClickedCTA(true)}
+                className="inline-block bg-white text-primary font-bold text-sm md:text-base py-3 px-8 rounded-[14px] shadow-lg active:scale-95 transition-transform"
+              >
+                QUIERO AYUDAR A MI PERRO
+              </a>
+
+              <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.2em] opacity-90">
+                Acceso inmediato • Garantía de 7 días
+              </p>
             </div>
           </div>
         </Reveal>
       </Section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-border py-16 px-6 text-center text-gray-text text-sm">
+      <footer className="bg-white border-t border-border py-20 px-6 text-center text-gray-text text-sm">
         <div className="container-custom">
-          <p className="mb-6 font-bold">© {new Date().getFullYear()} Reset Canino. Todos los derechos reservados.</p>
-          <p className="max-w-3xl mx-auto opacity-50 text-[10px] leading-relaxed uppercase tracking-widest">
+          <p className="mb-8 font-bold text-dark text-lg">Reset Canino</p>
+          <p className="mb-6">© {new Date().getFullYear()} Todos los derechos reservados.</p>
+          <div className="flex justify-center gap-8 mb-10 opacity-60">
+            <a href="#" className="hover:text-primary transition-colors">Aviso Legal</a>
+            <a href="#" className="hover:text-primary transition-colors">Privacidad</a>
+            <a href="#" className="hover:text-primary transition-colors">Cookies</a>
+          </div>
+          <p className="max-w-3xl mx-auto opacity-40 text-[10px] leading-relaxed uppercase tracking-widest">
             Este sitio no forma parte del sitio web de Facebook o Facebook Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de FACEBOOK, Inc.
           </p>
         </div>
       </footer>
 
       {/* STICKY CTA (Mobile) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-border p-5 z-50 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border p-5 z-50 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
         <div>
           <p className="text-2xl font-black text-dark">19,97€</p>
           <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
         </div>
-        <button 
-          onClick={handleCheckout}
-          className="bg-primary text-white px-8 py-4 rounded-[14px] font-bold text-sm active:scale-95 transition-transform shadow-lg"
+        <a 
+          href={CHECKOUT_URL}
+          onClick={() => setHasClickedCTA(true)}
+          className="bg-primary text-white px-8 py-4 rounded-[16px] font-bold text-sm active:scale-95 transition-transform shadow-lg"
         >
           Empezar ahora
-        </button>
+        </a>
       </div>
 
       {/* POPUP / MODAL (Exit Intent) */}
       {showPopup && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           <div 
-            className="absolute inset-0 bg-dark/90 backdrop-blur-md" 
+            className="absolute inset-0 bg-dark/95 backdrop-blur-md" 
             onClick={() => setShowPopup(false)}
           />
-          <div className="relative bg-white w-full max-w-lg rounded-[20px] p-10 md:p-16 shadow-2xl overflow-hidden text-center">
+          <div className="relative bg-white w-full max-w-lg rounded-[32px] p-12 md:p-16 shadow-2xl overflow-hidden text-center">
             <button 
               onClick={() => setShowPopup(false)}
-              className="absolute top-6 right-6 text-gray-text hover:text-dark transition-colors"
+              className="absolute top-8 right-8 text-gray-text hover:text-dark transition-colors"
             >
               <X className="w-8 h-8" />
             </button>
-            <h2 className="text-3xl font-black mb-4 text-dark">Antes de irte…</h2>
-            <p className="text-lg text-gray-text mb-6 leading-relaxed">
-              Tu perro seguirá sintiendo ansiedad cada vez que salgas de casa.
+            <h2 className="text-4xl font-black mb-6 text-dark tracking-tight">¿Te vas sin ayudarlo?</h2>
+            <p className="text-xl text-gray-text mb-8 leading-relaxed">
+              Cada vez que sales, su pánico vuelve a empezar. No tiene por qué ser así.
             </p>
-            <p className="text-xl font-bold text-dark mb-10 leading-relaxed">
-              Pero hoy puedes empezar a ayudarlo con el método Reset Canino.
+            <p className="text-2xl font-bold text-dark mb-12 leading-tight">
+              Aprovecha hoy el precio de lanzamiento y cambia su vida.
             </p>
-            <div className="flex flex-col gap-4">
-              <Button onClick={handleCheckout}>Quiero ayudar a mi perro ahora</Button>
+            <div className="flex flex-col gap-5">
+              <Button href={CHECKOUT_URL} onClick={() => setHasClickedCTA(true)}>SÍ, QUIERO AYUDARLO</Button>
               <button 
                 onClick={() => setShowPopup(false)}
-                className="text-gray-text font-bold hover:text-dark transition-colors"
+                className="text-gray-text font-bold hover:text-dark transition-colors text-sm uppercase tracking-widest"
               >
-                Ahora no
+                Quizás en otro momento
               </button>
             </div>
           </div>
