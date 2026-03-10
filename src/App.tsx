@@ -544,6 +544,11 @@ export default function App() {
             </div>
           </div>
         </div>
+        <Reveal className="mt-16 text-center">
+  <Button onClick={() => handleCheckout('before_after')} className="max-w-md mx-auto">
+    Quiero este cambio para mi perro
+  </Button>
+</Reveal>
       </Section>
 
       {/* 8) TESTIMONIOS */}
