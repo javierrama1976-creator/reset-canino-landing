@@ -843,40 +843,6 @@ export default function App() {
       </footer>
 
       {/* STICKY CTA (Mobile) */}
-
-      {/* POPUP / MODAL (Exit Intent) */}
-      {showPopup && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          <div 
-            className="absolute inset-0 bg-dark/95 backdrop-blur-md" 
-            onClick={() => setShowPopup(false)}
-          />
-          <div className="relative bg-white w-full max-w-lg rounded-[32px] p-12 md:p-16 shadow-2xl overflow-hidden text-center">
-            <button 
-              onClick={() => setShowPopup(false)}
-              className="absolute top-8 right-8 text-gray-text hover:text-dark transition-colors"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            <h2 className="text-4xl font-black mb-6 text-dark tracking-tight">¿Te vas sin ayudarlo?</h2>
-            <p className="text-xl text-gray-text mb-8 leading-relaxed">
-              Cada vez que sales, su pánico vuelve a empezar. No tiene por qué ser así.
-            </p>
-            <p className="text-2xl font-bold text-dark mb-12 leading-tight">
-              Aprovecha hoy el precio de lanzamiento y cambia su vida.
-            </p>
-            <div className="flex flex-col gap-5">
-              <Button onClick={() => handleCheckout('popup')}>SÍ, QUIERO AYUDAR A MI PERRO</Button>
-              <button 
-                onClick={() => setShowPopup(false)}
-                className="text-gray-text font-bold hover:text-dark transition-colors text-sm uppercase tracking-widest"
-              >
-                Quizás en otro momento
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
