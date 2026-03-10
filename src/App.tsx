@@ -10,7 +10,11 @@ import {
   Brain,
   ChevronDown,
   ChevronUp,
-  Lock
+  Lock,
+  Play,
+  Clock,
+  Heart,
+  AlertCircle
 } from "lucide-react";
 
 declare global {
@@ -143,11 +147,18 @@ export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [hasClickedCTA, setHasClickedCTA] = useState(false);
 
-  const handleCheckout = () => {
+  useEffect(() => {
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "PageView");
+    }
+  }, []);
+
+  const handleCheckout = (source: string) => {
     setHasClickedCTA(true);
 
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "InitiateCheckout");
+      (window as any).fbq("trackCustom", "CTA_Click", { source });
     }
 
     window.location.href = CHECKOUT_URL;
@@ -155,29 +166,36 @@ export default function App() {
 
   // Popup Logic
   useEffect(() => {
+    const POPUP_COOLDOWN = 24 * 60 * 60 * 1000; // 24h
+    const lastShown = localStorage.getItem("popup_last_shown");
+    const now = Date.now();
+
     const handleScroll = () => {
       const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (scrollPercent > 0.8 && !localStorage.getItem("popup_shown")) {
+      if (scrollPercent > 0.8 && (!lastShown || now - Number(lastShown) > POPUP_COOLDOWN)) {
         setShowPopup(true);
-        localStorage.setItem("popup_shown", "true");
+        localStorage.setItem("popup_last_shown", now.toString());
       }
     };
 
     const handleExitIntent = (e: MouseEvent) => {
-      if (e.clientY <= 0 && hasClickedCTA && !localStorage.getItem("popup_shown")) {
+      if (e.clientY <= 0 && (!lastShown || now - Number(lastShown) > POPUP_COOLDOWN)) {
         setShowPopup(true);
-        localStorage.setItem("popup_shown", "true");
+        localStorage.setItem("popup_last_shown", now.toString());
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    document.addEventListener("mouseleave", handleExitIntent);
+    const timer = setTimeout(() => {
+      window.addEventListener("scroll", handleScroll);
+      document.addEventListener("mouseleave", handleExitIntent);
+    }, 10000);
     
     return () => {
+      clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mouseleave", handleExitIntent);
     };
-  }, [hasClickedCTA]);
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -186,21 +204,25 @@ export default function App() {
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
             <p className="text-primary font-bold uppercase tracking-[0.2em] mb-6 text-sm">
-              RESET CANINO · MÉTODO PARA PERROS CON ANSIEDAD POR SEPARACIÓN
+              MÉTODO PROBADO PARA LA ANSIEDAD POR SEPARACIÓN
             </p>
 
             <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-8 text-dark tracking-tight">
-              Tu perro no llora, ladra o destruye cosas para fastidiarte.
-              <span className="block text-primary mt-2">Está entrando en pánico cuando siente que te vas.</span>
+              Haz que tu perro se quede solo en calma
+              <span className="block text-primary mt-2">sin llorar, ladrar ni destrozar la casa.</span>
             </h1>
 
-            <p className="text-xl md:text-3xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
-              Aprende a ayudarlo a quedarse solo, tranquilo y en calma, sin castigos, sin gritos y sin métodos agresivos, dedicando solo 10-15 minutos al día.
+            <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
+              Un sistema práctico de 10-15 minutos al día para reducir su ansiedad por separación y devolverte la paz, incluso si ya has probado otros métodos.
             </p>
+
+            <Button onClick={() => handleCheckout('hero')} className="mb-12 text-xl py-6 max-w-md mx-auto">
+              Quiero que mi perro se quede tranquilo
+            </Button>
 
             <div className="bg-primary/5 p-6 rounded-[20px] border border-primary/10 inline-block text-center md:text-left max-w-3xl">
               <p className="text-lg text-dark font-medium leading-relaxed">
-                Si tu perro se altera cuando coges las llaves, rompe cosas, araña la puerta o no puede relajarse si no estás, este método está diseñado para vosotros.
+                ¿Sientes culpa cada vez que cierras la puerta? ¿Tus vecinos se quejan de los aullidos? ¿Vuelves a casa con miedo a encontrar un desastre? <span className="text-primary font-bold">Hay una solución real.</span>
               </p>
             </div>
           </Reveal>
@@ -212,7 +234,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
             <p className="text-lg font-bold text-dark mb-8">
-              🔊 Mira este vídeo de 30 segundos y entiende por qué tu perro entra en pánico cuando siente que te vas.
+              🔊 Mira este vídeo y entiende por qué tu perro entra en pánico cuando siente que te vas.
             </p>
             <div className="mb-12 shadow-2xl overflow-hidden rounded-[24px] border border-border max-w-[320px] mx-auto bg-black group relative">
               <video 
@@ -220,7 +242,7 @@ export default function App() {
                 muted 
                 loop 
                 playsInline 
-                preload="auto" 
+                preload="metadata" 
                 className="w-full aspect-[9/16] object-cover cursor-pointer" 
                 onClick={(e) => {
                   e.currentTarget.muted = false;
@@ -231,41 +253,64 @@ export default function App() {
               </video>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
                 <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full">
-                  <Lock className="w-8 h-8 text-white" />
+                  <Play className="w-8 h-8 text-white fill-current" />
                 </div>
               </div>
             </div>
 
-            <Button onClick={handleCheckout} className="mb-8 text-xl py-6 max-w-md mx-auto">
-              Empezar Reset Canino ahora
+            <Button onClick={() => handleCheckout('video')} className="mb-8 text-xl py-6 max-w-md mx-auto">
+              Sí, quiero paz en casa
             </Button>
 
             <div className="flex flex-wrap justify-center gap-8 text-xs font-bold text-gray-text uppercase tracking-widest">
-              <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> Garantía total</span>
-              <span className="flex items-center gap-2"><Lock className="w-4 h-4 text-primary" /> Encriptación SSL</span>
-              <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Acceso de por vida</span>
+              <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> Garantía de Satisfacción</span>
+              <span className="flex items-center gap-2"><Lock className="w-4 h-4 text-primary" /> Pago 100% Seguro</span>
+              <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Acceso Inmediato</span>
             </div>
           </Reveal>
         </div>
       </Section>
 
+      {/* EARLY OFFER SUMMARY */}
+      <Section bg="gray" className="py-12">
+        <Reveal className="max-w-4xl mx-auto">
+          <div className="bg-white p-8 rounded-[32px] border border-border shadow-soft flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold mb-4">Empieza hoy mismo:</h3>
+              <ul className="space-y-2 mb-6">
+                <li className="flex items-center gap-2 text-gray-text"><CheckCircle2 className="w-5 h-5 text-primary" /> Sistema Reset Canino AIRMIND</li>
+                <li className="flex items-center gap-2 text-gray-text"><CheckCircle2 className="w-5 h-5 text-primary" /> 4 Bonos de Acción Rápida</li>
+                <li className="flex items-center gap-2 text-gray-text"><CheckCircle2 className="w-5 h-5 text-primary" /> Soporte IA 24/7 incluido</li>
+              </ul>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-black text-dark">19,97€</span>
+                <span className="text-gray-400 line-through text-sm">Valor real: 171€</span>
+              </div>
+            </div>
+            <Button onClick={() => handleCheckout('early_offer')} className="md:w-auto px-12">
+              ¡Lo quiero ahora!
+            </Button>
+          </div>
+        </Reveal>
+      </Section>
+
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-8">Tu perro no te está castigando. Está sufriendo.</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">Tu perro no te está castigando. Está sufriendo un ataque de pánico.</h2>
           <p className="text-xl text-gray-text mb-12">
-            Si te sientes identificado con alguna de estas situaciones, no estás solo. Esto es lo que vive un perro con ansiedad por separación:
+            ¿Te suena familiar? Esta es la realidad diaria de miles de dueños que se sienten atrapados en su propia casa:
           </p>
           <div className="grid gap-4 text-left">
             {[
-              "Araña el marco de la puerta o el suelo hasta hacerse daño.",
-              "Ladra, llora o aúlla sin parar, generando problemas con los vecinos.",
-              "Destruye objetos que huelen a ti (ropa, cojines, mandos).",
-              "Entra en pánico en cuanto te pones los zapatos o coges las llaves.",
-              "Te sigue por toda la casa como una sombra, incapaz de relajarse si no estás cerca."
+              "Vuelves a casa con el corazón en un puño, temiendo lo que encontrarás tras la puerta.",
+              "Tus vecinos te han dejado notas o se quejan de los aullidos constantes.",
+              "Has gastado una fortuna en cámaras, juguetes 'mágicos' y nada ha funcionado.",
+              "Sientes una culpa inmensa cada vez que tienes que salir, incluso para tirar la basura.",
+              "Tu vida social ha desaparecido porque no puedes dejar a tu perro solo ni un segundo."
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 bg-white p-6 rounded-[18px] border border-border shadow-soft">
-                <XCircle className="w-6 h-6 text-primary shrink-0 mt-0.5" />
+                <AlertCircle className="w-6 h-6 text-primary shrink-0 mt-0.5" />
                 <span className="font-bold text-dark text-lg">{item}</span>
               </div>
             ))}
@@ -275,7 +320,7 @@ export default function App() {
           <div className="inline-block bg-dark text-white p-10 rounded-[24px] shadow-2xl max-w-2xl">
             <p className="text-2xl font-bold mb-4 italic">"¿Por qué lo hace si sabe que está mal?"</p>
             <p className="text-lg text-gray-300 leading-relaxed">
-              No es una conducta de venganza ni falta de dominancia. Es una <span className="text-primary font-bold">respuesta fisiológica al miedo</span>. Su cerebro entra en modo supervivencia y no puede evitarlo.
+              No es una conducta de venganza. Es una <span className="text-primary font-bold">respuesta fisiológica al miedo extremo</span>. Su cerebro entra en modo supervivencia y no puede evitarlo. Castigarlo solo empeora el pánico.
             </p>
           </div>
         </Reveal>
@@ -337,20 +382,20 @@ export default function App() {
                 </div>
               </div>
               <div className="w-full md:w-3/5">
-                <h3 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">La cara detrás del método</h3>
+                <h3 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Experiencia real en bienestar canino</h3>
                 <h2 className="text-4xl font-bold mb-6 text-dark">Julieta Márquez</h2>
                 <p className="text-primary font-bold mb-6">
-                  Creadora de Reset Canino
+                  Especialista en Vínculo y Regulación Emocional
                 </p>
                 <div className="space-y-6 text-lg text-gray-text leading-relaxed">
                   <p>
-                    Julieta Márquez es una apasionada del bienestar animal y de la convivencia consciente entre humanos y perros. A lo largo de su experiencia, ha observado cómo muchos problemas de comportamiento canino no surgen por "malos perros", sino por falta de información, rutinas desordenadas y una comunicación inadecuada.
+                    Tras años observando un patrón de frustración y culpa en cientos de dueños, Julieta Márquez decidió sistematizar una solución que fuera más allá del adiestramiento tradicional.
                   </p>
                   <p>
-                    <strong>Reset Canino</strong> nace de la necesidad de ofrecer una guía clara, empática y aplicable en casa, pensada para dueños reales que aman a sus perros, pero se sienten agotados, frustrados o culpables por no saber cómo ayudarlos.
+                    <strong>Reset Canino</strong> no es teoría abstracta; es un método nacido de la práctica diaria, diseñado para transformar el pánico en calma a través de la comunicación biológica y la seguridad emocional.
                   </p>
                   <p className="italic border-l-4 border-primary/30 pl-6 py-2">
-                    "Mi misión es devolverle la tranquilidad a tu hogar, trabajando desde el respeto y la regulación emocional, nunca desde el castigo."
+                    "Mi objetivo no es que tu perro te obedezca, sino que aprenda a estar en paz consigo mismo cuando tú no estás. Esa es la verdadera libertad para ambos."
                   </p>
                 </div>
               </div>
@@ -431,10 +476,35 @@ export default function App() {
           ))}
         </div>
         <Reveal className="mt-16 text-center">
-          <Button onClick={handleCheckout} className="max-w-md mx-auto">
-            Quiero empezar el cambio hoy
+          <Button onClick={() => handleCheckout('pillars')} className="max-w-md mx-auto">
+            Quiero ayudar a mi perro hoy
           </Button>
         </Reveal>
+      </Section>
+
+      {/* OBJECTIONS SECTION */}
+      <Section bg="gray">
+        <div className="max-w-4xl mx-auto">
+          <Reveal className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold">¿Aún tienes dudas?</h2>
+            <p className="text-xl text-gray-text mt-4">Esto es para ti, sin importar tu situación actual.</p>
+          </Reveal>
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              { q: "¿Y si ya he probado de todo?", a: "Reset Canino no es adiestramiento de obediencia. Trabajamos la regulación emocional, la raíz del pánico que otros métodos ignoran." },
+              { q: "¿Funciona con perros adultos?", a: "Sí. El cerebro canino es plástico. Cualquier perro, sin importar su edad, puede aprender a sentirse seguro en soledad." },
+              { q: "¿Tengo que dedicarle horas?", a: "No. El sistema está diseñado para dueños ocupados. Solo necesitas 10-15 minutos de rutinas estratégicas al día." },
+              { q: "¿Puede empeorar la situación?", a: "Al contrario. Al trabajar desde la calma y sin castigos, reducimos el cortisol y el estrés desde el primer día." }
+            ].map((obj, i) => (
+              <div key={i} className="bg-white p-8 rounded-[24px] border border-border shadow-soft">
+                <h4 className="text-xl font-bold mb-3 flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-primary" /> {obj.q}
+                </h4>
+                <p className="text-gray-text leading-relaxed">{obj.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </Section>
 
       {/* 2.5) TRANSFORMACIÓN VISUAL */}
@@ -482,7 +552,7 @@ export default function App() {
                   Un perro que te ve salir y se tumba a descansar. Una casa intacta. La libertad de poder irte sabiendo que tu mejor amigo está en paz.
                 </p>
               </div>
-              <Button onClick={handleCheckout}>
+              <Button onClick={() => handleCheckout('transformation')}>
                 Quiero esta transformación para mi perro
               </Button>
             </div>
@@ -665,10 +735,10 @@ export default function App() {
                     AHORRAS 151,03€ (88% DTO)
                   </div>
                   <Button 
-                    onClick={handleCheckout} 
+                    onClick={() => handleCheckout('offer_block')} 
                     className="text-lg md:text-xl py-5 md:py-6 shadow-2xl hover:scale-[1.02] active:scale-95"
                   >
-                    SÍ, QUIERO TODO EL PACK
+                    SÍ, QUIERO PAZ EN CASA
                   </Button>
                 </div>
               </div>
@@ -692,8 +762,8 @@ export default function App() {
           <p className="text-xl text-gray-text mb-12 leading-relaxed">
             Si después de aplicar el método sientes que no es para ti o que tu perro no ha mejorado, escríbenos. Te devolveremos cada céntimo. <span className="font-bold text-dark">Sin preguntas, sin complicaciones.</span>
           </p>
-          <Button onClick={handleCheckout} variant="outline" className="max-w-md mx-auto">
-            PROBAR RESET CANINO SIN RIESGO
+          <Button onClick={() => handleCheckout('guarantee')} variant="outline" className="max-w-md mx-auto">
+            PROBAR SIN RIESGO AHORA
           </Button>
         </Reveal>
       </Section>
@@ -753,10 +823,10 @@ export default function App() {
 
             <div className="max-w-sm mx-auto">
               <button
-                onClick={handleCheckout}
+                onClick={() => handleCheckout('final_cta')}
                 className="inline-block bg-white text-primary font-bold text-sm md:text-base py-3 px-8 rounded-[14px] shadow-lg active:scale-95 transition-transform"
               >
-                QUIERO AYUDAR A MI PERRO
+                SÍ, QUIERO QUE DEJE DE ENTRAR EN PÁNICO
               </button>
 
               <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.2em] opacity-90">
@@ -773,9 +843,9 @@ export default function App() {
           <p className="mb-8 font-bold text-dark text-lg">Reset Canino</p>
           <p className="mb-6">© {new Date().getFullYear()} Todos los derechos reservados.</p>
           <div className="flex justify-center gap-8 mb-10 opacity-60">
-            <a href="#" className="hover:text-primary transition-colors">Aviso Legal</a>
-            <a href="#" className="hover:text-primary transition-colors">Privacidad</a>
-            <a href="#" className="hover:text-primary transition-colors">Cookies</a>
+            <a href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</a>
+            <a href="/privacidad" className="hover:text-primary transition-colors">Privacidad</a>
+            <a href="/cookies" className="hover:text-primary transition-colors">Cookies</a>
           </div>
           <p className="max-w-3xl mx-auto opacity-40 text-[10px] leading-relaxed uppercase tracking-widest">
             Este sitio no forma parte del sitio web de Facebook o Facebook Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de FACEBOOK, Inc.
@@ -790,10 +860,10 @@ export default function App() {
           <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
         </div>
         <button 
-          onClick={handleCheckout}
+          onClick={() => handleCheckout('sticky_mobile')}
           className="bg-primary text-white px-8 py-4 rounded-[16px] font-bold text-sm active:scale-95 transition-transform shadow-lg"
         >
-          Empezar ahora
+          ¡Empezar ahora!
         </button>
       </div>
 
@@ -819,7 +889,7 @@ export default function App() {
               Aprovecha hoy el precio de lanzamiento y cambia su vida.
             </p>
             <div className="flex flex-col gap-5">
-              <Button onClick={handleCheckout}>SÍ, QUIERO AYUDARLO</Button>
+              <Button onClick={() => handleCheckout('popup')}>SÍ, QUIERO AYUDAR A MI PERRO</Button>
               <button 
                 onClick={() => setShowPopup(false)}
                 className="text-gray-text font-bold hover:text-dark transition-colors text-sm uppercase tracking-widest"
