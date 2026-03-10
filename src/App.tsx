@@ -405,6 +405,51 @@ export default function App() {
           </div>
         </Reveal>
       </Section>
+      {/* AUTORIDAD */}
+<Section>
+  <Reveal className="max-w-5xl mx-auto">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+
+      <div className="flex justify-center">
+        <img
+          src="/julieta.jpg"
+          alt="Julieta Márquez - Reset Canino"
+          className="w-72 h-72 object-cover rounded-[20px] shadow-soft"
+        />
+      </div>
+
+      <div>
+        <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">
+          Sobre la creadora
+        </p>
+
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-dark">
+          Julieta Márquez
+        </h2>
+
+        <p className="text-lg text-gray-text leading-relaxed mb-6">
+          Julieta Márquez es una apasionada del bienestar animal y de la convivencia
+          consciente entre humanos y perros.
+        </p>
+
+        <p className="text-lg text-gray-text leading-relaxed mb-6">
+          A lo largo de su experiencia ha observado que muchos problemas de
+          comportamiento canino no surgen por “malos perros”, sino por falta de
+          información, rutinas desordenadas y una comunicación inadecuada entre
+          el perro y su entorno humano.
+        </p>
+
+        <p className="text-lg text-gray-text leading-relaxed">
+          Por eso creó <span className="font-bold text-dark">Reset Canino</span>,
+          una guía clara, empática y fácil de aplicar en casa para dueños que aman
+          a sus perros pero necesitan herramientas prácticas para ayudarlos a
+          recuperar la calma.
+        </p>
+      </div>
+
+    </div>
+  </Reveal>
+</Section>
 
       {/* 5) LOS PILARES DEL SISTEMA */}
       <Section>
