@@ -14,7 +14,7 @@ import {
   
   ChevronUp,
   
-  Maximize2,
+  ChevronDown,
   
 const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
 
@@ -698,7 +698,9 @@ export default function App() {
             Si no ves cambios o no estás satisfecho, puedes pedir reembolso. <span className="font-bold text-dark">Sin preguntas.</span>
           </p>
           <Button onClick={() => handleCheckout("garantia")} variant="outline">
-        </Reveal>
+          QUIERO EMPEZAR RESET CANINO
+</Button>
+        </Reveal>  
       </Section>
 
       {/* 11) FAQ */}
