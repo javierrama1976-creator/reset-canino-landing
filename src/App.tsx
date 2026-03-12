@@ -293,7 +293,7 @@ export default function App() {
           </p>
           
           <Button onClick={() => handleCheckout('problem_explanation')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-           SI QUIERO PAZ EN CASA
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -442,7 +442,7 @@ export default function App() {
           </div>
 
           <Button onClick={() => handleCheckout('method_section')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-            QUIERO EMPEZAR EL MÉTODO
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -744,7 +744,7 @@ export default function App() {
                   <p className="text-sm font-bold text-primary mt-4">Hoy puedes acceder a todo el sistema completo por menos de lo que cuesta un juguete para tu perro.</p>
                 </div>
                 <Button onClick={() => handleCheckout('offer_section')} className="mt-8 text-xl py-6 max-w-md mx-auto">
-                  QUIERO ACCEDER A REST CANINO
+                  QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
                 </Button>
               </div>
               
@@ -768,7 +768,7 @@ export default function App() {
             Sin preguntas. Sin complicaciones.
           </p>
           <Button onClick={() => handleCheckout('guarantee')} className="max-w-md mx-auto">
-            QUIERO RECUPERAR LA CALMA EN CASA
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
