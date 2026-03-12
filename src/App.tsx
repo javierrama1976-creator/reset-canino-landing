@@ -185,7 +185,7 @@ export default function App() {
                   controls
                   className="w-full h-auto block"
                 >
-                  <source src="/VSL-landing.mp4" type="video/mp4" />
+                  <source src="/vsl.mp4" type="video/mp4" />
                   Tu navegador no soporta el elemento de video.
                 </video>
               </div>
