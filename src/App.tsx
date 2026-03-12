@@ -144,7 +144,6 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 // --- Main App ---
 
 export default function App() {
-  const [showPopup, setShowPopup] = useState(false);
   const [hasClickedCTA, setHasClickedCTA] = useState(false);
 
   useEffect(() => {
@@ -164,39 +163,6 @@ export default function App() {
     window.location.href = CHECKOUT_URL;
   };
 
-  // Popup Logic
-  useEffect(() => {
-    const POPUP_COOLDOWN = 24 * 60 * 60 * 1000; // 24h
-    const lastShown = localStorage.getItem("popup_last_shown");
-    const now = Date.now();
-
-    const handleScroll = () => {
-      const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-      if (scrollPercent > 0.8 && (!lastShown || now - Number(lastShown) > POPUP_COOLDOWN)) {
-        setShowPopup(true);
-        localStorage.setItem("popup_last_shown", now.toString());
-      }
-    };
-
-    const handleExitIntent = (e: MouseEvent) => {
-      if (e.clientY <= 0 && (!lastShown || now - Number(lastShown) > POPUP_COOLDOWN)) {
-        setShowPopup(true);
-        localStorage.setItem("popup_last_shown", now.toString());
-      }
-    };
-
-    const timer = setTimeout(() => {
-      window.addEventListener("scroll", handleScroll);
-      document.addEventListener("mouseleave", handleExitIntent);
-    }, 10000);
-    
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mouseleave", handleExitIntent);
-    };
-  }, []);
-
   return (
     <div className="min-h-screen">
       {/* 1) HERO SECTION */}
@@ -208,18 +174,18 @@ export default function App() {
             </p>
 
             <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-8 text-dark tracking-tight">
-              Haz que tu perro se quede solo en calma
-              <span className="block text-primary mt-2">sin llorar, ladrar ni destrozar la casa.</span>
+              Si cada vez que sales de casa tu perro ladra, rompe cosas o entra en pánico…
+              <span className="block text-primary mt-4">no está siendo desobediente.</span>
+              <span className="block text-primary mt-2">Está sufriendo ansiedad por separación.</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
-              Un sistema práctico de 10-15 minutos al día para reducir su ansiedad por separación y devolverte la paz, incluso si ya has probado otros métodos.
+              Descubre el método que ya está ayudando a cientos de dueños a dejar a su perro solo en casa sin ladridos, sin destrozos y sin miedo a lo que encontrarán al volver.
             </p>
 
-
-            <div className="bg-primary/5 p-6 rounded-[20px] border border-primary/10 inline-block text-center md:text-left max-w-3xl">
-              <p className="text-lg text-dark font-medium leading-relaxed">
-                ¿Sientes culpa cada vez que cierras la puerta? ¿Tus vecinos se quejan de los aullidos? ¿Vuelves a casa con miedo a encontrar un desastre? <span className="text-primary font-bold">Hay una solución real.</span>
+            <div className="bg-primary/5 p-8 rounded-[24px] border border-primary/10 inline-block text-center md:text-left max-w-3xl mb-12">
+              <p className="text-lg md:text-xl text-dark font-medium leading-relaxed">
+                Un sistema práctico que puedes aplicar en solo 10-15 minutos al día, incluso si ya has probado juguetes, cámaras o consejos de internet que no funcionaron.
               </p>
             </div>
           </Reveal>
@@ -230,8 +196,8 @@ export default function App() {
       <Section className="pt-0 pb-16">
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <p className="text-lg font-bold text-dark mb-8">
-              🔊 Mira este vídeo y entiende por qué tu perro entra en pánico cuando siente que te vas.
+            <p className="text-xl font-bold text-dark mb-8">
+              🔊 Mira esto y entiende por qué tu perro entra en pánico cuando te vas.
             </p>
             <div className="mb-12 shadow-2xl overflow-hidden rounded-[24px] border border-border max-w-[320px] mx-auto bg-black group relative">
               <video 
@@ -255,8 +221,12 @@ export default function App() {
               </div>
             </div>
 
+            <p className="text-gray-text mb-8 max-w-2xl mx-auto">
+              La mayoría de dueños empeoran la ansiedad de su perro sin darse cuenta.
+            </p>
+
             <Button onClick={() => handleCheckout('video')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-              Sí, quiero paz en casa
+              QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
             </Button>
 
             <div className="flex flex-wrap justify-center gap-8 text-xs font-bold text-gray-text uppercase tracking-widest">
@@ -268,40 +238,16 @@ export default function App() {
         </div>
       </Section>
 
-      {/* EARLY OFFER SUMMARY */}
-      <Section bg="gray" className="py-12">
-        <Reveal className="max-w-4xl mx-auto">
-          <div className="bg-white p-8 rounded-[32px] border border-border shadow-soft flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold mb-4">Empieza hoy mismo:</h3>
-              <ul className="space-y-2 mb-6">
-                <li className="flex items-center gap-2 text-gray-text"><CheckCircle2 className="w-5 h-5 text-primary" /> Sistema Reset Canino AIRMIND</li>
-                <li className="flex items-center gap-2 text-gray-text"><CheckCircle2 className="w-5 h-5 text-primary" /> 4 Bonos de Acción Rápida</li>
-                <li className="flex items-center gap-2 text-gray-text"><CheckCircle2 className="w-5 h-5 text-primary" /> Soporte IA 24/7 incluido</li>
-              </ul>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-black text-dark">19,97€</span>
-                <span className="text-gray-400 line-through text-sm">Valor real: 171€</span>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </Section>
-
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-8">Tu perro no te está castigando. Está sufriendo un ataque de pánico.</h2>
-          <p className="text-xl text-gray-text mb-12">
-            ¿Te suena familiar? Esta es la realidad diaria de miles de dueños que se sienten atrapados en su propia casa:
-          </p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">Si tu perro sufre ansiedad por separación, probablemente esto te pasa cada vez que sales de casa:</h2>
           <div className="grid gap-4 text-left">
             {[
-              "Vuelves a casa con el corazón en un puño, temiendo lo que encontrarás tras la puerta.",
-              "Tus vecinos te han dejado notas o se quejan de los aullidos constantes.",
-              "Has gastado una fortuna en cámaras, juguetes 'mágicos' y nada ha funcionado.",
-              "Sientes una culpa inmensa cada vez que tienes que salir, incluso para tirar la basura.",
-              "Tu vida social ha desaparecido porque no puedes dejar a tu perro solo ni un segundo."
+              "Sales de casa con culpa porque sabes que tu perro empezará a ladrar en cuanto cierres la puerta.",
+              "Vuelves a casa con miedo de abrir la puerta.",
+              "Los vecinos ya se han quejado del ruido.",
+              "Has probado juguetes “mágicos”, cámaras o más paseos… y nada cambia."
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-4 bg-white p-6 rounded-[18px] border border-border shadow-soft">
                 <AlertCircle className="w-6 h-6 text-primary shrink-0 mt-0.5" />
@@ -309,37 +255,68 @@ export default function App() {
               </div>
             ))}
           </div>
+          <p className="text-xl text-gray-text mt-12 font-medium">
+            No es que tu perro sea malo. Es que está entrando en pánico cuando siente que te vas.
+          </p>
         </Reveal>
-        <Reveal className="text-center">
-          <div className="inline-block bg-dark text-white p-10 rounded-[24px] shadow-2xl max-w-2xl">
-            <p className="text-2xl font-bold mb-4 italic">"¿Por qué lo hace si sabe que está mal?"</p>
-            <p className="text-lg text-gray-300 leading-relaxed">
-              No es una conducta de venganza. Es una <span className="text-primary font-bold">respuesta fisiológica al miedo extremo</span>. Su cerebro entra en modo supervivencia y no puede evitarlo. Castigarlo solo empeora el pánico.
-            </p>
+      </Section>
+
+      {/* 4) EXPLICACIÓN DEL PROBLEMA */}
+      <Section>
+        <Reveal className="text-center max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8">Tu perro no te está castigando. Está sufriendo un ataque de pánico.</h2>
+          <p className="text-xl text-gray-text mb-12 leading-relaxed">
+            La ansiedad por separación no es desobediencia. Es una reacción emocional real donde el perro entra en modo supervivencia cuando percibe que su persona de referencia desaparece. Castigarlo o ignorarlo solo empeora el problema.
+          </p>
+          
+          <Button onClick={() => handleCheckout('problem_explanation')} className="mb-8 text-xl py-6 max-w-md mx-auto">
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
+          </Button>
+        </Reveal>
+      </Section>
+
+      {/* 5) IDENTIFICACIÓN PROFUNDA */}
+      <Section bg="gray">
+        <Reveal className="text-center max-w-4xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 text-dark">La ansiedad por separación no solo afecta a tu perro… también está afectando tu vida.</h2>
+          <div className="grid md:grid-cols-2 gap-6 text-left mb-12">
+            {[
+              "Vuelves a casa con el corazón acelerado temiendo lo que encontrarás.",
+              "Has gastado dinero en juguetes o soluciones rápidas.",
+              "Tu vida social ha reducido porque no puedes dejar a tu perro solo.",
+              "Sientes culpa incluso cuando sales solo cinco minutos."
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 bg-white p-6 rounded-[18px] border border-border">
+                <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
+                <span className="font-bold text-dark">{item}</span>
+              </div>
+            ))}
           </div>
         </Reveal>
       </Section>
 
-      {/* 3) CAMBIO DE PERSPECTIVA */}
+      {/* 3) MITO Y SOLUCIÓN */}
       <Section>
         <div className="max-w-4xl mx-auto">
           <Reveal>
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">El mito del "perro cansado"</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">El error que hace que la ansiedad por separación de tu perro empeore cada día</h2>
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 text-lg text-gray-text leading-relaxed">
                 <p>
-                  Muchos dueños intentan cansar más a su perro con paseos interminables o sesiones de juego intensas antes de salir.
-                </p>
-                <p className="font-bold text-dark">
-                  Pero la ansiedad por separación no se cura con ejercicio físico.
+                  Muchos dueños creen que si cansan al perro antes de irse, el problema desaparece.
+                  Más paseo. Más juego. Más ejercicio.
                 </p>
                 <p>
-                  De hecho, a veces el exceso de ejercicio aumenta el cortisol (la hormona del estrés), haciendo que el perro esté aún más activado cuando te vas.
+                  Pero la ansiedad por separación no es falta de cansancio físico.
+                  Es un problema emocional.
+                </p>
+                <p className="font-bold text-dark">
+                  Y un perro cansado pero ansioso seguirá sufriendo igual.
                 </p>
                 <div className="bg-primary/5 p-8 rounded-[20px] border-l-4 border-primary">
                   <p className="text-dark font-bold text-xl mb-2">La solución real:</p>
                   <p className="text-dark">
-                    Tu perro necesita aprender a <span className="text-primary font-bold">regularse emocionalmente</span> y a entender que tu ausencia no es una amenaza.
+                    La solución real es enseñar a tu perro a sentirse seguro cuando estás fuera. Tu perro necesita aprender a regular su estado emocional cuando te vas. No con castigos. No con trucos rápidos. Sino con un proceso claro que le enseñe que tu ausencia no significa peligro.
                   </p>
                 </div>
               </div>
@@ -379,17 +356,25 @@ export default function App() {
                 <h3 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Experiencia real en bienestar canino</h3>
                 <h2 className="text-4xl font-bold mb-6 text-dark">Julieta Márquez</h2>
                 <p className="text-primary font-bold mb-6">
-                  Especialista en Vínculo y Regulación Emocional
+                  Especialista en vínculo y regulación emocional
                 </p>
                 <div className="space-y-6 text-lg text-gray-text leading-relaxed">
                   <p>
-                    Tras años observando un patrón de frustración y culpa en cientos de dueños, Julieta Márquez decidió sistematizar una solución que fuera más allá del adiestramiento tradicional.
+                    Durante años observé el mismo patrón repetirse en cientos de dueños:
+                    culpa al salir de casa, ansiedad al volver y frustración porque nada de lo que probaban funcionaba.
                   </p>
                   <p>
-                    <strong>Reset Canino</strong> no es teoría abstracta; es un método nacido de la práctica diaria, diseñado para transformar el pánico en calma a través de la comunicación biológica y la seguridad emocional.
+                    El problema no era que sus perros fueran malos.
+                    El problema era que nadie estaba tratando la raíz emocional del pánico.
+                  </p>
+                  <p>
+                    Por eso desarrollé Reset Canino:
+                    un método centrado en enseñar al perro a sentirse seguro cuando se queda solo, sin castigos, sin agotarlo y sin depender de soluciones rápidas que solo tapan el síntoma.
                   </p>
                   <p className="italic border-l-4 border-primary/30 pl-6 py-2">
-                    "Mi objetivo no es que tu perro te obedezca, sino que aprenda a estar en paz consigo mismo cuando tú no estás. Esa es la verdadera libertad para ambos."
+                    'Mi objetivo no es que tu perro "aguante".
+                    Mi objetivo es que aprenda a estar en paz cuando tú no estás.
+                    Esa es la verdadera libertad para ambos.'
                   </p>
                 </div>
               </div>
@@ -403,9 +388,9 @@ export default function App() {
         <Reveal className="text-center max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold mb-8">Reset Canino: El camino hacia la independencia emocional</h2>
           <p className="text-xl text-gray-text mb-12 leading-relaxed">
-            Un sistema estructurado, amable y lógico diseñado para que cualquier dueño pueda aplicarlo sin necesidad de conocimientos previos en educación canina.
+            Un método paso a paso para que tu perro aprenda a quedarse solo sin pánico, sin ladridos y sin destrozar la casa. Diseñado para que cualquier dueño pueda aplicarlo sin necesidad de conocimientos previos.
           </p>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
               { 
                 phase: "Fase 1", 
@@ -432,31 +417,38 @@ export default function App() {
               </div>
             ))}
           </div>
+
+          <Button onClick={() => handleCheckout('method_section')} className="mb-8 text-xl py-6 max-w-md mx-auto">
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
+          </Button>
         </Reveal>
       </Section>
 
       {/* 5) PILARES / BENEFICIOS */}
       <Section bg="dark">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Lo que conseguirás con Reset Canino:</h2>
+        </Reveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             { 
-              title: "Calma desde la raíz", 
-              desc: "No tapamos el síntoma. Trabajamos la emoción para que el cambio sea real y duradero.",
+              title: "Salir de casa sin culpa ni miedo", 
+              desc: "Salir de casa sabiendo que tu perro está tranquilo y seguro.",
               icon: <Brain className="w-10 h-10" />
             },
             { 
-              title: "Rutinas de 15 minutos", 
-              desc: "Diseñado para personas con vidas ocupadas. Eficacia máxima en tiempo mínimo.",
+              title: "Silencio en casa (y paz con los vecinos)", 
+              desc: "Sin ladridos constantes ni quejas del vecindario.",
               icon: <Zap className="w-10 h-10" />
             },
             { 
-              title: "Comunicación sin Estrés", 
-              desc: "Aprende a decirle a tu perro que vas a volver sin necesidad de palabras.",
+              title: "Tu perro aprende a quedarse solo con calma", 
+              desc: "Sin pánico, sin destrucción y sin estrés.",
               icon: <MessageCircle className="w-10 h-10" />
             },
             { 
-              title: "Paz Mental para Ti", 
-              desc: "Vuelve a salir a cenar o a trabajar sin la angustia de qué encontrarás al volver.",
+              title: "Recuperas tu libertad", 
+              desc: "Vuelves a salir, trabajar o viajar sin sentirte atado a casa.",
               icon: <CheckCircle2 className="w-10 h-10" />
             }
           ].map((item, i) => (
@@ -500,8 +492,8 @@ export default function App() {
       <Section>
         <div className="max-w-5xl mx-auto">
           <Reveal className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">De la destrucción a la calma absoluta</h2>
-            <p className="text-xl text-gray-text">Mira la transformación que Reset Canino puede lograr en tu hogar.</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">Así es como cambia tu casa cuando tu perro supera la ansiedad por separación</h2>
+            <p className="text-xl text-gray-text">La diferencia entre vivir con ansiedad… o tener un perro tranquilo cuando sales de casa.</p>
           </Reveal>
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="w-full md:w-1/2">
@@ -530,7 +522,7 @@ export default function App() {
                   <XCircle className="text-red-500" /> El Escenario Actual
                 </h4>
                 <p className="text-gray-text leading-relaxed">
-                  Puertas arañadas, vecinos molestos, un perro agotado por el estrés y tú sintiendo una culpa constante cada vez que sales de casa.
+                  Puertas arañadas, vecinos quejándose, ladridos constantes y tú saliendo de casa con culpa… preguntándote qué estará pasando cuando no estás.
                 </p>
               </div>
               <div className="bg-primary/5 p-8 rounded-[24px] border border-primary/20">
@@ -538,17 +530,16 @@ export default function App() {
                   <CheckCircle2 className="text-green-500" /> El Nuevo Escenario
                 </h4>
                 <p className="text-gray-text leading-relaxed">
-                  Un perro que te ve salir y se tumba a descansar. Una casa intacta. La libertad de poder irte sabiendo que tu mejor amigo está en paz.
+                  Tu perro te ve salir, suspira… y vuelve a tumbarse tranquilo.
+                  <br />
+                  La casa intacta.
+                  <br />
+                  Y tú con la libertad de salir sabiendo que está bien.
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <Reveal className="mt-16 text-center">
-  <Button onClick={() => handleCheckout('before_after')} className="max-w-md mx-auto">
-    Quiero este cambio para mi perro
-  </Button>
-</Reveal>
       </Section>
 
       {/* 8) TESTIMONIOS */}
@@ -557,7 +548,7 @@ export default function App() {
           <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Historias de Éxito</p>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Más de 1.000 dueños ya han recuperado la paz en sus hogares</h2>
           <p className="text-xl text-gray-text leading-relaxed">
-            No son casos aislados. Son personas reales que, como tú, sentían que no había salida.
+            Personas que vivían exactamente el mismo problema… hasta que cambiaron la forma de ayudar a su perro.
           </p>
         </Reveal>
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -565,7 +556,7 @@ export default function App() {
             {
               name: "Laura Martínez",
               province: "Madrid",
-              story: "Mi perro destrozaba el sofá cada vez que me iba a trabajar. Probé de todo, pero solo con Reset Canino logré que se quedara durmiendo tranquilo en su cama. En menos de una semana el cambio fue radical. El alivio que siento es indescriptible.",
+              story: "“Mi perro destrozaba el sofá cada vez que me iba a trabajar. Probé juguetes, paseos más largos… nada funcionaba. Con Reset Canino en unas semanas empezó a quedarse tranquilo. Ahora muchas veces vuelve a estar dormido cuando regreso.”",
               img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150"
             },
             {
@@ -637,10 +628,10 @@ export default function App() {
               </div>
               <div className="w-full md:w-3/5">
                 <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white flex items-center gap-4">
-                  🤖 Tu Soporte 24/7 con IA
+                  Tendrás ayuda mientras aplicas el método
                 </h2>
                 <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-                  No estarás solo en este proceso. Tendrás acceso a un asistente inteligente entrenado con todo el método Reset Canino para resolver tus dudas en segundos, a cualquier hora.
+                  Tendrás acceso a un asistente inteligente entrenado con todo el sistema Reset Canino para resolver dudas mientras aplicas el método en casa.
                 </p>
                 <div className="bg-white/5 backdrop-blur-md p-8 rounded-[24px] border border-white/10 mb-10">
                   <p className="font-bold text-white mb-6 text-xl">Resuelve dudas al instante:</p>
@@ -671,10 +662,12 @@ export default function App() {
       <Section bg="gray" id="oferta">
         <Reveal className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-dark tracking-tight leading-tight">
-            No es solo un libro, es el <span className="text-primary">sistema completo</span> para recuperar tu libertad
+            Esto no es teoría. Es el sistema completo para recuperar la calma en tu casa.
           </h2>
           <p className="text-xl md:text-2xl text-gray-text max-w-3xl mx-auto leading-relaxed">
-            Llévate hoy el pack "Reset Canino AIRMIND" con todos sus bonos exclusivos y empieza a transformar la vida de tu perro desde el primer minuto.
+            Si tu perro sufre ansiedad por separación, no necesitas más teorías. Necesitas un sistema claro que funcione en casa.
+            <br /><br />
+            Reset Canino te enseña exactamente cómo hacerlo, paso a paso.
           </p>
         </Reveal>
         
@@ -718,6 +711,7 @@ export default function App() {
                   </ul>
                 </div>
                 <div className="bg-gray-bg p-8 rounded-[32px] text-center border border-border">
+                  <p className="text-sm font-bold text-primary mb-4">Hoy puedes acceder a todo el sistema completo por menos de lo que cuesta un juguete para tu perro.</p>
                   <p className="text-sm uppercase tracking-widest text-gray-text font-bold mb-2">Valor Total: 171€</p>
                   <p className="text-6xl md:text-7xl font-black text-dark tracking-tighter mb-4">
                     19,97€
@@ -725,12 +719,6 @@ export default function App() {
                   <div className="bg-primary text-white inline-block px-4 py-1 rounded-lg font-bold text-sm mb-6">
                     AHORRAS 151,03€ (88% DTO)
                   </div>
-                  <Button 
-                    onClick={() => handleCheckout('offer_block')} 
-                    className="text-lg md:text-xl py-5 md:py-6 shadow-2xl hover:scale-[1.02] active:scale-95"
-                  >
-                    SÍ, QUIERO PAZ EN CASA
-                  </Button>
                 </div>
               </div>
               
@@ -748,13 +736,13 @@ export default function App() {
       <Section>
         <Reveal className="max-w-3xl mx-auto bg-gray-bg p-12 md:p-20 rounded-[40px] border border-border text-center">
           <ShieldCheck className="w-24 h-24 text-primary mx-auto mb-10" />
-          <h2 className="text-3xl md:text-5xl font-bold mb-8 text-dark">Tu tranquilidad es lo primero</h2>
-          <p className="text-2xl text-dark font-bold mb-6">Pruébalo durante 7 días sin compromiso.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 text-dark">Pruébalo 7 días sin riesgo</h2>
+          <p className="text-2xl text-dark font-bold mb-6">Si después de aplicar el método sientes que no es para ti o que tu perro no mejora, te devolvemos el dinero.</p>
           <p className="text-xl text-gray-text mb-12 leading-relaxed">
-            Si después de aplicar el método sientes que no es para ti o que tu perro no ha mejorado, escríbenos. Te devolveremos cada céntimo. <span className="font-bold text-dark">Sin preguntas, sin complicaciones.</span>
+            Sin preguntas. Sin complicaciones.
           </p>
-          <Button onClick={() => handleCheckout('guarantee')} variant="outline" className="max-w-md mx-auto">
-            PROBAR SIN RIESGO AHORA
+          <Button onClick={() => handleCheckout('guarantee')} className="max-w-md mx-auto">
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -763,7 +751,7 @@ export default function App() {
       <Section bg="gray">
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Resolvemos tus dudas</h2>
-          <p className="text-xl text-gray-text">Todo lo que necesitas saber antes de empezar.</p>
+          <p className="text-xl text-gray-text">Todo lo que necesitas saber antes de empezar a ayudar a tu perro de verdad.</p>
         </Reveal>
         <div className="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-[32px] border border-border shadow-soft">
           <FAQItem 
@@ -784,7 +772,7 @@ export default function App() {
           />
           <FAQItem 
             question="¿Cuándo empezaré a notar cambios?" 
-            answer="Cada perro es un mundo, pero la mayoría de dueños notan una reducción en la activación previa a la salida (al coger llaves o zapatos) en los primeros 3 a 5 días." 
+            answer="Muchos dueños empiezan a notar cambios en los primeros días al aplicar las rutinas del método. Cada perro es diferente, pero el objetivo es reducir el estrés y enseñar al perro a sentirse seguro cuando se queda solo." 
           />
           <FAQItem 
             question="¿Cómo recibo el contenido?" 
@@ -798,10 +786,10 @@ export default function App() {
         <Reveal className="max-w-4xl mx-auto text-center">
           <div className="mb-12 md:mb-16 space-y-5 md:space-y-6">
             <h2 className="text-4xl md:text-7xl font-black text-dark tracking-tight leading-none">
-              No dejes que el miedo controle la vida de tu perro.
+              Tu perro no debería entrar en pánico cada vez que sales de casa.
             </h2>
             <p className="text-xl md:text-2xl text-gray-text max-w-2xl mx-auto">
-              Tú mereces salir de casa tranquilo y tu perro merece sentirse seguro en su hogar.
+              Y tú tampoco deberías vivir con miedo a lo que encontrarás al volver.
             </p>
           </div>
           
@@ -809,17 +797,16 @@ export default function App() {
             <div className="absolute top-0 left-0 w-full h-full bg-white/5 pointer-events-none" />
             
             <h3 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-              Recupera la calma hoy por solo 19,97€
+              Por solo 19,97€
             </h3>
 
-            <div className="max-w-sm mx-auto">
-              <button
-                onClick={() => handleCheckout('final_cta')}
-                className="inline-block bg-white text-primary font-bold text-sm md:text-base py-3 px-8 rounded-[14px] shadow-lg active:scale-95 transition-transform"
-              >
-                SÍ, QUIERO QUE DEJE DE ENTRAR EN PÁNICO
-              </button>
+            <p className="text-xl font-bold mb-8 uppercase tracking-widest">Recupera la calma hoy.</p>
+            
+            <Button onClick={() => handleCheckout('final_cta')} className="bg-white text-primary hover:bg-gray-100 border-none shadow-xl mb-4">
+              QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
+            </Button>
 
+            <div className="max-w-sm mx-auto">
               <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.2em] opacity-90">
                 Acceso inmediato • Garantía de 7 días
               </p>
@@ -845,6 +832,12 @@ export default function App() {
       </footer>
 
       {/* STICKY CTA (Mobile) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border p-5 z-50 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+        <div>
+          <p className="text-2xl font-black text-dark">19,97€</p>
+          <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
+        </div>
+      </div>
     </div>
   );
 }
