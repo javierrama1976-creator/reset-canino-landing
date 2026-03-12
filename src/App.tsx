@@ -179,6 +179,27 @@ export default function App() {
               <span className="block text-primary mt-2">Está sufriendo ansiedad por separación.</span>
             </h1>
 
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto">
+                <video 
+                  controls
+                  className="w-full h-auto block"
+                >
+                  <source src="/VSL-landing.mp4" type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              </div>
+            </div>
+
+            <div className="max-w-4xl mx-auto mb-12">
+              <img 
+                src="/perro-puerta.jpg" 
+                alt="Perro arañando la puerta" 
+                className="rounded-[24px] shadow-2xl border border-border mx-auto"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
               Descubre el método que ya está ayudando a cientos de dueños a dejar a su perro solo en casa sin ladridos, sin destrozos y sin miedo a lo que encontrarán al volver.
             </p>
@@ -191,6 +212,8 @@ export default function App() {
           </Reveal>
         </div>
       </Section>
+
+
 
       {/* 1.5) VIDEO SECTION */}
       <Section className="pt-0 pb-16">
@@ -270,7 +293,7 @@ export default function App() {
           </p>
           
           <Button onClick={() => handleCheckout('problem_explanation')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-           SI QUIERO PAZ EN MI CASA
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -419,7 +442,7 @@ export default function App() {
           </div>
 
           <Button onClick={() => handleCheckout('method_section')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-            QUIERO EMPEZAR EL MÉTODO
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -711,15 +734,18 @@ export default function App() {
                   </ul>
                 </div>
                 <div className="bg-gray-bg p-8 rounded-[32px] text-center border border-border">
-                  <p className="text-sm font-bold text-primary mb-4">Hoy puedes acceder a todo el sistema completo por menos de lo que cuesta un juguete para tu perro.</p>
-                  <p className="text-sm uppercase tracking-widest text-gray-text font-bold mb-2">Valor Total: 171€</p>
+                  <p className="text-sm uppercase tracking-widest text-gray-text font-bold mb-2">Valor Total: <span className="line-through">171€</span></p>
                   <p className="text-6xl md:text-7xl font-black text-dark tracking-tighter mb-4">
                     19,97€
                   </p>
                   <div className="bg-primary text-white inline-block px-4 py-1 rounded-lg font-bold text-sm mb-6">
                     AHORRAS 151,03€ (88% DTO)
                   </div>
+                  <p className="text-sm font-bold text-primary mt-4">Hoy puedes acceder a todo el sistema completo por menos de lo que cuesta un juguete para tu perro.</p>
                 </div>
+                <Button onClick={() => handleCheckout('offer_section')} className="mt-8 text-xl py-6 max-w-md mx-auto">
+                  QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
+                </Button>
               </div>
               
               <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-gray-text uppercase tracking-widest">
@@ -742,7 +768,7 @@ export default function App() {
             Sin preguntas. Sin complicaciones.
           </p>
           <Button onClick={() => handleCheckout('guarantee')} className="max-w-md mx-auto">
-            QUIERO ACCEDER A RESET CANINO
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -803,7 +829,7 @@ export default function App() {
             <p className="text-xl font-bold mb-8 uppercase tracking-widest">Recupera la calma hoy.</p>
             
             <Button onClick={() => handleCheckout('final_cta')} className="bg-white text-primary hover:bg-gray-100 border-none shadow-xl mb-4">
-              QUIERO RECUPERAR LA CALMA EN CASA 
+              QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
             </Button>
 
             <div className="max-w-sm mx-auto">
