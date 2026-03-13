@@ -160,7 +160,9 @@ export default function App() {
       (window as any).fbq("trackCustom", "CTA_Click", { source });
     }
 
-    window.location.href = CHECKOUT_URL;
+    setTimeout(() => {
+  window.location.href = CHECKOUT_URL;
+}, 300);
   };
 
   return (
