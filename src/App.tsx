@@ -191,14 +191,6 @@ export default function App() {
               </div>
             </div>
 
-            <div className="max-w-4xl mx-auto mb-12">
-              <img 
-                src="/perro-puerta.jpg" 
-                alt="Perro arañando la puerta" 
-                className="rounded-[24px] shadow-2xl border border-border mx-auto"
-                referrerPolicy="no-referrer"
-              />
-            </div>
 
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
               Descubre el método que ya está ayudando a cientos de dueños a dejar a su perro solo en casa sin ladridos, sin destrozos y sin miedo a lo que encontrarán al volver.
@@ -212,55 +204,6 @@ export default function App() {
           </Reveal>
         </div>
       </Section>
-
-
-
-      {/* 1.5) VIDEO SECTION */}
-      <Section className="pt-0 pb-16">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <p className="text-xl font-bold text-dark mb-8">
-              🔊 Mira esto y entiende por qué tu perro entra en pánico cuando te vas.
-            </p>
-            <div className="mb-12 shadow-2xl overflow-hidden rounded-[24px] border border-border max-w-[320px] mx-auto bg-black group relative">
-              <video 
-                autoPlay 
-                muted 
-                loop 
-                playsInline 
-                preload="metadata" 
-                className="w-full aspect-[9/16] object-cover cursor-pointer" 
-                onClick={(e) => {
-                  e.currentTarget.muted = false;
-                  e.currentTarget.play();
-                }}
-              >
-                <source src="/video-rc-3.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity">
-                <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full">
-                  <Play className="w-8 h-8 text-white fill-current" />
-                </div>
-              </div>
-            </div>
-
-            <p className="text-gray-text mb-8 max-w-2xl mx-auto">
-              La mayoría de dueños empeoran la ansiedad de su perro sin darse cuenta.
-            </p>
-
-            <Button onClick={() => handleCheckout('video')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-              SI QUIERO PAZ EN CASA
-            </Button>
-
-            <div className="flex flex-wrap justify-center gap-8 text-xs font-bold text-gray-text uppercase tracking-widest">
-              <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-primary" /> Garantía de Satisfacción</span>
-              <span className="flex items-center gap-2"><Lock className="w-4 h-4 text-primary" /> Pago 100% Seguro</span>
-              <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Acceso Inmediato</span>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
@@ -281,6 +224,15 @@ export default function App() {
           <p className="text-xl text-gray-text mt-12 font-medium">
             No es que tu perro sea malo. Es que está entrando en pánico cuando siente que te vas.
           </p>
+
+          <div className="max-w-4xl mx-auto mt-12 mb-8">
+            <img 
+              src="/perro-puerta.jpg" 
+              alt="Perro arañando la puerta" 
+              className="rounded-[24px] shadow-2xl border border-border mx-auto"
+              referrerPolicy="no-referrer"
+            />
+          </div>
         </Reveal>
       </Section>
 
@@ -442,7 +394,7 @@ export default function App() {
           </div>
 
           <Button onClick={() => handleCheckout('method_section')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-            QUIERO EMPEZAR EL MÉTODO
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
@@ -744,7 +696,7 @@ export default function App() {
                   <p className="text-sm font-bold text-primary mt-4">Hoy puedes acceder a todo el sistema completo por menos de lo que cuesta un juguete para tu perro.</p>
                 </div>
                 <Button onClick={() => handleCheckout('offer_section')} className="mt-8 text-xl py-6 max-w-md mx-auto">
-                  QUIERO ACCEDER A RESET CANINO
+                  QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
                 </Button>
               </div>
               
@@ -768,7 +720,7 @@ export default function App() {
             Sin preguntas. Sin complicaciones.
           </p>
           <Button onClick={() => handleCheckout('guarantee')} className="max-w-md mx-auto">
-            QUIERO RECUPERAR LA CALMA EN CASA
+            QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
           </Button>
         </Reveal>
       </Section>
