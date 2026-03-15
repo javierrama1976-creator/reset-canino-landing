@@ -243,14 +243,6 @@ export default function App() {
           <p className="text-xl text-gray-text mt-12 font-medium">
             No es que tu perro sea malo. Es que está entrando en pánico cuando siente que te vas.
           </p>
-
-          <div className="max-w-4xl mx-auto mt-12 mb-8">
-            <img 
-              src="/perro-puerta.jpg" 
-              alt="Perro arañando la puerta" 
-              className="rounded-[24px] shadow-2xl border border-border mx-auto"
-              referrerPolicy="no-referrer"
-            />
           </div>
         </Reveal>
       </Section>
