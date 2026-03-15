@@ -205,7 +205,7 @@ export default function App() {
     </video>
 
     <video controls className="w-full rounded-xl shadow-lg">
-      <source src="/testimonio-3.mp4" type="video/mp4" />
+      <source src="/testimonio-3b.mp4" type="video/mp4" />
     </video>
   </div>
 </div>
