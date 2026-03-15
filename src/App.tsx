@@ -190,6 +190,25 @@ export default function App() {
                 </video>
               </div>
             </div>
+            <div className="max-w-5xl mx-auto mt-16 mb-16">
+  <h2 className="text-3xl font-bold text-center mb-10">
+    Lo que dicen otros dueños después de aplicar Reset Canino
+  </h2>
+
+  <div className="grid md:grid-cols-3 gap-6">
+    <video controls className="w-full rounded-xl shadow-lg">
+      <source src="/testimonio-1.mp4" type="video/mp4" />
+    </video>
+
+    <video controls className="w-full rounded-xl shadow-lg">
+      <source src="/testimonio-2.mp4" type="video/mp4" />
+    </video>
+
+    <video controls className="w-full rounded-xl shadow-lg">
+      <source src="/testimonio-3.mp4" type="video/mp4" />
+    </video>
+  </div>
+</div>
 
 
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
