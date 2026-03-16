@@ -184,7 +184,6 @@ export default function App() {
   controls
   controlsList="nodownload"
   preload="metadata"
-  poster="/hero-poster.jpg"
   style={{
     width: "100%",
     maxWidth: "700px",
@@ -214,7 +213,6 @@ export default function App() {
   controlsList="nodownload"                
   playsInline
   preload="metadata"
-  poster="/vsl-poster.jpg"
 >
   <source src="/vsl.mp4" type="video/mp4" />
 </video>
@@ -227,7 +225,6 @@ export default function App() {
   controlsList="nodownload"              
   playsInline
   preload="metadata"
-  poster="/testimonio-1-poster.jpg"
 >
   <source src="/testimonio-1.mp4" type="video/mp4" />
 </video>
@@ -247,7 +244,6 @@ export default function App() {
   controlsList="nodownload"
   playsInline
   preload="metadata"
-  poster="/testimonio-2-poster.jpg"
 >
   <source src="/testimonio-2.mp4" type="video/mp4" />
 </video>
@@ -260,7 +256,6 @@ export default function App() {
   controlsList="nodownload"
   playsInline
   preload="metadata"
-  poster="/testimonio-3-poster.jpg"
 >
   <source src="/testimonio-3.mp4" type="video/mp4" />
 </video>
