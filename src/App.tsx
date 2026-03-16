@@ -297,7 +297,14 @@ export default function App() {
     QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
   </a>
 
+<p className="text-sm text-gray-600 mt-3">
+🔥 Oferta especial hoy<br/>
+✔ Acceso inmediato<br/>
+✔ Pago seguro con tarjeta o PayPal
+</p>
+
 </section>
+
           <div className="max-w-4xl mx-auto mt-8 mb-8">
             <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
               
