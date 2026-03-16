@@ -291,7 +291,7 @@ export default function App() {
   </p>
 
   <a
-    href="#checkout"
+    href={CHECKOUT_URL}
     className="inline-block bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold py-4 px-8 rounded-xl transition"
   >
     QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
