@@ -267,7 +267,37 @@ export default function App() {
   <source src="/testimonio-3.mp4" type="video/mp4" />
   Tu navegador no soporta el elemento de video.
 </video>
+<section className="text-center py-16">
 
+  <h2 className="text-3xl md:text-4xl font-bold mb-4">
+    Lo que recibirás hoy con Reset Canino
+  </h2>
+
+  <p className="text-lg max-w-2xl mx-auto mb-8">
+    Un sistema paso a paso para que tu perro aprenda a quedarse solo en casa
+    sin ansiedad, ladridos ni destrozos.
+  </p>
+
+  <div className="flex justify-center mb-8">
+    <img
+      src="/reset-canino-portada.jpg"
+      alt="Sistema Reset Canino"
+      className="max-w-md rounded-xl shadow-lg"
+    />
+  </div>
+
+  <p className="text-2xl font-semibold mb-4">
+    Acceso completo hoy por solo <span className="text-orange-500">19,97€</span>
+  </p>
+
+  <a
+    href="#checkout"
+    className="inline-block bg-orange-500 hover:bg-orange-600 text-white text-lg font-bold py-4 px-8 rounded-xl transition"
+  >
+    QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
+  </a>
+
+</section>
           <div className="max-w-4xl mx-auto mt-8 mb-8">
             <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
               
