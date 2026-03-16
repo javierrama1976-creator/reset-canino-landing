@@ -178,6 +178,18 @@ export default function App() {
               <span className="block text-primary mt-4">no está siendo desobediente.</span>
               <span className="block text-primary mt-2">Está sufriendo ansiedad por separación.</span>
             </h1>
+            <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
+  <video
+    src="/video-landing-rc.mp4"
+    controls
+    playsInline
+    style={{
+      width: "100%",
+      maxWidth: "700px",
+      borderRadius: "16px"
+    }}
+  />
+</div>
 
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
               Descubre el método que ya está ayudando a cientos de dueños a dejar a su perro solo en casa sin ladridos, sin destrozos y sin miedo a lo que encontrarán al volver.
