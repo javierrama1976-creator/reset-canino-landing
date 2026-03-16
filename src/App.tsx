@@ -182,7 +182,7 @@ export default function App() {
   <video
   className="w-full h-auto block"
   controls
-  playsInline
+  controlsList="nodownload"
   preload="metadata"
   poster="/hero-poster.jpg"
   style={{
@@ -211,6 +211,7 @@ export default function App() {
                 <video
   className="w-full h-auto block"
   controls
+  controlsList="nodownload"                
   playsInline
   preload="metadata"
   poster="/vsl-poster.jpg"
@@ -223,6 +224,7 @@ export default function App() {
                 <video
   className="w-full h-auto block"
   controls
+  controlsList="nodownload"              
   playsInline
   preload="metadata"
   poster="/testimonio-1-poster.jpg"
@@ -242,6 +244,7 @@ export default function App() {
               <video
   className="w-full h-auto block"
   controls
+  controlsList="nodownload"
   playsInline
   preload="metadata"
   poster="/testimonio-2-poster.jpg"
@@ -254,6 +257,7 @@ export default function App() {
           <video
   className="w-full h-auto block"
   controls
+  controlsList="nodownload"
   playsInline
   preload="metadata"
   poster="/testimonio-3-poster.jpg"
