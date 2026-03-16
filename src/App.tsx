@@ -179,38 +179,6 @@ export default function App() {
               <span className="block text-primary mt-2">Está sufriendo ansiedad por separación.</span>
             </h1>
 
-            <div className="max-w-4xl mx-auto mb-12">
-              <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto">
-                <video 
-                  controls
-                  className="w-full h-auto block"
-                >
-                  <source src="/vsl.mp4" type="video/mp4" />
-                  Tu navegador no soporta el elemento de video.
-                </video>
-              </div>
-            </div>
-            <div className="max-w-5xl mx-auto mt-16 mb-16">
-  <h2 className="text-3xl font-bold text-center mb-10">
-    Lo que dicen otros dueños después de aplicar Reset Canino
-  </h2>
-
-  <div className="grid md:grid-cols-3 gap-6">
-    <video controls className="w-full rounded-xl shadow-lg">
-      <source src="/testimonio-1.mp4" type="video/mp4" />
-    </video>
-
-    <video controls className="w-full rounded-xl shadow-lg">
-      <source src="/testimonio-2.mp4" type="video/mp4" />
-    </video>
-
-    <video controls className="w-full rounded-xl shadow-lg">
-      <source src="/testimonio-3c.mp4" type="video/mp4" />
-    </video>
-  </div>
-</div>
-
-
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
               Descubre el método que ya está ayudando a cientos de dueños a dejar a su perro solo en casa sin ladridos, sin destrozos y sin miedo a lo que encontrarán al volver.
             </p>
@@ -220,13 +188,53 @@ export default function App() {
                 Un sistema práctico que puedes aplicar en solo 10-15 minutos al día, incluso si ya has probado juguetes, cámaras o consejos de internet que no funcionaron.
               </p>
             </div>
+
+            <div className="max-w-4xl mx-auto mb-12">
+              <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
+                <video controls className="w-full h-auto block">
+                  <source src="/vsl.mp4" type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              </div>
+
+              <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden mt-8">
+                <video controls className="w-full h-auto block">
+                  <source src="/testimonio-1.mp4" type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              </div>
+            </div>
           </Reveal>
         </div>
       </Section>
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-8">Si tu perro sufre ansiedad por separación, probablemente esto te pasa cada vez que sales de casa:</h2>
+          <div className="max-w-4xl mx-auto mt-8 mb-8">
+            <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
+              <video 
+                controls
+                className="w-full h-auto block"
+              >
+                <source src="/testimonio-2.mp4" type="video/mp4" />
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto mt-8 mb-8">
+            <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
+              <video 
+                controls
+                className="w-full h-auto block"
+              >
+                <source src="/testimonio-3.mp4" type="video/mp4" />
+                Tu navegador no soporta el elemento de video.
+              </video>
+            </div>
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-bold mb-8 mt-16">Si tu perro sufre ansiedad por separación, probablemente esto te pasa cada vez que sales de casa:</h2>
           <div className="grid gap-4 text-left">
             {[
               "Sales de casa con culpa porque sabes que tu perro empezará a ladrar en cuanto cierres la puerta.",
@@ -243,7 +251,6 @@ export default function App() {
           <p className="text-xl text-gray-text mt-12 font-medium">
             No es que tu perro sea malo. Es que está entrando en pánico cuando siente que te vas.
           </p>
-          </div>
         </Reveal>
       </Section>
 
@@ -697,9 +704,9 @@ export default function App() {
                   </ul>
                 </div>
                 <div className="bg-gray-bg p-8 rounded-[32px] text-center border border-border">
-                  <p className="text-sm uppercase tracking-widest text-gray-text font-bold mb-2">Valor Total: <span className="line-through">171€</span></p>
-                  <p className="text-6xl md:text-7xl font-black text-dark tracking-tighter mb-4">
-                    19,97€
+                  <p className="text-xl text-gray-text font-bold mb-2">Hoy no pagarás <span className="line-through">171€</span></p>
+                  <p className="text-2xl md:text-4xl font-black text-dark tracking-tight mb-4">
+                    Hoy puedes acceder a todo el sistema por solo 19,97€
                   </p>
                   <div className="bg-primary text-white inline-block px-4 py-1 rounded-lg font-bold text-sm mb-6">
                     AHORRAS 151,03€ (88% DTO)
