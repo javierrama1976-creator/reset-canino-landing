@@ -180,19 +180,20 @@ export default function App() {
             </h1>
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
   <video
-  className="autoplay-video"
-  src="/video-landing-rc.mp4"
-  autoPlay
-  muted
-  loop
+  className="w-full h-auto block"
+  controls
   playsInline
-  preload="auto"
+  preload="metadata"
+  poster="/hero-poster.jpg"
   style={{
     width: "100%",
     maxWidth: "700px",
     borderRadius: "16px"
   }}
-/>
+>
+  <source src="/video-landing-rc.mp4" type="video/mp4" />
+  Tu navegador no soporta el elemento de video.
+</video>
 </div>
 
             <p className="text-xl md:text-2xl text-gray-text mb-10 leading-relaxed max-w-4xl mx-auto">
@@ -208,29 +209,25 @@ export default function App() {
             <div className="max-w-4xl mx-auto mb-12">
               <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
                 <video
-  className="w-full h-auto block autoplay-video"
-  autoPlay
-  muted
-  loop
+  className="w-full h-auto block"
+  controls
   playsInline
-  preload="auto"
+  preload="metadata"
+  poster="/vsl-poster.jpg"
 >
   <source src="/vsl.mp4" type="video/mp4" />
-  Tu navegador no soporta el elemento de video.
 </video>
               </div>
 
               <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden mt-8">
                 <video
-  className="w-full h-auto block autoplay-video"
-  autoPlay
-  muted
-  loop
+  className="w-full h-auto block"
+  controls
   playsInline
-  preload="auto"
+  preload="metadata"
+  poster="/testimonio-1-poster.jpg"
 >
   <source src="/testimonio-1.mp4" type="video/mp4" />
-  Tu navegador no soporta el elemento de video.
 </video>
               </div>
             </div>
@@ -243,29 +240,25 @@ export default function App() {
           <div className="max-w-4xl mx-auto mt-8 mb-8">
             <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
               <video
-  className="w-full h-auto block autoplay-video"
-  autoPlay
-  muted
-  loop
+  className="w-full h-auto block"
+  controls
   playsInline
-  preload="auto"
+  preload="metadata"
+  poster="/testimonio-2-poster.jpg"
 >
   <source src="/testimonio-2.mp4" type="video/mp4" />
-  Tu navegador no soporta el elemento de video.
 </video>
       
             </div>
           </div>
           <video
-  className="w-full h-auto block autoplay-video"
-  autoPlay
-  muted
-  loop
+  className="w-full h-auto block"
+  controls
   playsInline
-  preload="auto"
+  preload="metadata"
+  poster="/testimonio-3-poster.jpg"
 >
   <source src="/testimonio-3.mp4" type="video/mp4" />
-  Tu navegador no soporta el elemento de video.
 </video>
 <section className="text-center py-16">
 
