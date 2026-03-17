@@ -488,7 +488,13 @@ export default function App() {
           <Button onClick={() => handleCheckout('method_section')} className="mb-8 text-xl py-6 max-w-md mx-auto">
             QUIERO EMPEZAR EL MÉTODO
           </Button>
-        </Reveal>
+       
+        <p className="text-sm text-gray-600 mt-3 text-center">
+✓ Empieza hoy mismo<br/>
+✓ Solo necesitas 10-15 minutos al día<br/>
+✓ Acceso inmediato tras el pago
+</p>
+ </Reveal>
       </Section>
 
       {/* 5) PILARES / BENEFICIOS */}
@@ -790,6 +796,11 @@ export default function App() {
                 <Button onClick={() => handleCheckout('offer_section')} className="mt-8 text-xl py-6 max-w-md mx-auto">
                   QUIERO ACCEDER A RESET CANINO
                 </Button>
+                <p className="text-sm text-gray-600 mt-3 text-center">
+✓ Acceso inmediato tras el pago<br/>
+✓ Garantía de 7 días<br/>
+✓ Pago 100% seguro con tarjeta o PayPal
+</p>
               </div>
               
               <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-gray-text uppercase tracking-widest">
@@ -814,6 +825,11 @@ export default function App() {
           <Button onClick={() => handleCheckout('guarantee')} className="max-w-md mx-auto">
             QUIERO RECUPERAR LA CALMA EN CASA
           </Button>
+          <p className="text-sm text-gray-600 mt-3 text-center">
+✓ Acceso inmediato tras el pago<br/>
+✓ Garantía total de 7 días<br/>
+✓ Pago 100% seguro
+</p>
         </Reveal>
       </Section>
 
@@ -877,9 +893,9 @@ export default function App() {
             </Button>
 
             <div className="max-w-sm mx-auto">
-              <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-[0.2em] opacity-90">
-                Acceso inmediato • Garantía de 7 días
-              </p>
+              <p className="mt-5 text-xs md:text-sm font-bold uppercase tracking-wide">
+✓ Acceso inmediato tras el pago • ✓ Garantía total de 7 días • ✓ Pago 100% seguro
+</p>
             </div>
           </div>
         </Reveal>
