@@ -250,6 +250,7 @@ poster="/imagen2-landing.jpg"
   controlsList="nodownload"
   playsInline
   preload="auto"
+    poster="/imagen4-landing.jpg"     
 >
   <source src="/testimonio-3.mp4" type="video/mp4" />
 </video>
