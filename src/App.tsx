@@ -334,6 +334,11 @@ export default function App() {
           <Button onClick={() => handleCheckout('problem_explanation')} className="mb-8 text-xl py-6 max-w-md mx-auto">
            SI QUIERO PAZ EN CASA
           </Button>
+          <p className="text-sm text-gray-600 mt-3">
+✓ Acceso inmediato tras el pago<br/>
+✓ Funciona con cualquier perro<br/>
+✓ Método probado por cientos de dueños
+</p>
         </Reveal>
       </Section>
 
