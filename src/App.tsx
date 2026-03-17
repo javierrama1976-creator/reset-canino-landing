@@ -236,7 +236,8 @@ poster="/imagen2-landing.jpg"
   controls
   controlsList="nodownload"
   playsInline
-  preload="auto"       
+  preload="auto" 
+  poster="/imagen3-landing.jpg"              
 >
   <source src="/testimonio-2.mp4" type="video/mp4" />
 </video>
