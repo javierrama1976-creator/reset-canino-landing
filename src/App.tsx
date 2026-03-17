@@ -216,7 +216,8 @@ playsInline
   controls
   controlsList="nodownload"              
   playsInline
-  preload="auto"             
+  preload="auto"  
+poster="/imagen2-landing.jpg"
 >
   <source src="/testimonio-1.mp4" type="video/mp4" />
 </video>
