@@ -162,22 +162,7 @@ export default function App() {
 
     window.location.href = CHECKOUT_URL;
   };
-const videoRef = useRef(null);
 
-useEffect(() => {
-  const video = videoRef.current;
-  if (!video) return;
-
-  const handleLoaded = () => {
-    video.currentTime = 0.01;
-  };
-
-  video.addEventListener("loadeddata", handleLoaded);
-
-  return () => {
-    video.removeEventListener("loadeddata", handleLoaded);
-  };
-}, []);
   return (
     <div className="min-h-screen">
       {/* 1) HERO SECTION */}
@@ -199,9 +184,12 @@ useEffect(() => {
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
-    ref={videoRef}
   className="w-full h-auto block"
+    controls
+controlsList="nodownload"
+playsInline
   preload="auto"
+    poster="/imagen-video-cover.jpg
   style={{
     width: "100%",
     maxWidth: "700px",
