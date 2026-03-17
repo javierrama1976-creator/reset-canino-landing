@@ -189,7 +189,7 @@ export default function App() {
 controlsList="nodownload"
 playsInline
   preload="auto"
-    poster="/imagen-video-cover.jpg
+    poster="/imagen-video-cover.jpg"
   style={{
     width: "100%",
     maxWidth: "700px",
