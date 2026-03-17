@@ -194,7 +194,7 @@ Más de 1.000 dueños ya han conseguido que su perro se quede solo sin ansiedad
               
   <video
   className="w-full h-auto block"
-  
+  controls
 controlsList="nodownload"
 playsInline
   preload="auto"
@@ -222,7 +222,7 @@ playsInline
 
                 <video
   className="w-full h-auto block"
-  
+  controls
   controlsList="nodownload"              
   playsInline
   preload="auto"  
@@ -242,7 +242,7 @@ poster="/imagen2-landing.jpg"
             <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
               <video
   className="w-full h-auto block"
-  
+  controls
   controlsList="nodownload"
   playsInline
   preload="auto" 
@@ -255,7 +255,7 @@ poster="/imagen2-landing.jpg"
           </div>
           <video
   className="w-full h-auto block"
-  
+  controls
   controlsList="nodownload"
   playsInline
   preload="auto"
