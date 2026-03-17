@@ -186,12 +186,13 @@ export default function App() {
   className="w-full h-auto block"
   controls
   controlsList="nodownload"
-  preload="metadata"
+  preload="auto"
   style={{
     width: "100%",
     maxWidth: "700px",
     borderRadius: "16px"
   }}
+    poster="/video-landing-cover.jpg"
 >
   <source src="/video-landing-rc.mp4" type="video/mp4" />
   Tu navegador no soporta el elemento de video.
@@ -213,7 +214,8 @@ export default function App() {
   controls
   controlsList="nodownload"              
   playsInline
-  preload="metadata"
+  preload="auto"
+    poster="/testimonio-1-cover.jpg"              
 >
   <source src="/testimonio-1.mp4" type="video/mp4" />
 </video>
@@ -232,7 +234,8 @@ export default function App() {
   controls
   controlsList="nodownload"
   playsInline
-  preload="metadata"
+  preload="auto"
+      poster="/testimonio-2-cover.jpg"         
 >
   <source src="/testimonio-2.mp4" type="video/mp4" />
 </video>
@@ -244,7 +247,8 @@ export default function App() {
   controls
   controlsList="nodownload"
   playsInline
-  preload="metadata"
+  preload="auto"
+            poster="/testimonio-3-cover.jpg"
 >
   <source src="/testimonio-3.mp4" type="video/mp4" />
 </video>
