@@ -176,7 +176,10 @@ export default function App() {
             <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-8 text-dark tracking-tight">
               Si cada vez que sales de casa tu perro ladra, rompe cosas o entra en pánico…
               <span className="block text-primary mt-4">no está siendo desobediente.</span>
-              <span className="block text-primary mt-2">Está sufriendo ansiedad por separación.</span>
+              <span className="block text-primary mt-2">Está sufriendo cuando te vas.</span>
+              <span className="block text-primary mt-2 font-semibold">
+  Y si no lo solucionas, solo va a empeorar.
+</span>
             </h1>
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
   <video
