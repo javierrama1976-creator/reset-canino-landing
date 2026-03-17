@@ -199,8 +199,9 @@ useEffect(() => {
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
+    ref={videoRef}
   className="w-full h-auto block"
-  preload="metadata"
+  preload="auto"
   style={{
     width: "100%",
     maxWidth: "700px",
