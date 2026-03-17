@@ -174,18 +174,27 @@ export default function App() {
             </p>
 
             <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-8 text-dark tracking-tight">
-              Si cada vez que sales de casa tu perro ladra, rompe cosas o entra en pánico…
-              <span className="block text-primary mt-4">no está siendo desobediente.</span>
-              <span className="block text-primary mt-2">Está sufriendo cuando te vas.</span>
-              <span className="block text-primary mt-2 font-semibold">
-  Y si no lo solucionas, solo va a empeorar.
+Si tu perro no puede quedarse solo ni 10 minutos…
+
+<span className="block mt-4">ladra, rompe cosas</span>
+<span className="block">y entra en pánico.</span>
+
+<span className="block text-primary mt-6">No es desobediencia.</span>
+<span className="block text-primary">Es ansiedad por separación.</span>
+
+<span className="block mt-6 font-semibold">
+Y si no lo corriges ahora… irá a peor.
 </span>
-            </h1>
+</h1>
+  <p className="mt-6 text-lg">
+Más de 1.000 dueños ya han conseguido que su perro se quede solo sin ansiedad
+</p>          
+            
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
   className="w-full h-auto block"
-    controls
+  
 controlsList="nodownload"
 playsInline
   preload="auto"
@@ -213,7 +222,7 @@ playsInline
 
                 <video
   className="w-full h-auto block"
-  controls
+  
   controlsList="nodownload"              
   playsInline
   preload="auto"  
@@ -233,7 +242,7 @@ poster="/imagen2-landing.jpg"
             <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
               <video
   className="w-full h-auto block"
-  controls
+  
   controlsList="nodownload"
   playsInline
   preload="auto" 
@@ -246,7 +255,7 @@ poster="/imagen2-landing.jpg"
           </div>
           <video
   className="w-full h-auto block"
-  controls
+  
   controlsList="nodownload"
   playsInline
   preload="auto"
