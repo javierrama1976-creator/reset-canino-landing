@@ -208,18 +208,6 @@ export default function App() {
               </p>
             </div>
 
-            <div className="max-w-4xl mx-auto mb-12">
-              <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
-                <video
-  className="w-full h-auto block"
-  controls
-  controlsList="nodownload"                
-  playsInline
-  preload="metadata"
->
-  <source src="/vsl.mp4" type="video/mp4" />
-</video>
-              </div>
 
               <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden mt-8">
                 <video
