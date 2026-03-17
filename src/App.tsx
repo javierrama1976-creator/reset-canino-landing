@@ -208,8 +208,6 @@ export default function App() {
               </p>
             </div>
 
-
-              <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden mt-8">
                 <video
   className="w-full h-auto block"
   controls
@@ -219,8 +217,8 @@ export default function App() {
 >
   <source src="/testimonio-1.mp4" type="video/mp4" />
 </video>
-              </div>
-            </div>
+              
+            
           </Reveal>
         </div>
       </Section>
