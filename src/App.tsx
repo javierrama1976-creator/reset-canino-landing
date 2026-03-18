@@ -696,7 +696,7 @@ Sin improvisar. Sin probar cosas al azar.
           </p>
 
           <div className="flex justify-center gap-8 mb-10 opacity-60">
-            <a href="/aviso-legal" className="hover:text-primary transition-colors">
+            <div className="absolute top-0 left-0 w-full h-full bg-white/5 pointer-events-none"></div>
               Aviso Legal
             </a>
             <a href="/privacidad" className="hover:text-primary transition-colors">
