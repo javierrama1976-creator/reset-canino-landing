@@ -301,9 +301,7 @@ poster="/imagen2-landing.jpg"
           <div className="grid md:grid-cols-2 gap-6 text-left mb-12">
             {[
               "Vuelves a casa con el corazón acelerado temiendo lo que encontrarás.",
-              "Has gastado dinero en juguetes o soluciones rápidas.",
-              "Tu vida social ha reducido porque no puedes dejar a tu perro solo.",
-              "Sientes culpa incluso cuando sales solo cinco minutos."
+      "Tu vida social ha reducido porque no puedes dejar a tu perro solo."
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4 bg-white p-6 rounded-[18px] border border-border">
                 <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
@@ -323,7 +321,6 @@ poster="/imagen2-landing.jpg"
               <div className="space-y-6 text-lg text-gray-text leading-relaxed">
                 <p>
                   Muchos dueños creen que si cansan al perro antes de irse, el problema desaparece.
-                  Más paseo. Más juego. Más ejercicio.
                 </p>
                 <p>
                   Pero la ansiedad por separación no es falta de cansancio físico.
