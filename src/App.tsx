@@ -619,72 +619,7 @@ poster="/imagen2-landing.jpg"
         </div>
       </Section>
 
-      {/* 8) TESTIMONIOS */}
-      <Section bg="gray">
-        <Reveal className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Historias de Éxito</p>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Más de 1.000 dueños ya han recuperado la paz en sus hogares</h2>
-          <p className="text-xl text-gray-text leading-relaxed">
-            Personas que vivían exactamente el mismo problema… hasta que cambiaron la forma de ayudar a su perro.
-          </p>
-        </Reveal>
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {[
-            {
-              name: "Laura Martínez",
-              province: "Madrid",
-              story: "“Mi perro destrozaba el sofá cada vez que me iba a trabajar. Probé juguetes, paseos más largos… nada funcionaba. Con Reset Canino en unas semanas empezó a quedarse tranquilo. Ahora muchas veces vuelve a estar dormido cuando regreso.”",
-              img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=150&h=150"
-            },
-            {
-              name: "Carlos Rodríguez",
-              province: "Barcelona",
-              story: "Los vecinos se quejaban por los ladridos constantes. Estaba desesperado y con miedo a que me echaran del piso. Empecé el plan y desde el tercer día los ladridos cesaron. Ahora puedo salir a cenar sin mirar la cámara cada 5 minutos.",
-              img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150"
-            },
-            {
-              name: "Elena Sánchez",
-              province: "Sevilla",
-              story: "Lola me seguía como una sombra y entraba en pánico al ver las llaves. Gracias a las rutinas de regulación emocional, ahora entiende que volveré y se queda relajada. Es una paz que no tiene precio para las dos.",
-              img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=150&h=150"
-            },
-            {
-              name: "Javier Torres",
-              province: "Valencia",
-              story: "Pensaba que mi perro era rebelde, pero era ansiedad pura. Reset Canino me enseñó a comunicarme con él sin gritos ni castigos. Los arañazos en la puerta son cosa del pasado. ¡Totalmente recomendado!",
-              img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
-            }
-          ].map((testimonial, i) => (
-            <div key={i}>
-              <Reveal className="bg-white p-10 rounded-[28px] border border-border shadow-soft flex flex-col h-full hover:border-primary/30 transition-all hover:shadow-xl">
-                <div className="flex items-center gap-5 mb-8">
-                  <img 
-                    src={testimonial.img} 
-                    alt={testimonial.name} 
-                    className="w-16 h-16 rounded-full object-cover border-4 border-primary/10"
-                    loading="lazy"
-                  />
-                  <div>
-                    <h4 className="font-bold text-dark text-lg leading-tight">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-text font-medium">{testimonial.province}, España</p>
-                  </div>
-                </div>
-                <div className="flex text-primary mb-6">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" />)}
-                </div>
-                <p className="text-gray-text text-lg leading-relaxed italic mb-8">“{testimonial.story}”</p>
-                <div className="mt-auto pt-6 flex items-center gap-3 border-t border-border">
-                  <div className="bg-green-100 p-1 rounded-full">
-                    <CheckCircle2 className="w-4 h-4 text-green-600" />
-                  </div>
-                  <span className="text-xs font-bold text-gray-text uppercase tracking-widest">Compra Verificada</span>
-                </div>
-              </Reveal>
-            </div>
-          ))}
-        </div>
-      </Section>
-
+    
       {/* BONUS IA */}
       <Section>
         <Reveal className="max-w-5xl mx-auto">
