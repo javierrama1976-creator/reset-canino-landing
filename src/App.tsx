@@ -405,14 +405,6 @@ poster="/imagen2-landing.jpg"
                     Durante años observé el mismo patrón repetirse en cientos de dueños:
                     culpa al salir de casa, ansiedad al volver y frustración porque nada de lo que probaban funcionaba.
                   </p>
-                  <p>
-                    El problema no era que sus perros fueran malos.
-                    El problema era que nadie estaba tratando la raíz emocional del pánico.
-                  </p>
-                  <p>
-                    Por eso desarrollé Reset Canino:
-                    un método centrado en enseñar al perro a sentirse seguro cuando se queda solo, sin castigos, sin agotarlo y sin depender de soluciones rápidas que solo tapan el síntoma.
-                  </p>
                   <p className="italic border-l-4 border-primary/30 pl-6 py-2">
                     'Mi objetivo no es que tu perro "aguante".
                     Mi objetivo es que aprenda a estar en paz cuando tú no estás.
