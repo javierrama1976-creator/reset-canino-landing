@@ -275,9 +275,6 @@ poster="/imagen2-landing.jpg"
   </div>
 </div>
 
-
-</section>
-
           <h2 className="text-3xl md:text-5xl font-bold mb-8 mt-16">Si tu perro sufre ansiedad por separación, probablemente esto te pasa cada vez que sales de casa:</h2>
           <div className="grid gap-4 text-left">
             {[
