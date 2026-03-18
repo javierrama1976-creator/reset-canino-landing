@@ -294,23 +294,7 @@ poster="/imagen2-landing.jpg"
           </p>
         </Reveal>
       </Section>
-      {/* 5) IDENTIFICACIÓN PROFUNDA */}
-      <Section bg="gray">
-        <Reveal className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-8 text-dark">La ansiedad por separación no solo afecta a tu perro… también está afectando tu vida.</h2>
-          <div className="grid md:grid-cols-2 gap-6 text-left mb-12">
-            {[
-              "Vuelves a casa con el corazón acelerado temiendo lo que encontrarás.",
-      "Tu vida social ha reducido porque no puedes dejar a tu perro solo."
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 bg-white p-6 rounded-[18px] border border-border">
-                <CheckCircle2 className="w-6 h-6 text-primary shrink-0" />
-                <span className="font-bold text-dark">{item}</span>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </Section>
+    
 
       {/* 3) MITO Y SOLUCIÓN */}
       <Section>
