@@ -686,22 +686,34 @@ Sin improvisar. Sin probar cosas al azar.
           </div>
         </Reveal>
       </Section>
-
-      {/* FOOTER */}
-      <footer className="bg-white border-t border-border py-20 px-6 text-center text-gray-text text-sm">
+   {/* FOOTER */}
+      <footer className="bg-white border-t border-border py-20 px-6 text-center text-gray-text">
         <div className="container-custom">
           <p className="mb-8 font-bold text-dark text-lg">Reset Canino</p>
-          <p className="mb-6">© {new Date().getFullYear()} Todos los derechos reservados.</p>
+
+          <p className="mb-6">
+            © {new Date().getFullYear()} Todos los derechos reservados.
+          </p>
+
           <div className="flex justify-center gap-8 mb-10 opacity-60">
-            <a href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</a>
-            <a href="/privacidad" className="hover:text-primary transition-colors">Privacidad</a>
-            <a href="/cookies" className="hover:text-primary transition-colors">Cookies</a>
+            <a href="/aviso-legal" className="hover:text-primary transition-colors">
+              Aviso Legal
+            </a>
+            <a href="/privacidad" className="hover:text-primary transition-colors">
+              Privacidad
+            </a>
+            <a href="/cookies" className="hover:text-primary transition-colors">
+              Cookies
+            </a>
           </div>
-          <p className="max-w-3xl mx-auto opacity-40 text-[10px] leading-relaxed uppercase tracking-widest">
-            Este sitio no forma parte del sitio web de Facebook o Facebook Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de FACEBOOK, Inc.
+
+          <p className="max-w-3xl mx-auto opacity-40 text-[10px] leading-relaxed uppercase tracking-wide">
+            Este sitio no forma parte del sitio web de Facebook o Facebook Inc.
+            Además, este sitio NO está respaldado por Facebook de ninguna manera.
+            Facebook es una marca comercial de Facebook, Inc.
           </p>
         </div>
       </footer>
-      );
+    );
 }
    
