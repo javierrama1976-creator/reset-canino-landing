@@ -187,14 +187,6 @@ Aunque ya hayas probado juguetes, cámaras o consejos que no funcionan
 No es que tu perro sea malo. Es ansiedad por separación. Y si no lo corriges ahora, irá a peor.
 </p>
 
-<p className="mt-4 text-base text-gray-600">
-⭐⭐⭐⭐⭐ "En solo 10 días mi perro dejó de ladrar cuando me iba" – Marta G.
-</p>
-
-<button className="mt-6 px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg hover:opacity-90 transition">
-  QUIERO SOLUCIONAR LA ANSIEDAD DE MI PERRO
-</button>
-
 <p className="mt-2 text-sm text-gray-500 text-center">
   Pago 100% seguro • Acceso inmediato • Garantía de 7 días
 </p>
