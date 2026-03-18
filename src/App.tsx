@@ -294,26 +294,6 @@ poster="/imagen2-landing.jpg"
           </p>
         </Reveal>
       </Section>
-
-      {/* 4) EXPLICACIÓN DEL PROBLEMA */}
-      <Section>
-        <Reveal className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold mb-8">Tu perro no te está castigando. Está sufriendo un ataque de pánico.</h2>
-          <p className="text-xl text-gray-text mb-12 leading-relaxed">
-            La ansiedad por separación no es desobediencia. Es una reacción emocional real donde el perro entra en modo supervivencia cuando percibe que su persona de referencia desaparece. Castigarlo o ignorarlo solo empeora el problema.
-          </p>
-          
-          <Button onClick={() => handleCheckout('problem_explanation')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-           SI QUIERO PAZ EN CASA
-          </Button>
-          <p className="text-sm text-gray-600 mt-3">
-✓ Acceso inmediato tras el pago<br/>
-✓ Funciona con cualquier perro<br/>
-✓ Método probado por cientos de dueños
-</p>
-        </Reveal>
-      </Section>
-
       {/* 5) IDENTIFICACIÓN PROFUNDA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-4xl mx-auto">
