@@ -514,66 +514,19 @@ poster="/imagen2-landing.jpg"
                 </div>
               </div>
             </div>
-      {/* BONUS IA */}
-      <Section>
-        <Reveal className="max-w-5xl mx-auto">
-          <div className="bg-dark p-8 md:p-16 rounded-[40px] shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-primary text-white px-10 py-2 font-bold text-sm uppercase tracking-[0.2em]">
-              BONUS EXCLUSIVO
-            </div>
-            <div className="flex flex-col md:flex-row gap-16 items-center">
-              <div className="w-full md:w-2/5">
-                <div className="relative aspect-square rounded-[32px] overflow-hidden border-8 border-white/5 shadow-2xl">
-                  <img 
-                    src="/movil-1.jpg" 
-                    alt="Asistente Virtual Reset Canino" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
-              <div className="w-full md:w-3/5">
-                <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white flex items-center gap-4">
-                  Tendrás ayuda mientras aplicas el método
-                </h2>
-                <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-                  Tendrás acceso a un asistente inteligente entrenado con todo el sistema Reset Canino para resolver dudas mientras aplicas el método en casa.
-                </p>
-                <div className="bg-white/5 backdrop-blur-md p-8 rounded-[24px] border border-white/10 mb-10">
-                  <p className="font-bold text-white mb-6 text-xl">Resuelve dudas al instante:</p>
-                  <ul className="grid gap-4">
-                    {[
-                      "¿Por qué mi perro ladra justo al cerrar la puerta?",
-                      "¿Qué hago si hoy ha tenido una recaída?",
-                      "¿Cómo adapto la rutina si tengo poco tiempo hoy?",
-                      "¿Cómo sé si está relajado o solo resignado?"
-                    ].map((q, i) => (
-                      <li key={i} className="flex items-center gap-4 text-gray-300">
-                        <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
-                        {q}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <p className="text-primary font-bold italic text-lg">
-                  Es como tener a Julieta Márquez en tu bolsillo, disponible siempre que la necesites.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </Section>
-
+   
       {/* 9) OFERTA IRRESISTIBLE - PREMIUM BUNDLE MOCKUP */}
       <Section bg="gray" id="oferta">
         <Reveal className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-dark tracking-tight leading-tight">
-            Esto no es teoría. Es el sistema completo para recuperar la calma en tu casa.
+            Tu perro puede quedarse solo en casa sin ansiedad, sin ladridos y sin destrozos.
           </h2>
           <p className="text-xl md:text-2xl text-gray-text max-w-3xl mx-auto leading-relaxed">
-            Si tu perro sufre ansiedad por separación, no necesitas más teorías. Necesitas un sistema claro que funcione en casa.
+            Si tu perro sufre ansiedad por separación,
+aquí tienes un método claro para solucionarlo en casa.
+
+Sin improvisar. Sin probar cosas al azar.
             <br /><br />
-            Reset Canino te enseña exactamente cómo hacerlo, paso a paso.
           </p>
         </Reveal>
         
