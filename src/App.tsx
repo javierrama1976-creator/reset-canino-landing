@@ -186,12 +186,7 @@ Aunque ya hayas probado juguetes, cámaras o consejos que no funcionan
 <p className="mt-4 text-lg font-semibold text-red-500">
 No es que tu perro sea malo. Es ansiedad por separación. Y si no lo corriges ahora, irá a peor.
 </p>
-
-<p className="mt-2 text-sm text-gray-500 text-center">
-  Pago 100% seguro • Acceso inmediato • Garantía de 7 días
-</p>
-   
-            
+     
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
