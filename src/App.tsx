@@ -237,20 +237,22 @@ poster="/imagen2-landing.jpg"
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
           <div className="max-w-4xl mx-auto mt-8 mb-8">
             <div className="shadow-2xl rounded-[24px] border border-border bg-black h-auto overflow-hidden">
-              <video
-  className="w-full h-auto block"
-  controls
-  controlsList="nodownload"
-  playsInline
-  preload="auto" 
-  poster="/imagen3-landing.jpg"              
->
-  <source src="/testimonio-2.mp4" type="video/mp4" />
-</video>
       
             </div>
           </div>
-          <video
+          <h2 className="text-2xl md:text-4xl font-bold text-center mt-12">
+  Mira lo que dicen otros dueños de perros 👇
+</h2>
+ <div className="max-w-md mx-auto mt-8">
+  <div className="grid grid-cols-2 gap-3">
+    <img src="/testimonio.w1.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w2.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w3.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w4.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w5.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w6.jpeg" className="rounded-lg shadow-sm" />
+  </div>
+</div>
   className="w-full h-auto block"
   controls
   controlsList="nodownload"
