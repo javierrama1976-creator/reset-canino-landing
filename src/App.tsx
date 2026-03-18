@@ -173,22 +173,31 @@ export default function App() {
               MÉTODO PROBADO PARA LA ANSIEDAD POR SEPARACIÓN
             </p>
 
-            <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-8 text-dark tracking-tight">
-Si tu perro no puede quedarse solo ni 10 minutos…
-
-<span className="block mt-4">ladra, rompe cosas</span>
-<span className="block">y entra en pánico.</span>
-
-<span className="block text-primary mt-6">No es desobediencia.</span>
-<span className="block text-primary">Es ansiedad por separación.</span>
-
-<span className="block mt-6 font-semibold">
-Y si no lo corriges ahora… irá a peor.
-</span>
+              <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-dark">
+Cómo hacer que tu perro se quede solo en casa  
+sin ladrar, sin destruir y sin ansiedad  
+en menos de 14 días
 </h1>
-  <p className="mt-6 text-lg">
-Más de 1.000 dueños ya han conseguido que su perro se quede solo sin ansiedad
-</p>          
+
+<p className="text-xl md:text-2xl mt-4 text-gray-700">
+Aunque ya hayas probado juguetes, cámaras o consejos que no funcionan
+</p>
+
+<p className="mt-4 text-lg font-semibold text-red-500">
+No es que tu perro sea malo. Es ansiedad por separación. Y si no lo corriges ahora, irá a peor.
+</p>
+
+<p className="mt-4 text-base text-gray-600">
+⭐⭐⭐⭐⭐ "En solo 10 días mi perro dejó de ladrar cuando me iba" – Marta G.
+</p>
+
+<button className="mt-6 px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg hover:opacity-90 transition">
+QUIERO SOLUCIONAR LA ANSIEDAD DE MI PERRO
+  </button   
+  <p className="mt-2 text-sm text-gray-500 text-center">
+  🔒 Pago 100% seguro • Acceso inmediato • Garantía de 7 días
+</p>
+   
             
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
