@@ -240,19 +240,7 @@ poster="/imagen2-landing.jpg"
       
             </div>
           </div>
-          <h2 className="text-2xl md:text-4xl font-bold text-center mt-12">
-  Mira lo que dicen otros dueños de perros 👇
-</h2>
- <div className="max-w-md mx-auto mt-8">
-  <div className="grid grid-cols-2 gap-3">
-    <img src="/testimonio.w1.jpeg" className="rounded-lg shadow-sm" />
-    <img src="/testimonio.w2.jpeg" className="rounded-lg shadow-sm" />
-    <img src="/testimonio.w3.jpeg" className="rounded-lg shadow-sm" />
-    <img src="/testimonio.w4.jpeg" className="rounded-lg shadow-sm" />
-    <img src="/testimonio.w5.jpeg" className="rounded-lg shadow-sm" />
-    <img src="/testimonio.w6.jpeg" className="rounded-lg shadow-sm" />
-  </div>
-</div>
+  <video
   className="w-full h-auto block"
   controls
   controlsList="nodownload"
@@ -262,6 +250,19 @@ poster="/imagen2-landing.jpg"
 >
   <source src="/testimonio-3.mp4" type="video/mp4" />
 </video>
+  <h2 className="text-2xl md:text-4xl font-bold text-center mt-12">
+  Mira lo que dicen otros dueños de perros 👇
+</h2>
+<div className="max-w-2xl mx-auto mt-8">
+  <div className="grid grid-cols-2 gap-3">
+    <img src="/testimonio.w1.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w2.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w3.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w4.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w5.jpeg" className="rounded-lg shadow-sm" />
+    <img src="/testimonio.w6.jpeg" className="rounded-lg shadow-sm" />
+  </div>
+</div>
 <section className="text-center py-16">
 
   <h2 className="text-3xl md:text-4xl font-bold mb-4">
