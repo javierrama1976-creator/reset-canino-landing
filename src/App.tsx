@@ -195,7 +195,7 @@ No es que tu perro sea malo. Es ansiedad por separación. Y si no lo corriges ah
 QUIERO SOLUCIONAR LA ANSIEDAD DE MI PERRO
   </button   
   <p className="mt-2 text-sm text-gray-500 text-center">
-  🔒 Pago 100% seguro • Acceso inmediato • Garantía de 7 días
+   Pago 100% seguro • Acceso inmediato • Garantía de 7 días
 </p>
    
             
