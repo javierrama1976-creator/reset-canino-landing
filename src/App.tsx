@@ -703,13 +703,4 @@ Sin improvisar. Sin probar cosas al azar.
         </div>
       </footer>
 
-      {/* STICKY CTA (Mobile) */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border p-5 z-50 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
-        <div>
-          <p className="text-2xl font-black text-dark">19,97€</p>
-          <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
-        </div>
-      </div>
-    </div>
-  );
-
+   
