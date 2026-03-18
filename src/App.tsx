@@ -702,5 +702,6 @@ Sin improvisar. Sin probar cosas al azar.
           </p>
         </div>
       </footer>
-
+      );
+}
    
