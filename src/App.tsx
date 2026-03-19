@@ -23,7 +23,7 @@ declare global {
   }
 }
 
-const CHECKOUT_URL = "https://mascotaequilibrada.com/cart/57475776184707:1";
+const CHECKOUT_URL = "https://pay.hotmart.com/S104982269H";
 
 // --- Components ---
 
