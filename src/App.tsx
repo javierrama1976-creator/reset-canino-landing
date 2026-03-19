@@ -514,19 +514,93 @@ poster="/imagen2-landing.jpg"
                 </div>
               </div>
             </div>
-   
+            <div className="w-full md:w-1/2 space-y-8">
+              <div className="bg-gray-bg p-8 rounded-[24px] border border-border">
+                <h4 className="text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                  <XCircle className="text-red-500" /> El Escenario Actual
+                </h4>
+                <p className="text-gray-text leading-relaxed">
+                  Puertas arañadas, vecinos quejándose, ladridos constantes y tú saliendo de casa con culpa… preguntándote qué estará pasando cuando no estás.
+                </p>
+              </div>
+              <div className="bg-primary/5 p-8 rounded-[24px] border border-primary/20">
+                <h4 className="text-xl font-bold text-dark mb-4 flex items-center gap-2">
+                  <CheckCircle2 className="text-green-500" /> El Nuevo Escenario
+                </h4>
+                <p className="text-gray-text leading-relaxed">
+                  Tu perro te ve salir, suspira… y vuelve a tumbarse tranquilo.
+                  <br />
+                  La casa intacta.
+                  <br />
+                  Y tú con la libertad de salir sabiendo que está bien.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+    
+      {/* BONUS IA */}
+      <Section>
+        <Reveal className="max-w-5xl mx-auto">
+          <div className="bg-dark p-8 md:p-16 rounded-[40px] shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 bg-primary text-white px-10 py-2 font-bold text-sm uppercase tracking-[0.2em]">
+              BONUS EXCLUSIVO
+            </div>
+            <div className="flex flex-col md:flex-row gap-16 items-center">
+              <div className="w-full md:w-2/5">
+                <div className="relative aspect-square rounded-[32px] overflow-hidden border-8 border-white/5 shadow-2xl">
+                  <img 
+                    src="/movil-1.jpg" 
+                    alt="Asistente Virtual Reset Canino" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-3/5">
+                <h2 className="text-3xl md:text-5xl font-bold mb-8 text-white flex items-center gap-4">
+                  Tendrás ayuda mientras aplicas el método
+                </h2>
+                <p className="text-xl text-gray-400 mb-10 leading-relaxed">
+                  Tendrás acceso a un asistente inteligente entrenado con todo el sistema Reset Canino para resolver dudas mientras aplicas el método en casa.
+                </p>
+                <div className="bg-white/5 backdrop-blur-md p-8 rounded-[24px] border border-white/10 mb-10">
+                  <p className="font-bold text-white mb-6 text-xl">Resuelve dudas al instante:</p>
+                  <ul className="grid gap-4">
+                    {[
+                      "¿Por qué mi perro ladra justo al cerrar la puerta?",
+                      "¿Qué hago si hoy ha tenido una recaída?",
+                      "¿Cómo adapto la rutina si tengo poco tiempo hoy?",
+                      "¿Cómo sé si está relajado o solo resignado?"
+                    ].map((q, i) => (
+                      <li key={i} className="flex items-center gap-4 text-gray-300">
+                        <div className="w-2 h-2 bg-primary rounded-full shrink-0" />
+                        {q}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="text-primary font-bold italic text-lg">
+                  Es como tener a Julieta Márquez en tu bolsillo, disponible siempre que la necesites.
+                </p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </Section>
+
       {/* 9) OFERTA IRRESISTIBLE - PREMIUM BUNDLE MOCKUP */}
       <Section bg="gray" id="oferta">
         <Reveal className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-dark tracking-tight leading-tight">
-            Tu perro puede quedarse solo en casa sin ansiedad, sin ladridos y sin destrozos.
+            Esto no es teoría. Es el sistema completo para recuperar la calma en tu casa.
           </h2>
           <p className="text-xl md:text-2xl text-gray-text max-w-3xl mx-auto leading-relaxed">
-            Si tu perro sufre ansiedad por separación,
-aquí tienes un método claro para solucionarlo en casa.
-
-Sin improvisar. Sin probar cosas al azar.
+            Si tu perro sufre ansiedad por separación, no necesitas más teorías. Necesitas un sistema claro que funcione en casa.
             <br /><br />
+            Reset Canino te enseña exactamente cómo hacerlo, paso a paso.
           </p>
         </Reveal>
         
@@ -686,35 +760,30 @@ Sin improvisar. Sin probar cosas al azar.
           </div>
         </Reveal>
       </Section>
-   {/* FOOTER */}
-      <footer className="bg-white border-t border-border py-20 px-6 text-center text-gray-text">
+
+      {/* FOOTER */}
+      <footer className="bg-white border-t border-border py-20 px-6 text-center text-gray-text text-sm">
         <div className="container-custom">
           <p className="mb-8 font-bold text-dark text-lg">Reset Canino</p>
-
-          <p className="mb-6">
-            © {new Date().getFullYear()} Todos los derechos reservados.
-          </p>
-
+          <p className="mb-6">© {new Date().getFullYear()} Todos los derechos reservados.</p>
           <div className="flex justify-center gap-8 mb-10 opacity-60">
-          
-  <a href="/aviso-legal" className="hover:text-primary transition-colors">
-    Aviso Legal
-  </a>
-            <a href="/privacidad" className="hover:text-primary transition-colors">
-              Privacidad
-            </a>
-            <a href="/cookies" className="hover:text-primary transition-colors">
-              Cookies
-            </a>
+            <a href="/aviso-legal" className="hover:text-primary transition-colors">Aviso Legal</a>
+            <a href="/privacidad" className="hover:text-primary transition-colors">Privacidad</a>
+            <a href="/cookies" className="hover:text-primary transition-colors">Cookies</a>
           </div>
-
-          <p className="max-w-3xl mx-auto opacity-40 text-[10px] leading-relaxed uppercase tracking-wide">
-            Este sitio no forma parte del sitio web de Facebook o Facebook Inc.
-            Además, este sitio NO está respaldado por Facebook de ninguna manera.
-            Facebook es una marca comercial de Facebook, Inc.
+          <p className="max-w-3xl mx-auto opacity-40 text-[10px] leading-relaxed uppercase tracking-widest">
+            Este sitio no forma parte del sitio web de Facebook o Facebook Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca registrada de FACEBOOK, Inc.
           </p>
         </div>
       </footer>
-    );
+
+      {/* STICKY CTA (Mobile) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-border p-5 z-50 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+        <div>
+          <p className="text-2xl font-black text-dark">19,97€</p>
+          <p className="text-[10px] text-gray-text font-bold uppercase tracking-wider">Acceso inmediato</p>
+        </div>
+      </div>
+    </div>
+  );
 }
-   
