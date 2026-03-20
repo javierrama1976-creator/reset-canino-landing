@@ -164,28 +164,29 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* 1) HERO SECTION */}
-      <Section className="pt-12 md:pt-20 pb-12">
-        <div className="max-w-5xl mx-auto text-center">
-          <Reveal>
-            <p className="text-primary font-bold uppercase tracking-[0.2em] mb-6 text-sm">
-              MÉTODO PROBADO PARA LA ANSIEDAD POR SEPARACIÓN
-            </p>
+   <section className="text-center px-4 pt-10 pb-6">
 
-              <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-dark">
-Cómo hacer que tu perro se quede solo en casa  
-sin ladrar, sin destruir y sin ansiedad  
-en menos de 14 días
-</h1>
+  <p className="text-sm text-orange-500 font-semibold mb-2">
+    PARA PERROS CON ANSIEDAD POR SEPARACIÓN
+  </p>
 
-<p className="text-xl md:text-2xl mt-4 text-gray-700">
-Aunque ya hayas probado juguetes, cámaras o consejos que no funcionan
-</p>
+  <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+    Sales de casa… y tu perro entra en pánico en cuanto cierras la puerta
+  </h1>
 
-<p className="mt-4 text-lg font-semibold text-red-500">
-No es que tu perro sea malo. Es ansiedad por separación. Y si no lo corriges ahora, irá a peor.
-</p>
+  <p className="text-lg text-gray-700 mb-4">
+    Ladridos, destrozos, estrés… y la sensación de que no puedes dejarlo solo ni un momento.
+  </p>
+
+  <p className="text-lg text-gray-800 font-medium mb-4">
+    Aquí tienes cómo lograr que se quede solo en calma, sin ansiedad y sin recaídas.
+  </p>
+
+  <p className="text-red-500 font-semibold">
+    No es mala conducta. Es ansiedad… y si no la corriges ahora, irá a peor.
+  </p>
+
+</section>
      
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
