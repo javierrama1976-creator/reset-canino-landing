@@ -261,7 +261,11 @@ poster="/imagen2-landing.jpg"
 🔥 Acceso inmediato<br/>
 ✔ Pago seguro con tarjeta o PayPal
 </p>
-          
+  <img
+  src="/mockups.png"
+  alt="Todo lo que incluye Reset Canino"
+  className="w-full rounded-xl shadow-lg mt-6"
+/>        
   <h2 className="text-2xl md:text-4xl font-bold text-center mt-12">
   Mira lo que dicen otros dueños de perros 👇
 </h2>
