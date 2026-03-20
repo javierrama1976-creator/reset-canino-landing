@@ -261,11 +261,25 @@ poster="/imagen2-landing.jpg"
 🔥 Acceso inmediato<br/>
 ✔ Pago seguro con tarjeta o PayPal
 </p>
+    <section className="max-w-2xl mx-auto mt-8 px-4 text-center">
+  <p className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
+    Aquí tienes todo lo que vas a usar para recuperar la calma en casa:
+  </p>
+
   <img
-  src="/mockups.png"
-  alt="Todo lo que incluye Reset Canino"
-  className="w-full rounded-xl shadow-lg mt-6"
-/>        
+    src="/mockups.png"
+    alt="Todo lo que incluye Reset Canino"
+    className="w-full rounded-xl shadow-lg"
+  />
+
+  <p className="text-base md:text-lg text-gray-700 mt-4">
+    El método paso a paso + bonos estratégicos para ayudar a tu perro a sentirse seguro
+    cuando te vas, sin castigos, sin improvisar y sin perder más tiempo.
+  </p>
+</section>
+  <p className="text-base md:text-lg text-gray-900 font-semibold mt-2">
+  Y sí, todo esto está incluido hoy por solo 19,97€.
+</p>        
   <h2 className="text-2xl md:text-4xl font-bold text-center mt-12">
   Mira lo que dicen otros dueños de perros 👇
 </h2>
