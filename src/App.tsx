@@ -185,8 +185,6 @@ export default function App() {
   <p className="text-red-500 font-semibold">
     No es mala conducta. Es ansiedad… y si no la corriges ahora, irá a peor.
   </p>
-
-</section>
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
