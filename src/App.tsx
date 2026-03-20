@@ -185,7 +185,6 @@ export default function App() {
   <p className="mt-4 text-lg font-semibold text-red-500">
     No es mala conducta. Es ansiedad por separación… y si no la corriges ahora, irá a peor.
   </p>
-</Reveal>
      
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
