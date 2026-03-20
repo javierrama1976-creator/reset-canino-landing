@@ -230,7 +230,7 @@ poster="/imagen2-landing.jpg"
             
           </Reveal>
         </div>
-      </Section>
+      </section>
       {/* 2) IDENTIFICACIÓN DEL PROBLEMA */}
       <Section bg="gray">
         <Reveal className="text-center max-w-3xl mx-auto mb-16">
