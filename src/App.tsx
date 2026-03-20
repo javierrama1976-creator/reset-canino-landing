@@ -173,7 +173,7 @@ export default function App() {
   <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
     Sales de casa… y tu perro entra en pánico en cuanto cierras la puerta
   </h1>
-
+<section/>
   <p className="text-lg text-gray-700 mb-4">
     Ladridos, destrozos, estrés… y la sensación de que no puedes dejarlo solo ni un momento.
   </p>
