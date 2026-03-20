@@ -173,7 +173,7 @@ export default function App() {
   <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
     Sales de casa… y tu perro entra en pánico en cuanto cierras la puerta
   </h1>
-<section/>
+
   <p className="text-lg text-gray-700 mb-4">
     Ladridos, destrozos, estrés… y la sensación de que no puedes dejarlo solo ni un momento.
   </p>
@@ -185,7 +185,7 @@ export default function App() {
   <p className="text-red-500 font-semibold">
     No es mala conducta. Es ansiedad… y si no la corriges ahora, irá a peor.
   </p>
-     
+     <section/>
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
