@@ -253,7 +253,7 @@ poster="/imagen2-landing.jpg"
   onClick={() => handleCheckout('hero_cta')} 
   className="mt-8 text-2xl py-6 max-w-lg mx-auto"
 >
-  QUIERO QUE MI PERRO SE QUEDE SOLO SIN ANSIEDAD
+  QUIERO QUE MI PERRO SE QUEDE SOLO SIN SUFRIR
 </Button>
 
 <p className="text-sm text-gray-600 mt-3">
@@ -429,7 +429,7 @@ poster="/imagen2-landing.jpg"
           </div>
 
           <Button onClick={() => handleCheckout('method_section')} className="mb-8 text-xl py-6 max-w-md mx-auto">
-            QUIERO EMPEZAR EL MÉTODO
+            QUIERO EMPEZAR A SOLUCIONARLO HOY
           </Button>
        
         <p className="text-sm text-gray-600 mt-3 text-center">
@@ -672,7 +672,7 @@ poster="/imagen2-landing.jpg"
                   <p className="text-sm font-bold text-primary mt-4">Hoy puedes acceder a todo el sistema completo por menos de lo que cuesta un juguete para tu perro.</p>
                 </div>
                 <Button onClick={() => handleCheckout('offer_section')} className="mt-8 text-xl py-6 max-w-md mx-auto">
-                  QUIERO ACCEDER A RESET CANINO
+                  VER CÓMO FUNCIONA EL MÉTODO
                 </Button>
                 <p className="text-sm text-gray-600 mt-3 text-center">
 ✓ Acceso inmediato tras el pago<br/>
@@ -701,7 +701,7 @@ poster="/imagen2-landing.jpg"
             Sin preguntas. Sin complicaciones.
           </p>
           <Button onClick={() => handleCheckout('guarantee')} className="max-w-md mx-auto">
-            QUIERO RECUPERAR LA CALMA EN CASA
+            QUIERO QUE MI PERRO SE QUEDE SOLO SIN SUFRIR
           </Button>
           <p className="text-sm text-gray-600 mt-3 text-center">
 ✓ Acceso inmediato tras el pago<br/>
