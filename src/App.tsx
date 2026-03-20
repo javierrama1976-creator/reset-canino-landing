@@ -164,7 +164,7 @@ export default function App() {
   };
 
   return (
-   <section className="text-center px-4 pt-10 pb-6">
+ <section className="text-center px-4 pt-10 pb-6">
 
   <p className="text-sm text-orange-500 font-semibold mb-2">
     PARA PERROS CON ANSIEDAD POR SEPARACIÓN
@@ -185,7 +185,8 @@ export default function App() {
   <p className="text-red-500 font-semibold">
     No es mala conducta. Es ansiedad… y si no la corriges ahora, irá a peor.
   </p>
-     <section/>
+
+</section>
             <div style={{ width: "100%", display: "flex", justifyContent: "center", margin: "20px 0" }}>
               
   <video
