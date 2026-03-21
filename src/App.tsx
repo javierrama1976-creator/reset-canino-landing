@@ -703,7 +703,39 @@ No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y segu
           </div>
         </Reveal>
       </Section>
+{showPopup && (
+  <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+    <div className="bg-white p-8 rounded-2xl max-w-md w-full text-center relative shadow-2xl">
 
+      <button
+        onClick={() => setShowPopup(false)}
+        className="absolute top-4 right-4 text-gray-400 hover:text-dark"
+      >
+        <X className="w-6 h-6" />
+      </button>
+
+      <h3 className="text-2xl font-bold mb-4 text-dark">
+        Recupera la calma en casa por solo 19,97€
+      </h3>
+
+      <p className="mb-6 text-gray-text leading-relaxed">
+        Empieza hoy y deja de sufrir cada vez que sales de casa.
+      </p>
+
+      <Button onClick={() => handleCheckout('popup_cta')}>
+        QUIERO EMPEZAR AHORA
+      </Button>
+
+      <button
+        onClick={() => setShowPopup(false)}
+        className="mt-4 text-sm text-gray-400 hover:text-dark"
+      >
+        Seguir viendo
+      </button>
+
+    </div>
+  </div>
+)}
       {/* FOOTER */}
       <footer className="bg-white border-t border-border py-20 px-6 text-center text-gray-text text-sm">
         <div className="container-custom">
