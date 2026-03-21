@@ -570,15 +570,7 @@ poster="/imagen2-landing.jpg"
               OFERTA ESPECIAL
             </div>
             
-            {/* Mockup Visual Composition - Single Image */}
-            <div className="relative py-12 md:py-16 mb-12">
-              <img 
-                src="/reset-canino-portada.jpg" 
-                alt="Reset Canino AIRMIND" 
-                className="w-full max-w-md mx-auto rounded-[24px] shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-            </div>
+          
 
             {/* Price and CTA Block */}
             <div className="border-t border-border pt-12 text-center">
