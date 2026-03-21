@@ -354,48 +354,68 @@ No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y segu
           </Reveal>
         </div>
       </Section>
+{/* 12) SECCIÓN DE AUTORIDAD */}
+<Section bg="gray">
+  <div className="max-w-5xl mx-auto">
+    <Reveal>
+      <div className="flex flex-col md:flex-row gap-12 items-center bg-white p-8 md:p-16 rounded-[32px] border border-border shadow-xl">
 
-      {/* 12) SECCIÓN DE AUTORIDAD (JULIETA MÁRQUEZ) */}
-      <Section bg="gray">
-        <div className="max-w-5xl mx-auto">
-          <Reveal>
-            <div className="flex flex-col md:flex-row gap-12 items-center bg-white p-8 md:p-16 rounded-[32px] border border-border shadow-xl">
-              <div className="w-full md:w-2/5">
-                <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden shadow-2xl border-4 border-white">
-                  <img 
-                    src="/julieta-marquez.jpg" 
-                    alt="Julieta Márquez - Creadora de Reset Canino" 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      e.currentTarget.src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800";
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="w-full md:w-3/5">
-                <h3 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Experiencia real en bienestar canino</h3>
-                <h2 className="text-4xl font-bold mb-6 text-dark">Julieta Márquez</h2>
-                <p className="text-primary font-bold mb-6">
-                  Especialista en vínculo y regulación emocional
-                </p>
-                <div className="space-y-6 text-lg text-gray-text leading-relaxed">
-                  <p>
-                    Durante años observé el mismo patrón repetirse en cientos de dueños:
-                    culpa al salir de casa, ansiedad al volver y frustración porque nada de lo que probaban funcionaba.
-                  </p>
-                  <p className="italic border-l-4 border-primary/30 pl-6 py-2">
-                    'Mi objetivo no es que tu perro "aguante".
-                    Mi objetivo es que aprenda a estar en paz cuando tú no estás.
-                    Esa es la verdadera libertad para ambos.'
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
+        {/* Imagen */}
+        <div className="w-full md:w-2/5">
+          <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden shadow-2xl border-4 border-white">
+            <img 
+              src="/Julieta Márquez.jpg"
+              alt="Julieta Márquez - Especialista en ansiedad por separación en perros"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
-      </Section>
 
+        {/* Texto */}
+        <div className="w-full md:w-3/5">
+
+          <h3 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">
+            Método basado en casos reales
+          </h3>
+
+          <h2 className="text-4xl font-bold mb-4 text-dark">
+            Julieta Márquez
+          </h2>
+
+          <p className="text-primary font-bold mb-6">
+            Especialista en ansiedad por separación y comportamiento canino
+          </p>
+
+          <div className="space-y-5 text-lg text-gray-text leading-relaxed">
+
+            <p>
+              Durante años he trabajado con perros que no saben gestionar la soledad:
+              ladridos constantes, destrozos en casa, estrés extremo… y dueños viviendo con culpa cada vez que salen por la puerta.
+            </p>
+
+            <p>
+              El problema no es la conducta. Es el estado emocional del perro.
+              Y ahí es donde la mayoría de métodos fallan.
+            </p>
+
+            <p>
+              Por eso creé Reset Canino: un sistema práctico para enseñar a tu perro a sentirse tranquilo y seguro cuando tú no estás,
+              sin castigos, sin frustración y sin depender de soluciones temporales.
+            </p>
+
+            <p className="italic border-l-4 border-primary/30 pl-6 py-2 text-dark">
+              “No necesitas que tu perro aguante.  
+              Necesitas que aprenda a estar en calma cuando se queda solo.”
+            </p>
+
+          </div>
+        </div>
+
+      </div>
+    </Reveal>
+  </div>
+</Section>
+   
       {/* 4) PRESENTACIÓN DEL MÉTODO */}
       <Section>
         <Reveal className="text-center max-w-4xl mx-auto">
