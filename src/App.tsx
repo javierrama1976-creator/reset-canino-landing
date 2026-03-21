@@ -364,7 +364,7 @@ No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y segu
         <div className="w-full md:w-2/5">
           <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden shadow-2xl border-4 border-white">
             <img 
-              src="/Julieta Márquez.jpg"
+              src="/julieta márquez.jpg"
               alt="Julieta Márquez - Especialista en ansiedad por separación en perros"
               className="w-full h-full object-cover"
             />
