@@ -316,25 +316,7 @@ poster="/imagen2-landing.jpg"
               </div>
             ))}
           </div>
-          <p className="text-xl text-gray-text mt-12 font-medium">
-            No es que tu perro sea malo. Es que está entrando en pánico cuando siente que te vas.
-          </p>
-        </Reveal>
-      </Section>
-    
-
-      {/* 3) MITO Y SOLUCIÓN */}
-      <Section>
-        <div className="max-w-4xl mx-auto">
-          <Reveal>
-            <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">El error que hace que la ansiedad por separación de tu perro empeore cada día</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 text-lg text-gray-text leading-relaxed">
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
+        
 {/* 12) SECCIÓN DE AUTORIDAD */}
 <Section bg="gray">
   <div className="max-w-5xl mx-auto">
