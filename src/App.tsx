@@ -518,34 +518,13 @@ No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y segu
               </div>
             </div>
             <div className="w-full md:w-1/2 space-y-8">
-              <div className="bg-gray-bg p-8 rounded-[24px] border border-border">
-                <h4 className="text-xl font-bold text-dark mb-4 flex items-center gap-2">
-                  <XCircle className="text-red-500" /> El Escenario Actual
-                </h4>
-                <p className="text-gray-text leading-relaxed">
-                  Puertas arañadas, vecinos quejándose, ladridos constantes y tú saliendo de casa con culpa… preguntándote qué estará pasando cuando no estás.
-                </p>
-              </div>
-              <div className="bg-primary/5 p-8 rounded-[24px] border border-primary/20">
-                <h4 className="text-xl font-bold text-dark mb-4 flex items-center gap-2">
-                  <CheckCircle2 className="text-green-500" /> El Nuevo Escenario
-                </h4>
-                <p className="text-gray-text leading-relaxed">
-                  Tu perro te ve salir, suspira… y vuelve a tumbarse tranquilo.
-                  <br />
-                  La casa intacta.
-                  <br />
-                  Y tú con la libertad de salir sabiendo que está bien.
-                </p>
-              </div>
+             
             </div>
           </div>
         </div>
       </Section>
 
-    
-    
-      {/* 9) OFERTA IRRESISTIBLE - PREMIUM BUNDLE MOCKUP */}
+     {/* 9) OFERTA IRRESISTIBLE - PREMIUM BUNDLE MOCKUP */}
       <Section bg="gray" id="oferta">
         <Reveal className="text-center max-w-4xl mx-auto mb-16">
           <h2 className="text-4xl md:text-6xl font-black mb-6 text-dark tracking-tight leading-tight">
