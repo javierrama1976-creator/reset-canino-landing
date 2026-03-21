@@ -341,15 +341,7 @@ No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y segu
 </p>
                 </div>
               </div>
-              <div className="relative">
-                <div className="absolute -inset-4 bg-primary/10 rounded-[30px] blur-2xl -z-10" />
-                <img 
-                  src="/perro-mirando.jpg" 
-                  alt="Perro tranquilo en casa" 
-                  className="rounded-[24px] shadow-2xl border border-border"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+             
             </div>
           </Reveal>
         </div>
