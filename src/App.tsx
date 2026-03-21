@@ -321,6 +321,7 @@ La solución real (que casi nadie te dice):
 <p className="text-dark">
 No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y seguro cuando estás fuera.
 </p>
+                </div>
               </div>
               <div className="relative">
                 <div className="absolute -inset-4 bg-primary/10 rounded-[30px] blur-2xl -z-10" />
