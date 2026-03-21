@@ -160,7 +160,7 @@ useEffect(() => {
 
     const scrollPercent = (scrollTop + windowHeight) / fullHeight;
 
-    if (scrollPercent > 0.75) {
+    if (scrollPercent > 0.80) {
       setShowPopup(true);
     }
   };
