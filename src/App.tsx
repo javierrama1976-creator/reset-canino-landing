@@ -146,23 +146,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 
 export default function App() {
   const [hasClickedCTA, setHasClickedCTA] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-useEffect(() => {
-  const handleScroll = () => {
-    const scrollTop = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const fullHeight = document.body.scrollHeight;
-
-    const scrollPercent = (scrollTop + windowHeight) / fullHeight;
-
-    if (scrollPercent > 0.75) {
-      setShowPopup(true);
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
+  
   useEffect(() => {
     if (typeof window !== "undefined" && (window as any).fbq) {
       (window as any).fbq("track", "PageView");
