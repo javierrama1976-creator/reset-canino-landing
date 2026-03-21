@@ -316,6 +316,8 @@ poster="/imagen2-landing.jpg"
               </div>
             ))}
           </div>
+          </Reveal>
+</Section>
         
 {/* 12) SECCIÓN DE AUTORIDAD */}
 <Section bg="gray">
