@@ -717,8 +717,6 @@ No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y segu
           </p>
         </div>
       </footer>
-      </div>
-    </div>
   );
 }
 
