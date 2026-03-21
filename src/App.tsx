@@ -312,22 +312,15 @@ poster="/imagen2-landing.jpg"
             <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">El error que hace que la ansiedad por separación de tu perro empeore cada día</h2>
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 text-lg text-gray-text leading-relaxed">
-                <p>
-                  Muchos dueños creen que si cansan al perro antes de irse, el problema desaparece.
-                </p>
-                <p>
-                  Pero la ansiedad por separación no es falta de cansancio físico.
-                  Es un problema emocional.
-                </p>
-                <p className="font-bold text-dark">
-                  Y un perro cansado pero ansioso seguirá sufriendo igual.
-                </p>
+                
                 <div className="bg-primary/5 p-8 rounded-[20px] border-l-4 border-primary">
-                  <p className="text-dark font-bold text-xl mb-2">La solución real:</p>
-                  <p className="text-dark">
-                    La solución real es enseñar a tu perro a sentirse seguro cuando estás fuera. Tu perro necesita aprender a regular su estado emocional cuando te vas. No con castigos. No con trucos rápidos. Sino con un proceso claro que le enseñe que tu ausencia no significa peligro.
-                  </p>
-                </div>
+                  <p className="text-dark font-bold text-xl mb-2">
+La solución real (que casi nadie te dice):
+</p>
+
+<p className="text-dark">
+No necesitas cansar a tu perro. Necesitas enseñarle a sentirse tranquilo y seguro cuando estás fuera.
+</p>
               </div>
               <div className="relative">
                 <div className="absolute -inset-4 bg-primary/10 rounded-[30px] blur-2xl -z-10" />
