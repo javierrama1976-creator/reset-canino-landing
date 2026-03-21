@@ -239,16 +239,7 @@ poster="/imagen2-landing.jpg"
       
             </div>
           </div>
-  <video
-  className="w-full h-auto block"
-  controls
-  controlsList="nodownload"
-  playsInline
-  preload="auto"
-    poster="/imagen4-landing.jpg"     
->
-  <source src="/testimonio-3.mp4" type="video/mp4" />
-</video>
+ 
   <Button 
   onClick={() => handleCheckout('hero_cta')} 
   className="mt-8 text-2xl py-6 max-w-lg mx-auto"
