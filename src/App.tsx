@@ -20,7 +20,7 @@ declare global {
   }
 }
 
-const CHECKOUT_URL = "https://pay.hotmart.com/S104982269H";
+const CHECKOUT_URL =  "https://mascotaequilibrada.com/cart/57475776184707:1";
 
 // --- Components ---
 
@@ -155,32 +155,32 @@ const TestimonialCarousel = () => {
       stars: "★★★★★",
       name: "María G.",
       city: "Ciudad de México",
-      dog: "Beagle de 3 años",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      dog: "Dueña de un Beagle con ansiedad",
+      image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=200&h=200&auto=format&fit=crop",
       text: "Los vecinos se quejaban de los ladridos y me daba pánico salir. Con las instrucciones de Julieta, en 4 días volvió el silencio. Por fin respiro tranquila."
     },
     {
       stars: "★★★★★",
       name: "Carlos R.",
       city: "Bogotá",
-      dog: "Labrador de 4 años",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      dog: "Dueño de un Labrador inquieto",
+      image: "https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=200&h=200&auto=format&fit=crop",
       text: "Llegar a casa era ver sillones mordidos y marcos rotos. Estaba agotado. Este método le enseñó a Max a estar solo y ahora me recibe relajado."
     },
     {
       stars: "★★★★★",
       name: "Ana M.",
       city: "Buenos Aires",
-      dog: "Pastor Alemán de 5 años",
-      image: "https://randomuser.me/api/portraits/women/22.jpg",
+      dog: "Dueña de un Pastor Alemán",
+      image: "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?q=80&w=200&h=200&auto=format&fit=crop",
       text: "Mi perro temblaba al ver las llaves y yo me sentía fatal. Reset Canino cambió eso. Ahora nos despedimos sin dramas. Es otra vida."
     },
     {
       stars: "★★★★★",
       name: "Javier P.",
       city: "Santiago",
-      dog: "Galgo de 2 años",
-      image: "https://randomuser.me/api/portraits/men/12.jpg",
+      dog: "Dueño de un Galgo rescatado",
+      image: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=200&h=200&auto=format&fit=crop",
       text: "Lloraba en cuanto cerraba la puerta y nada funcionaba. Entender su lenguaje cambió todo. Ahora se queda dormido antes de que yo salga de la casa."
     }
   ];
@@ -327,20 +327,26 @@ export default function App() {
   return (
     <div className="min-h-screen">
       {/* 1) HERO SECTION */}
-      <Section className="pt-12 md:pt-20 pb-12">
+      <Section className="pt-8 md:pt-12 pb-12">
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
             <p className="text-primary font-bold uppercase tracking-[0.2em] mb-6 text-sm">
-              PARA PERROS CON ANSIEDAD POR SEPARACIÓN
+              PARA DUEÑOS QUE SE SIENTEN "REHENES" DE SU PERRO
             </p>
 
-            <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-dark">
-              ¿Tu perro destroza, ladra y entra en pánico cuando te vas?
+            <h1 className="text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-dark tracking-tight">
+              Deja de ser "rehén" de tu perro: El método para que aprenda a quedarse solo en calma
             </h1>
 
             <p className="text-xl md:text-2xl mt-4 text-gray-700 leading-relaxed max-w-4xl mx-auto">
               Reset Canino es el método de regulación emocional que en menos de 2 semanas ha ayudado a más de 1.200 dueños a salir de casa sin culpa, sin destrozos y sin miedo a lo que se van a encontrar al volver.
             </p>
+
+            <div className="flex flex-col items-center mt-10 mb-4">
+              <p className="text-dark font-medium text-sm max-w-md italic leading-relaxed">
+                "Hola, soy Julieta Márquez. He ayudado a más de 1,200 familias a transformar el pánico de sus perros en calma real. Mi misión es que recuperes tu libertad sin que tu perro sufra."
+              </p>
+            </div>
 
             {/* VSL VIDEO */}
             <div className="mt-10 mb-8 max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black">
@@ -361,11 +367,21 @@ export default function App() {
             </div>
 
             <div className="mt-10 mb-2">
+              <div className="mb-6 bg-red-50 border border-red-100 py-3 px-6 rounded-full inline-flex items-center gap-3">
+                <span className="relative flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <p className="text-red-600 font-bold text-sm md:text-base">
+                  ⚠️ OFERTA DE LANZAMIENTO: El descuento del 73% expira hoy
+                </p>
+              </div>
+
               <Button 
                 onClick={() => handleCheckout('hero_top_cta')} 
-                className="text-xl md:text-2xl py-6 max-w-xl mx-auto shadow-xl hover:scale-[1.02]"
+                className="text-xl md:text-2xl py-6 max-w-xl mx-auto shadow-xl hover:scale-[1.02] bg-gradient-to-r from-orange-500 to-orange-600 btn-shine"
               >
-                Acceder ahora por $14.97 USD — Garantía 15 días
+                SÍ, QUIERO SALIR DE CASA SIN CULPA
               </Button>
 
               {/* BONUS IA */}
@@ -550,8 +566,8 @@ export default function App() {
                     </div>
                   </div>
                   <div className="text-center md:text-left">
-                    <Button onClick={() => handleCheckout('offer_section')} className="text-xl py-6 w-full max-w-md shadow-xl">
-                      QUIERO EMPEZAR HOY POR $14.97 USD
+                    <Button onClick={() => handleCheckout('offer_section')} className="text-xl py-6 w-full max-w-md shadow-xl bg-gradient-to-r from-orange-500 to-orange-600 btn-shine">
+                      SÍ, QUIERO SALIR DE CASA SIN CULPA
                     </Button>
                     <SecurityBadges className="md:!justify-start" />
                   </div>
@@ -590,6 +606,13 @@ export default function App() {
 
       {/* 8) FAQ */}
       <Section bg="gray">
+        <Reveal className="text-center max-w-3xl mx-auto mb-16 bg-white p-10 rounded-[32px] border-2 border-primary/20 shadow-xl">
+          <h2 className="text-3xl md:text-4xl font-black mb-6 text-dark">¿Es Reset Canino para ti?</h2>
+          <p className="text-lg text-gray-text leading-relaxed">
+            Es para ti si te sientes <strong>"rehén"</strong> en tu propia casa y ya intentaste juguetes o cámaras sin éxito. Es para dueños que buscan una solución definitiva basada en la <strong>regulación emocional</strong>, no en parches temporales. Si quieres dejar de sentir culpa cada vez que cierras la puerta, este es tu lugar.
+          </p>
+        </Reveal>
+
         <Reveal className="text-center max-w-2xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Preguntas frecuentes</h2>
           <p className="text-xl text-gray-text">Todo lo que necesitas saber antes de empezar a ayudar a tu perro de verdad.</p>
@@ -639,7 +662,6 @@ export default function App() {
           </div>
           
           <div className="bg-white px-6 py-10 md:px-10 md:py-14 rounded-[28px] md:rounded-[40px] shadow-2xl text-dark border border-border relative overflow-hidden max-w-3xl mx-auto">
-            <div className="absolute top-0 left-0 w-full h-full bg-gray-bg/50 pointer-events-none" />
             
             <h3 className="text-3xl md:text-5xl font-bold mb-4 leading-tight text-dark">
               Por solo $14.97 USD
@@ -650,8 +672,8 @@ export default function App() {
               ⚠️ El precio sube a $27 USD pronto. Entra hoy y bloquea el precio más bajo.
             </p>
             
-            <Button variant="primary" onClick={() => handleCheckout('final_cta')} className="max-w-md mx-auto shadow-xl mb-6">
-              QUIERO QUE MI PERRO APRENDA A QUEDARSE SOLO
+            <Button variant="primary" onClick={() => handleCheckout('final_cta')} className="max-w-md mx-auto shadow-[0_0_30px_rgba(234,88,12,0.4)] mb-6 bg-gradient-to-r from-orange-500 to-orange-600 btn-shine border-2 border-white/20">
+              QUIERO QUE MI PERRO SE SIENTA SEGURO CUANDO NO ESTOY
             </Button>
 
             {/* BONUS IA FINAL */}
@@ -697,8 +719,8 @@ export default function App() {
             <p className="text-lg font-semibold text-center mt-8 text-red-500">
               Cada día que pasa sin actuar, tu perro sigue sufriendo… y tú eres quien puede cambiarlo.
             </p>
-            <Button onClick={() => handleCheckout('popup_cta')} className="text-xl py-6 max-w-md mx-auto shadow-xl">
-              QUIERO EMPEZAR AHORA
+            <Button onClick={() => handleCheckout('popup_cta')} className="text-xl py-6 max-w-md mx-auto shadow-xl bg-gradient-to-r from-orange-500 to-orange-600 btn-shine">
+              SÍ, QUIERO SALIR DE CASA SIN CULPA
             </Button>
             <SecurityBadges />
             <button
