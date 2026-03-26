@@ -23,7 +23,7 @@ declare global {
   }
 }
 
-const CHECKOUT_URL = "https://pay.hotmart.com/S104982269H";
+const CHECKOUT_URL = "https://pay.hotmart.com/V105096489F";
 
 // --- Components ---
 
