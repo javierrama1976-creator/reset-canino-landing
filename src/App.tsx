@@ -387,7 +387,9 @@ export default function App() {
             <p className="text-xl md:text-2xl font-bold text-dark mb-10">
               Sin castigos, sin gritos y sin seguir probando cosas que no funcionan.
             </p>
-
+<p className="text-base md:text-lg text-dark/80 mb-8">
+  Creado por <span className="font-semibold">Julieta Márquez</span> · 10+ años en conducta canina · +1,200 familias ayudadas
+</p>
             {/* VSL VIDEO */}
             <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black relative group cursor-pointer">
               <video 
