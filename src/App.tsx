@@ -604,11 +604,11 @@ export default function App() {
         <div className="max-w-5xl mx-auto text-center">
           <Reveal>
             <h1 className="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6 text-dark tracking-tight">
-              Tu perro llora, ladra y rompe cosas cada vez que te vas.
+              Tu perro llora, ladra y rompe cosas cada vez que sales de casa.
             </h1>
 
             <h2 className="text-2xl md:text-4xl font-bold mb-8 text-primary max-w-3xl mx-auto leading-tight">
-              Haz que tu perro aprenda a quedarse solo sin llorar, ladrar ni destruir la casa.
+              Deja de salir con culpa, volver con miedo y vivir pendiente de tu perro cada vez que cierras la puerta.
             </h2>
 
             <p className="text-xl md:text-2xl font-bold text-dark mb-10">
