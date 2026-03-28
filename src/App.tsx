@@ -13,7 +13,17 @@ import {
   Award,
   Globe,
   Users,
-  Play
+  Play,
+  ChevronLeft,
+  Phone,
+  Video,
+  ChevronRight,
+  Plus,
+  Image,
+  Mic,
+  Camera,
+  Smile,
+  Info
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -23,7 +33,7 @@ declare global {
   }
 }
 
-const CHECKOUT_URL = "https://pay.hotmart.com/V105096489F";
+const CHECKOUT_URL = "//mascotaequilibrada.com/cart/57475776184707:1";
 
 // --- Components ---
 
@@ -209,7 +219,224 @@ const SecurityBadges = ({ className = "" }: { className?: string }) => (
   </div>
 );
 
+// --- IPhone Chat Testimonial Carousel ---
+
+const IPhoneChatTestimonial = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      type: "instagram",
+      user: "Nuria G.",
+      handle: "en línea",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&h=150&auto=format&fit=crop",
+      messages: [
+        {
+          type: "text",
+          content: "Hola!<br /><br />Compré Reset Canino porque estaba bastante perdida con mi perro y necesitaba algo claro de verdad.<br /><br />Lo empecé a aplicar y en pocos días ya noté cambios en casa, pero sobre todo yo me sentí mucho más tranquila y con más claridad.<br /><br />Está súper bien explicado y se nota que está hecho para poder aplicarlo de verdad.<br /><br />Gracias, de verdad.",
+          time: "10:42 AM"
+        }
+      ]
+    },
+    {
+      type: "whatsapp",
+      user: "Mariana L.",
+      avatar: "https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=150&h=150&auto=format&fit=crop",
+      messages: [
+        {
+          type: "received",
+          content: "Compré Reset Canino porque sentía que cada día improvisaba con mi perro y eso me estaba agotando muchísimo.\n\nLo que más me gustó es que por fin entendí qué hacer, cómo hacerlo y por qué.\n\nSolo con empezar a aplicar lo del método, ya noté más calma en casa y mucha más seguridad por mi parte.\n\nDe verdad, ha sido una ayuda enorme.",
+          time: "19:28"
+        }
+      ]
+    },
+    {
+      type: "whatsapp",
+      user: "Laura M.",
+      avatar: "https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=150&h=150&auto=format&fit=crop",
+      messages: [
+        {
+          type: "received",
+          content: "Compré Reset Canino sin esperar demasiado y me sorprendió muchísimo.\n\nCon solo aplicar lo básico, mi perra empezó a estar mucho más tranquila y yo por fin dejé de sentir que hacía todo mal.\n\nMuy recomendable de verdad.",
+          time: "15:11"
+        }
+      ]
+    }
+  ];
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
+  const slide = slides[currentSlide];
+
+  return (
+    <div className="flex flex-col items-center py-12 px-4 bg-cream/30">
+      <div className="relative w-full max-w-[320px] md:max-w-[360px] aspect-[9/19] bg-black rounded-[50px] border-[8px] border-gray-800 shadow-[0_0_50px_rgba(0,0,0,0.2)] overflow-hidden">
+        {/* Dynamic Island */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-7 bg-black rounded-b-2xl z-20 flex items-center justify-center">
+          <div className="w-10 h-1 bg-gray-900 rounded-full"></div>
+        </div>
+
+        {/* Screen Content */}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentSlide}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 bg-white flex flex-col font-sans"
+          >
+            {slide.type === "instagram" ? (
+              <>
+                {/* Instagram Header */}
+                <div className="pt-10 pb-3 px-4 border-b border-gray-100 flex items-center justify-between bg-white/90 backdrop-blur-md sticky top-0 z-10">
+                  <div className="flex items-center gap-3">
+                    <ChevronLeft className="w-6 h-6 text-gray-900" />
+                    <div className="w-8 h-8 rounded-full overflow-hidden border border-gray-100">
+                      <img src={slide.avatar} alt={slide.user} className="w-full h-full object-cover" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-gray-900 leading-none">{slide.user}</p>
+                      <p className="text-[10px] text-gray-500 font-medium">{slide.handle}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 text-gray-900">
+                    <Phone className="w-5 h-5" />
+                    <Video className="w-5 h-5" />
+                    <Info className="w-5 h-5" />
+                  </div>
+                </div>
+
+                {/* Instagram Body */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-white">
+                  {slide.messages.map((msg, i) => (
+                    <div key={i} className={`flex flex-col ${msg.type === 'sent' ? 'items-end' : 'items-start'} w-full`}>
+                      {msg.type === "image" ? (
+                        <div className="max-w-[85%] rounded-[22px] overflow-hidden shadow-sm border border-gray-100">
+                          <img src={msg.content} alt="Shared" className="w-full h-auto object-cover" />
+                        </div>
+                      ) : (
+                        <div className={`${msg.type === 'sent' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white border border-gray-100 text-gray-800 rounded-tl-none'} p-4 rounded-[22px] shadow-sm text-sm leading-relaxed max-w-[85%]`} dangerouslySetInnerHTML={{ __html: msg.content || "" }} />
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Instagram Footer */}
+                <div className="p-3 bg-white border-t border-gray-100 flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center">
+                    <Camera className="w-4 h-4 text-white fill-white" />
+                  </div>
+                  <div className="flex-1 bg-gray-50 border border-gray-100 rounded-full px-4 py-2 flex items-center justify-between">
+                    <span className="text-xs text-gray-400">Envía un mensaje...</span>
+                    <div className="flex items-center gap-2 text-gray-900">
+                      <Mic className="w-4 h-4" />
+                      <Image className="w-4 h-4" />
+                      <Plus className="w-4 h-4" />
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* WhatsApp Header */}
+                <div className="pt-10 pb-3 px-3 flex items-center justify-between bg-[#075e54] text-white sticky top-0 z-10">
+                  <div className="flex items-center gap-1">
+                    <ChevronLeft className="w-6 h-6" />
+                    <div className="w-9 h-9 rounded-full overflow-hidden bg-gray-300">
+                      <img src={slide.avatar} alt={slide.user} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="ml-1">
+                      <p className="text-sm font-bold leading-none">{slide.user}</p>
+                      <p className="text-[10px] opacity-80 mt-1">en línea</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-5">
+                    <Video className="w-5 h-5 fill-white" />
+                    <Phone className="w-5 h-5 fill-white" />
+                    <div className="flex flex-col gap-1">
+                      <div className="w-1 h-1 bg-white rounded-full"></div>
+                      <div className="w-1 h-1 bg-white rounded-full"></div>
+                      <div className="w-1 h-1 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* WhatsApp Body */}
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-[#e5ddd5] relative">
+                  {/* WhatsApp Background Pattern Overlay (Simulated) */}
+                  <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                  
+                  <div className="flex justify-center relative z-10">
+                    <span className="bg-[#dcf8c6] text-[10px] text-gray-600 px-3 py-1 rounded-lg shadow-sm font-medium uppercase tracking-wide">Hoy</span>
+                  </div>
+
+                  {slide.messages.map((msg, i) => (
+                    <div key={i} className={`flex ${msg.type === 'sent' ? 'justify-end' : 'justify-start'} relative z-10`}>
+                      <div className={`max-w-[85%] p-2.5 rounded-lg shadow-sm relative ${msg.type === 'sent' ? 'bg-[#dcf8c6] rounded-tr-none' : 'bg-white rounded-tl-none'}`}>
+                        <p className="text-sm text-gray-800 leading-snug pr-8 whitespace-pre-wrap">{msg.content}</p>
+                        <div className="absolute bottom-1 right-1 flex items-center gap-1">
+                          <span className="text-[9px] text-gray-500">{msg.time}</span>
+                          {msg.type === 'sent' && (
+                            <div className="flex">
+                              <CheckCircle2 className="w-3 h-3 text-blue-500" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* WhatsApp Footer */}
+                <div className="p-2 bg-[#f0f0f0] flex items-center gap-2">
+                  <Plus className="w-6 h-6 text-gray-600" />
+                  <div className="flex-1 bg-white rounded-full px-4 py-2 flex items-center justify-between shadow-sm">
+                    <span className="text-sm text-gray-400">Mensaje</span>
+                    <div className="flex items-center gap-3 text-gray-500">
+                      <Image className="w-5 h-5" />
+                      <Camera className="w-5 h-5" />
+                    </div>
+                  </div>
+                  <div className="w-10 h-10 rounded-full bg-[#075e54] flex items-center justify-center shadow-md">
+                    <Mic className="w-5 h-5 text-white" />
+                  </div>
+                </div>
+              </>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Carousel Controls Overlay */}
+        <div className="absolute inset-y-0 left-0 flex items-center -ml-4 z-30">
+          <button onClick={prevSlide} className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-dark hover:text-primary transition-all active:scale-95">
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+        </div>
+        <div className="absolute inset-y-0 right-0 flex items-center -mr-4 z-30">
+          <button onClick={nextSlide} className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-dark hover:text-primary transition-all active:scale-95">
+            <ChevronRight className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
+      {/* Carousel Dots */}
+      <div className="flex gap-2 mt-8">
+        {slides.map((_, i) => (
+          <button 
+            key={i} 
+            onClick={() => setCurrentSlide(i)}
+            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentSlide === i ? 'bg-primary w-6' : 'bg-gray-300'}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // --- Main App ---
+
 
 const TestimonialCarousel = () => {
   const testimonials = [
@@ -387,9 +614,7 @@ export default function App() {
             <p className="text-xl md:text-2xl font-bold text-dark mb-10">
               Sin castigos, sin gritos y sin seguir probando cosas que no funcionan.
             </p>
-<p className="text-base md:text-lg text-dark/80 mb-8">
-  Creado por <span className="font-semibold">Julieta Márquez</span> · 10+ años en conducta canina · +1,200 familias ayudadas
-</p>
+
             {/* VSL VIDEO */}
             <div className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black relative group cursor-pointer">
               <video 
@@ -663,7 +888,19 @@ export default function App() {
         </Reveal>
       </Section>
 
+      {/* 7) TESTIMONIOS CHAT */}
+      <Section bg="white" className="pb-0">
+        <Reveal className="text-center max-w-3xl mx-auto mb-8">
+          <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-4">
+            Lo que dicen nuestros alumnos
+          </h2>
+          <p className="text-gray-text text-lg">Estos son algunos de los mensajes que recibimos a diario</p>
+        </Reveal>
+        <IPhoneChatTestimonial />
+      </Section>
+
       {/* 7) TESTIMONIOS */}
+
       <Section bg="cream" className="overflow-hidden">
         <Reveal className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-4">
