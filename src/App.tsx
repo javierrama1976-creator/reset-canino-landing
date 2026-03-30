@@ -33,7 +33,7 @@ declare global {
   }
 }
 
-const CHECKOUT_URL = "https://pay.hotmart.com/V105096489F";
+const CHECKOUT_URL = "https://pay.hotmart.com/V105096489F?checkoutMode=10&bid=1774912147583";
 
 // --- Components ---
 
