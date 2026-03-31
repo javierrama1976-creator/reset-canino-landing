@@ -829,9 +829,9 @@ export default function App() {
       <Section bg="white" className="pb-0">
         <Reveal className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-4">
-            Lo que dicen nuestros alumnos
+            Lo que dicen dueños que ya aplicaron el método
           </h2>
-          <p className="text-gray-text text-lg">Estos son algunos de los mensajes que recibimos a diario</p>
+          <p className="text-gray-text text-lg">Mensajes reales de personas que empezaron a recuperar la calma en casa</p>
         </Reveal>
         
         <div className="max-w-4xl mx-auto px-4 grid md:grid-cols-2 gap-8">
@@ -849,21 +849,6 @@ export default function App() {
             reaction="🙏"
             avatar="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=150&h=150&auto=format&fit=crop"
             message="Lo mejor de todo es el acompañamiento. He probado mil adiestradores y ninguno me explicó que el problema era emocional y no de obediencia. Ver a mi perra tranquila cuando cojo las llaves es la mayor paz que he tenido en años. Ojalá os hubiera encontrado antes."
-          />
-        </div>
-
-        <div className="max-w-md mx-auto px-4 mt-8">
-          <WhatsAppTestimonial 
-            group="Yami Gutiérrez"
-            user="Yami Gutiérrez"
-            time="19:46"
-            avatar="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=150&h=150&auto=format&fit=crop"
-            reaction="🔥"
-            reply={{
-              user: "Tú",
-              text: "Este es un mensajito en el otro grupo, el reto hoy está cerrado pero con Reset Canino estamos trabajando en mejorar..."
-            }}
-            message={"Lo recomiendo mil veces porque Reset Canino no es solo adiestramiento, es entender a tu perro. Lo que hace la diferencia es el apoyo constante y saber que no estás sola cuando las cosas se ponen difíciles.\n\nGracias a este método, por fin puedo salir de casa sin que mi perro sufra y yo sin sentirme culpable."}
           />
         </div>
       </Section>
