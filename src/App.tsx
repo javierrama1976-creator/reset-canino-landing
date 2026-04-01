@@ -532,14 +532,6 @@ export default function App() {
             </p>
           </div>
 
-          <div className="p-8 bg-red-50 rounded-[32px] border border-red-100">
-            <p className="text-2xl font-bold text-red-600 mb-4">
-              Tu perro no se acostumbra solo. Se hunde más.
-            </p>
-            <p className="text-lg text-gray-text leading-relaxed">
-              Cada vez que entra en crisis, su cerebro aprende que estar solo es un peligro real. Si no cambias el mecanismo, mañana vivirás exactamente lo mismo.
-            </p>
-          </div>
         </Reveal>
       </Section>
 
@@ -550,18 +542,6 @@ export default function App() {
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-dark mb-8 tracking-tight">
               No necesitas cansarlo más. Necesitas enseñarle a estar solo.
             </h2>
-            
-            <div className="max-w-2xl mx-auto text-left mb-12 bg-white p-8 rounded-[32px] border border-border/50 shadow-sm">
-              <p className="text-lg text-gray-text font-bold mb-4">Por qué los métodos comunes fallan:</p>
-              <ul className="space-y-3 mb-6">
-                {["Más juguetes", "Más paseos", "Más gritos", "Esperar a que se le pase"].map((item, i) => (
-                  <li key={i} className="flex items-center gap-3 text-lg text-dark font-medium">
-                    <span className="text-red-500 text-xl">✕</span> {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xl text-primary font-bold">La ansiedad no se corrige distrayendo a tu perro. Se corrige reentrenando cómo vive tu ausencia.</p>
-            </div>
 
             <div className="max-w-4xl mx-auto relative group">
               <div className="relative bg-dark text-white p-10 md:p-16 rounded-[40px] shadow-2xl border border-white/10">
