@@ -509,50 +509,47 @@ export default function App() {
                 <span className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-green" /> Pago 100% Seguro</span>
               </div>
             </div>
-          </Reveal>
-        </div>
-      </Section>
 
-      {/* 2) PROBLEMA */}
-      <Section bg="white">
-        <Reveal className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-10 leading-tight">
-            Vivir con un perro que no puede quedarse solo <span className="text-primary">te está robando la paz.</span>
-          </h2>
-          
-          <div className="space-y-4 text-left md:text-center mb-12">
-            <p className="text-xl text-dark font-medium leading-relaxed">
-              • Sales de casa y a los pocos minutos ya estás pensando: “¿ya empezó?”
-            </p>
-            <p className="text-xl text-dark font-medium leading-relaxed">
-              • Revisas el celular esperando no encontrar otro desastre.
-            </p>
-            <p className="text-xl text-dark font-medium leading-relaxed">
-              • Vuelves con el cuerpo tenso, escuchando si hay quejas de vecinos.
-            </p>
-          </div>
+            {/* PARA QUIÉN ES (Moved to Hero) */}
+            <div className="mt-16 w-full max-w-5xl mx-auto grid md:grid-cols-2 gap-6 text-left">
+              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-border shadow-sm">
+                <h3 className="text-2xl font-serif font-bold mb-6 text-dark flex items-center gap-2">
+                  <CheckCircle2 className="w-6 h-6 text-primary" />
+                  Esto es para ti si…
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "Tu perro ladra, llora, aúlla o destruye cuando te vas",
+                    "Ya probaste consejos sueltos y nada cambió de verdad",
+                    "Sales de casa con culpa y vuelves con tensión",
+                    "Tienes miedo de que el problema empeore o los vecinos exploten",
+                    "Quieres ayudar a tu perro sin gritarle ni castigarle"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-base md:text-lg text-dark font-medium leading-tight">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-        </Reveal>
-      </Section>
-
-      {/* 3) TRANSFORMACIÓN / MECANISMO */}
-      <Section bg="cream">
-        <div className="max-w-4xl mx-auto text-center">
-          <Reveal>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-dark mb-8 tracking-tight">
-              No necesitas cansarlo más. Necesitas enseñarle a estar solo.
-            </h2>
-
-            <div className="max-w-4xl mx-auto relative group">
-              <div className="relative bg-dark text-white p-10 md:p-16 rounded-[40px] shadow-2xl border border-white/10">
-                <div className="relative z-10">
-                  <h3 className="text-3xl md:text-5xl font-serif font-bold mb-4 leading-tight text-center">
-                    Eso es exactamente lo que trabaja <span className="text-primary">Reset Canino:</span>
-                  </h3>
-                  <p className="text-xl font-medium leading-relaxed opacity-90 text-center">
-                    Un proceso <span className="text-white font-bold">simple y guiado</span> para que tu perro deje de entrar en crisis cuando te vas.
-                  </p>
-                </div>
+              <div className="bg-dark text-white p-8 rounded-[32px] shadow-xl">
+                <h3 className="text-2xl font-serif font-bold mb-6 text-white flex items-center gap-2">
+                  <span className="text-red-500 text-2xl leading-none">✕</span>
+                  Esto NO es para ti si…
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "Quieres una solución mágica sin aplicar nada",
+                    "Buscas “dominancia”, castigo o control por miedo",
+                    "Prefieres seguir improvisando antes que corregir el problema de raíz"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3 text-base md:text-lg font-medium leading-tight opacity-90">
+                      <span className="text-red-500 font-bold shrink-0">✕</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </Reveal>
@@ -660,45 +657,6 @@ export default function App() {
             </div>
           </div>
         </Reveal>
-      </Section>
-
-      {/* 4.7) PARA QUIÉN ES */}
-      <Section bg="white">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-          <Reveal className="bg-cream p-8 md:p-12 rounded-[40px] border border-border shadow-sm">
-            <h3 className="text-3xl font-serif font-bold mb-8 text-dark">Esto es para ti si…</h3>
-            <ul className="space-y-4">
-              {[
-                "Tu perro ladra, llora, aúlla o destruye cuando te vas",
-                "Ya probaste consejos sueltos y nada cambió de verdad",
-                "Sales de casa con culpa y vuelves con tensión",
-                "Tienes miedo de que el problema empeore o los vecinos exploten",
-                "Quieres ayudar a tu perro sin gritarle ni castigarle"
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-lg text-dark font-medium leading-tight">
-                  <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal className="bg-dark text-white p-8 md:p-12 rounded-[40px] shadow-xl">
-            <h3 className="text-3xl font-serif font-bold mb-8 text-white">Esto NO es para ti si…</h3>
-            <ul className="space-y-4">
-              {[
-                "Quieres una solución mágica sin aplicar nada",
-                "Buscas “dominancia”, castigo o control por miedo",
-                "Prefieres seguir improvisando antes que corregir el problema de raíz"
-              ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-lg font-medium leading-tight opacity-90">
-                  <span className="text-red-500 text-2xl leading-none shrink-0">✕</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
       </Section>
 
       {/* 5) QUÉ RECIBES */}
@@ -894,21 +852,6 @@ export default function App() {
             reaction="🙏"
             avatar="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=150&h=150&auto=format&fit=crop"
             message="Lo mejor de todo es el acompañamiento. He probado mil adiestradores y ninguno me explicó que el problema era emocional y no de obediencia. Ver a mi perra tranquila cuando cojo las llaves es la mayor paz que he tenido en años. Ojalá os hubiera encontrado antes."
-          />
-        </div>
-
-        <div className="max-w-md mx-auto px-4 mt-8">
-          <WhatsAppTestimonial 
-            group="Yami Gutiérrez"
-            user="Yami Gutiérrez"
-            time="19:46"
-            avatar="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=150&h=150&auto=format&fit=crop"
-            reaction="🔥"
-            reply={{
-              user: "Tú",
-              text: "Este es un mensajito en el otro grupo, el reto hoy está cerrado pero con Reset Canino estamos trabajando en mejorar..."
-            }}
-            message={"Lo recomiendo mil veces porque Reset Canino no es solo adiestramiento, es entender a tu perro. Lo que hace la diferencia es el apoyo constante y saber que no estás sola cuando las cosas se ponen difíciles.\n\nGracias a este método, por fin puedo salir de casa sin que mi perro sufra y yo sin sentirme culpable."}
           />
         </div>
       </Section>
