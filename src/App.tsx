@@ -35,6 +35,32 @@ declare global {
 
 const CHECKOUT_URL = "https://pay.hotmart.com/V105096489F?checkoutMode=10&bid=1774912147583";
 
+const getDayName = () => {
+  const days = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
+  return days[new Date().getDay()];
+};
+
+const CountdownTimer = () => {
+  const [timeLeft, setTimeLeft] = useState(15 * 60);
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [timeLeft]);
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+
+  return (
+    <div className="text-5xl font-black font-mono tracking-widest">
+      {String(minutes).padStart(2, '0')} : {String(seconds).padStart(2, '0')}
+    </div>
+  );
+};
+
 // --- Components ---
 
 const Button = ({ 
@@ -457,39 +483,15 @@ export default function App() {
               Sin castigos, sin gritos y sin seguir improvisando cada vez que cierras la puerta. Solo un sistema claro para que tu perro aprenda a quedarse solo — incluso si ya entra en pánico apenas te ve salir.
             </p>
 
-            {/* VSL VIDEO */}
-            <div className="mb-12 max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black relative group cursor-pointer">
-              <video 
-                className="w-full h-auto block"
-                controls
-                playsInline
-                poster="/poster.jpg"
-                preload="metadata"
-                onPlay={(e) => e.currentTarget.parentElement?.classList.add('is-playing')}
-                onPause={(e) => e.currentTarget.parentElement?.classList.remove('is-playing')}
-                onEnded={(e) => e.currentTarget.parentElement?.classList.remove('is-playing')}
-              >
-                <source src="/vsl.mp4" type="video/mp4" />
-                Tu navegador no soporta el elemento de video.
-              </video>
-              
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors pointer-events-none group-[.is-playing]:hidden">
-                <div className="w-20 h-20 md:w-24 md:h-24 bg-primary rounded-full flex items-center justify-center shadow-2xl transform transition-transform group-hover:scale-110">
-                  <Play className="w-10 h-10 md:w-12 md:h-12 text-white fill-white ml-1" />
-                </div>
-              </div>
+            {/* Hero Mockup Image */}
+            <div className="mb-12 max-w-4xl mx-auto">
+              <img 
+                src="/imagen hero.png" 
+                alt="Reset Canino Mockup" 
+                className="w-full h-auto rounded-2xl shadow-xl"
+                referrerPolicy="no-referrer"
+              />
             </div>
-
-            {/* Urgency Badge */}
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600 text-white text-sm font-bold mb-8 shadow-lg animate-pulse"
-            >
-              <AlertCircle className="w-4 h-4" />
-              ⚠️ 73% OFF DISPONIBLE HOY
-            </motion.div>
 
             {/* CTA */}
             <div className="flex flex-col items-center gap-6">
@@ -614,6 +616,29 @@ export default function App() {
       {/* 4.5) AUTORIDAD */}
       <Section bg="cream">
         <Reveal className="max-w-4xl mx-auto">
+          {/* VSL VIDEO */}
+          <div className="mb-16 max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black relative group cursor-pointer">
+            <video 
+              className="w-full h-auto block"
+              controls
+              playsInline
+              poster="/poster.jpg"
+              preload="metadata"
+              onPlay={(e) => e.currentTarget.parentElement?.classList.add('is-playing')}
+              onPause={(e) => e.currentTarget.parentElement?.classList.remove('is-playing')}
+              onEnded={(e) => e.currentTarget.parentElement?.classList.remove('is-playing')}
+            >
+              <source src="/vsl.mp4" type="video/mp4" />
+              Tu navegador no soporta el elemento de video.
+            </video>
+            
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors pointer-events-none group-[.is-playing]:hidden">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-primary rounded-full flex items-center justify-center shadow-2xl transform transition-transform group-hover:scale-110">
+                <Play className="w-10 h-10 md:w-12 md:h-12 text-white fill-white ml-1" />
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col md:flex-row items-center gap-12 bg-white p-10 md:p-16 rounded-[40px] border border-border shadow-xl">
             <div className="shrink-0">
               <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-primary p-1 shadow-lg">
@@ -780,12 +805,52 @@ export default function App() {
                   ))}
                 </ul>
 
-                <div className="bg-gray-bg p-6 rounded-2xl border border-border text-center">
-                  <p className="text-sm text-gray-text font-bold mb-1 line-through opacity-50">Valor total: $70 USD</p>
-                  <p className="text-4xl font-black text-dark tracking-tight mb-2">
-                    Hoy: solo $14.97 USD
-                  </p>
-                  <p className="text-xs text-primary font-bold uppercase tracking-widest">Pago único • Acceso de por vida</p>
+                <div className="text-center mb-8">
+                  <div className="flex justify-center mb-2">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />)}
+                    <span className="ml-2 text-xs font-bold text-gray-text">5/5</span>
+                  </div>
+                  <div className="flex items-center justify-center gap-4 mb-4">
+                    <span className="text-xl text-gray-text line-through opacity-50 font-bold">$70 USD</span>
+                    <span className="text-4xl font-black text-dark">$14.97 USD</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-dark text-white text-xs font-bold mb-8">
+                    <Zap className="w-3 h-3 fill-primary text-primary" />
+                    Oferta -73% OFF sólo 20 cupos
+                  </div>
+
+                  <div className="bg-red-900 text-white p-8 rounded-[32px] shadow-2xl mb-6 relative overflow-hidden">
+                    {/* Decorative background elements for the box */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full -ml-16 -mb-16 blur-2xl"></div>
+                    
+                    <h4 className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tight relative z-10">
+                      OFERTA HOY {getDayName()} !!!
+                    </h4>
+                    
+                    <div className="space-y-1 mb-8 opacity-90 relative z-10">
+                      <p className="text-sm font-bold leading-tight">Reserva válida por 15 minutos.</p>
+                      <p className="text-sm leading-tight">Si no accedés, tu descuento pasa a la siguiente persona.</p>
+                    </div>
+                    
+                    <div className="relative z-10">
+                      <CountdownTimer />
+                      <div className="flex justify-center gap-12 mt-2 text-[10px] uppercase font-bold tracking-widest opacity-70">
+                        <span>Minutos</span>
+                        <span>Segundos</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 mb-8">
+                    <p className="flex items-center justify-center gap-2 text-primary font-black animate-pulse text-lg">
+                      <Zap className="w-5 h-5 fill-primary" />
+                      Últimos 3 Cupos en Oferta!
+                    </p>
+                    <p className="text-xs text-gray-text font-bold uppercase tracking-widest">
+                      Pago único • Acceso de por vida
+                    </p>
+                  </div>
                 </div>
                 
                 <Button variant="primary" onClick={() => handleCheckout('offer_section')} className="w-full shadow-lg bg-gradient-to-r from-orange-500 to-orange-600 btn-shine border-2 border-white/20 text-xl py-8">
@@ -829,9 +894,9 @@ export default function App() {
       <Section bg="white" className="pb-0">
         <Reveal className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl md:text-5xl font-serif font-bold text-center mb-4">
-            Lo que dicen dueños que ya aplicaron el método
+            Lo que dicen nuestros alumnos
           </h2>
-          <p className="text-gray-text text-lg">Mensajes reales de personas que empezaron a recuperar la calma en casa</p>
+          <p className="text-gray-text text-lg">Estos son algunos de los mensajes que recibimos a diario</p>
         </Reveal>
         
         <div className="max-w-4xl mx-auto px-4 grid md:grid-cols-2 gap-8">
@@ -849,6 +914,21 @@ export default function App() {
             reaction="🙏"
             avatar="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=150&h=150&auto=format&fit=crop"
             message="Lo mejor de todo es el acompañamiento. He probado mil adiestradores y ninguno me explicó que el problema era emocional y no de obediencia. Ver a mi perra tranquila cuando cojo las llaves es la mayor paz que he tenido en años. Ojalá os hubiera encontrado antes."
+          />
+        </div>
+
+        <div className="max-w-md mx-auto px-4 mt-8">
+          <WhatsAppTestimonial 
+            group="Yami Gutiérrez"
+            user="Yami Gutiérrez"
+            time="19:46"
+            avatar="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=150&h=150&auto=format&fit=crop"
+            reaction="🔥"
+            reply={{
+              user: "Tú",
+              text: "Este es un mensajito en el otro grupo, el reto hoy está cerrado pero con Reset Canino estamos trabajando en mejorar..."
+            }}
+            message={"Lo recomiendo mil veces porque Reset Canino no es solo adiestramiento, es entender a tu perro. Lo que hace la diferencia es el apoyo constante y saber que no estás sola cuando las cosas se ponen difíciles.\n\nGracias a este método, por fin puedo salir de casa sin que mi perro sufra y yo sin sentirme culpable."}
           />
         </div>
       </Section>
