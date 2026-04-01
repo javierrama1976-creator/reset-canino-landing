@@ -809,21 +809,9 @@ export default function App() {
           
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 text-dark">Garantía de 15 días</h2>
           
-          <div className="space-y-6 text-lg md:text-xl text-dark font-medium leading-relaxed mb-12">
+          <div className="space-y-6 text-lg md:text-xl text-dark font-medium leading-relaxed">
             <p>Si aplicas el método y sientes que tu perro no está más tranquilo cuando te vas, te devolvemos tu dinero.</p>
             <p className="font-bold">Sin preguntas. Sin complicaciones.</p>
-          </div>
-
-          <div className="max-w-xl mx-auto">
-            <Button 
-              variant="primary" 
-              onClick={() => handleCheckout('guarantee_section')} 
-              className="w-full text-xl md:text-2xl py-8 shadow-lg bg-gradient-to-r from-primary to-orange-600 btn-shine border-b-4 border-orange-800"
-            >
-              QUIERO SALIR DE CASA SIN CULPA
-              <CheckCircle2 className="w-6 h-6 ml-2" />
-            </Button>
-            <SecurityBadges />
           </div>
         </Reveal>
       </Section>
