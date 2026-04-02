@@ -616,52 +616,6 @@ export default function App() {
         </div>
       </Section>
 
-      {/* 4.5) AUTORIDAD */}
-      <Section bg="cream">
-        <Reveal className="max-w-4xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-12 bg-white p-10 md:p-16 rounded-[40px] border border-border shadow-xl">
-            <div className="shrink-0">
-              <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-primary p-1 shadow-lg">
-                <img 
-                  src="/experta.png" 
-                  alt="Julieta Márquez" 
-                  className="w-full h-full object-cover rounded-full"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-            <div className="text-center md:text-left space-y-6">
-              <h3 className="text-3xl md:text-4xl font-serif font-bold text-dark">Hola, soy Julieta Márquez</h3>
-              
-              <div className="space-y-4 text-lg md:text-xl text-gray-text leading-relaxed font-medium">
-                <p className="text-dark font-bold italic">
-                  Y no, no creo en castigar a un perro que en realidad está colapsando por dentro.
-                </p>
-                <p>
-                  Durante los últimos 10 años he trabajado con perros que ladran, lloran, destruyen, se desesperan o directamente entran en pánico cuando se quedan solos.
-                </p>
-                <p>
-                  He ayudado a <span className="text-primary font-bold">más de 1,200 familias</span> a recuperar la calma en casa sin romper el vínculo con su perro.
-                </p>
-                <p>
-                  Mi enfoque no es la obediencia por miedo.<br />
-                  Es enseñar al perro a <span className="text-dark font-bold underline decoration-primary/30">regularse emocionalmente de verdad</span>.
-                </p>
-                <p className="text-dark font-bold">
-                  Porque cuando entiendes el problema real,<br />
-                  por fin puedes empezar a resolverlo.
-                </p>
-              </div>
-
-              <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-6">
-                <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold border border-primary/20">10+ Años de Experiencia</span>
-                <span className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold border border-primary/20">Especialista en Etología</span>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </Section>
-
       {/* 5) QUÉ RECIBES */}
       <Section id="oferta" bg="cream">
         <Reveal className="text-center max-w-4xl mx-auto mb-12">
