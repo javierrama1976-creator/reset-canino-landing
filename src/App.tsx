@@ -597,6 +597,21 @@ export default function App() {
               </div>
             </div>
 
+            {/* COPY PUENTE */}
+            <div className="mt-20 max-w-3xl mx-auto text-center px-4 space-y-6">
+              <h3 className="text-2xl md:text-4xl font-serif font-bold text-dark leading-tight">
+                El problema no es que tu perro “esté mal”
+              </h3>
+              <div className="text-lg md:text-xl text-gray-text leading-relaxed space-y-4">
+                <p>
+                  El problema es que probablemente has estado intentando ayudarlo con consejos sueltos, soluciones a medias o métodos que no atacan la raíz.
+                </p>
+                <p className="font-bold text-dark">
+                  Y cuando no hay un sistema claro, lo normal es que el problema vuelva… o empeore.
+                </p>
+              </div>
+            </div>
+
             <div className="mt-16 max-w-3xl mx-auto text-left space-y-8 bg-white p-10 md:p-16 rounded-[40px] border border-border shadow-xl">
               <h3 className="text-3xl md:text-4xl font-serif font-bold text-dark text-center mb-10">
                 ¿Qué vas a lograr con Reset Canino?
