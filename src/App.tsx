@@ -401,6 +401,12 @@ const TestimonialCarousel = () => {
                 </div>
               </div>
 
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 text-primary fill-primary" />
+                ))}
+              </div>
+
               <h4 className="text-2xl font-black tracking-[0.2em] uppercase text-white mb-8">{t.name}</h4>
 
               <div className="flex-grow space-y-6 mb-8">
@@ -466,22 +472,31 @@ export default function App() {
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
-          <Reveal className="text-center">
+          <div className="text-center">
             {/* Main Title */}
-            <h1 className="text-5xl md:text-8xl font-serif font-bold leading-[0.9] mb-8 text-dark tracking-tighter uppercase">
-              Sal de casa sin que <br className="hidden md:block" />
-              <span className="text-primary">tu perro colapse</span>
+            <h1 className="text-4xl md:text-7xl font-serif font-bold leading-tight mb-6 text-dark tracking-tight">
+              Sales de casa… <br className="hidden md:block" />
+              y tu perro <span className="text-primary">se derrumba</span> detrás de la puerta
             </h1>
 
             {/* Subtitle */}
-            <h2 className="text-2xl md:text-4xl font-bold mb-8 text-dark/90 max-w-4xl mx-auto leading-tight">
-              El método para frenar lloros, ladridos y destrozos por ansiedad en solo 7 días
+            <h2 className="text-2xl md:text-4xl font-bold mb-10 text-dark/90 max-w-4xl mx-auto leading-tight">
+              El método para frenar lloros, ladridos, destrozos y ansiedad por separación en solo 7 días
             </h2>
 
             {/* Description */}
-            <p className="text-lg md:text-xl text-gray-text mb-12 max-w-3xl mx-auto leading-relaxed">
-              Sin castigos, sin gritos y sin seguir improvisando cada vez que cierras la puerta. Solo un sistema claro para que tu perro aprenda a quedarse solo — incluso si ya entra en pánico apenas te ve salir.
-            </p>
+            <div className="text-lg md:text-xl text-gray-text mb-12 max-w-3xl mx-auto leading-relaxed space-y-6">
+              <div className="space-y-4">
+                <p>Sin castigos, sin empeorar su ansiedad y sin seguir saliendo con culpa cada vez que coges las llaves.</p>
+                <p className="text-dark font-bold">Solo un sistema claro para que tu perro aprenda a quedarse solo sin sufrir — incluso si hoy entra en crisis apenas te ve salir.</p>
+              </div>
+
+              <div className="pt-8 border-t border-primary/10">
+                <p className="text-2xl md:text-3xl font-serif font-bold text-dark mb-2 italic">Cierras la puerta… y empieza el infierno.</p>
+                <p className="text-xl md:text-2xl font-bold text-primary mb-4 tracking-widest uppercase">Ladridos. Llanto. Arañazos. Culpa.</p>
+                <p className="text-lg md:text-xl text-dark font-medium italic">Y tú fuera, fingiendo calma mientras por dentro sabes que esto no puede seguir así.</p>
+              </div>
+            </div>
 
             {/* Hero Mockup Image */}
             <div className="mb-12 max-w-4xl mx-auto">
@@ -493,129 +508,117 @@ export default function App() {
               />
             </div>
 
-            {/* CTA */}
-            <div className="flex flex-col items-center gap-6">
-              <Button 
-                onClick={() => handleCheckout('hero_top_cta')} 
-                className="text-xl md:text-3xl py-10 px-12 max-w-2xl mx-auto shadow-[0_20px_50px_rgba(232,160,64,0.3)] hover:scale-[1.02] bg-gradient-to-r from-primary to-orange-600 btn-shine border-b-8 border-orange-800 rounded-[24px] uppercase tracking-tight"
-              >
-                ¡QUIERO EL MÉTODO AHORA!
-                <Zap className="w-8 h-8 ml-2 fill-white" />
-              </Button>
-              
-              <div className="flex items-center gap-4 text-gray-text font-bold text-sm uppercase tracking-widest">
-                <span className="flex items-center gap-1.5"><ShieldCheck className="w-4 h-4 text-green" /> Garantía total</span>
-                <span className="w-1 h-1 bg-border rounded-full"></span>
-                <span className="flex items-center gap-1.5"><Lock className="w-4 h-4 text-green" /> Pago 100% Seguro</span>
-              </div>
-            </div>
-
-            {/* PARA QUIÉN ES (Moved to Hero) */}
-            <div className="mt-16 w-full max-w-5xl mx-auto grid md:grid-cols-2 gap-6 text-left">
-              <div className="bg-white/80 backdrop-blur-sm p-8 rounded-[32px] border border-border shadow-sm">
-                <h3 className="text-2xl font-serif font-bold mb-6 text-dark flex items-center gap-2">
-                  <CheckCircle2 className="w-6 h-6 text-primary" />
-                  Esto es para ti si…
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    "Tu perro ladra, llora, aúlla o destruye cuando te vas",
-                    "Ya probaste consejos sueltos y nada cambió de verdad",
-                    "Sales de casa con culpa y vuelves con tensión",
-                    "Tienes miedo de que el problema empeore o los vecinos exploten",
-                    "Quieres ayudar a tu perro sin gritarle ni castigarle"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-base md:text-lg text-dark font-medium leading-tight">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-dark text-white p-8 rounded-[32px] shadow-xl">
-                <h3 className="text-2xl font-serif font-bold mb-6 text-white flex items-center gap-2">
-                  <span className="text-red-500 text-2xl leading-none">✕</span>
-                  Esto NO es para ti si…
-                </h3>
-                <ul className="space-y-4">
-                  {[
-                    "Quieres una solución mágica sin aplicar nada",
-                    "Buscas “dominancia”, castigo o control por miedo",
-                    "Prefieres seguir improvisando antes que corregir el problema de raíz"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-base md:text-lg font-medium leading-tight opacity-90">
-                      <span className="text-red-500 font-bold shrink-0">✕</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* 4) SOLUCIÓN */}
-      <Section bg="white">
-        <Reveal className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-8">Del pánico a la calma en 3 pasos</h2>
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
-            {[
-              { 
-                phase: "Paso 1", 
-                title: "Entiende el problema", 
-                desc: "Dejas de adivinar y entiendes por fin qué le pasa a tu perro." 
-              },
-              { 
-                phase: "Paso 2", 
-                title: "Primeros resultados", 
-                desc: "Empiezas a ver los primeros minutos de silencio real." 
-              },
-              { 
-                phase: "Paso 3", 
-                title: "Sal de casa con calma", 
-                desc: "Vuelve a salir sin miedo a encontrar ladridos, quejas de vecinos o destrozos al regresar." 
-              }
-            ].map((item, i) => (
-              <div key={i} className="bg-warm-white p-8 rounded-[24px] border border-border text-center group hover:border-primary/50 transition-colors">
-                <div className="bg-primary text-white px-4 py-1 rounded-full text-xs font-bold uppercase mb-6 inline-block">
-                  {item.phase}
+            {/* BLOQUE DE DOLOR */}
+            <div className="mt-20 max-w-4xl mx-auto text-left bg-white/40 backdrop-blur-sm p-8 md:p-12 rounded-[40px] border border-primary/10 shadow-sm">
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <p className="text-2xl md:text-3xl font-serif font-bold text-dark">No estás loco/a.</p>
+                  <p className="text-xl md:text-2xl font-bold text-primary">Estás agotado/a de vivir pendiente de esto.</p>
                 </div>
-                <h4 className="text-2xl font-bold text-dark mb-4">{item.title}</h4>
-                <p className="text-gray-text leading-relaxed">{item.desc}</p>
+
+                <div className="text-lg md:text-xl text-gray-text leading-relaxed space-y-4">
+                  <p>Porque no se trata solo de ladridos o destrozos.</p>
+                  <p>Se trata de la <strong>tensión constante</strong> de no poder salir en paz, de no saber si estás ayudando a tu perro… o <strong>empeorándolo sin darte cuenta</strong>.</p>
+                </div>
+
+                <div className="pt-8 space-y-6">
+                  <h3 className="text-2xl font-bold text-dark">¿Te pasa que…?</h3>
+                  <ul className="space-y-4">
+                    {[
+                      "Sales de casa con **culpa** y vuelves con **miedo** a lo que puedas encontrar",
+                      "Ya probaste **consejos sueltos** y nada cambió de verdad",
+                      "Tu perro mejora un día… y al siguiente vuelve a **romper, ladrar o colapsar**",
+                      "Te sientes **frustrado/a** porque lo intentas de verdad, pero no sabes exactamente qué hacer",
+                      "Has **perdido tiempo, energía y dinero** probando cosas que no atacan la raíz del problema",
+                      "Tienes **miedo de que esto empeore** y tu perro cada vez tolere menos quedarse solo",
+                      "Te **duele sentir que tu perro sufre**… y no tener una forma clara de ayudarlo"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-start gap-3 text-lg text-dark/80 leading-tight">
+                        <span className="text-primary font-bold text-xl leading-none mt-1">•</span>
+                        <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong class="text-dark font-bold">$1</strong>') }} />
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-8 border-t border-primary/10">
+                  <p className="text-xl md:text-2xl font-bold text-dark leading-tight">
+                    Y lo peor es que, si sigues improvisando, <span className="text-primary">esto no se corrige solo</span>.
+                  </p>
+                  <p className="text-2xl md:text-3xl font-serif font-bold text-primary mt-2">Normalmente empeora.</p>
+                </div>
               </div>
-            ))}
+            </div>
+
+            <img 
+              src="/imagen-dolor.png" 
+              alt="" 
+              className="w-full max-w-4xl mx-auto h-auto rounded-[40px] mt-8 shadow-xl"
+              referrerPolicy="no-referrer"
+            />
+
+            <div className="mt-16 max-w-3xl mx-auto text-left space-y-8 bg-white p-10 md:p-16 rounded-[40px] border border-border shadow-xl">
+              <h3 className="text-3xl md:text-4xl font-serif font-bold text-dark text-center mb-10">
+                ¿Qué vas a lograr con Reset Canino?
+              </h3>
+
+              <div className="space-y-8">
+                <div className="flex gap-4">
+                  <span className="text-2xl shrink-0">✅</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-dark mb-2">Bajar la ansiedad de tu perro cuando te vas</h4>
+                    <p className="text-gray-text leading-relaxed">Para que deje de entrar en crisis cada vez que sales y empiece a quedarse solo con más calma.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-2xl shrink-0">✅</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-dark mb-2">Frenar ladridos, llantos y destrozos desde la raíz</h4>
+                    <p className="text-gray-text leading-relaxed">Sin castigos ni regaños que solo empeoran el problema y te hacen sentir peor.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-2xl shrink-0">✅</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-dark mb-2">Crear una rutina que le dé seguridad a tu perro</h4>
+                    <p className="text-gray-text leading-relaxed">Para que deje de vivir en alerta y tú por fin sientas que estás haciendo las cosas bien.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-2xl shrink-0">✅</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-dark mb-2">Saber exactamente qué hacer antes, durante y después de salir</h4>
+                    <p className="text-gray-text leading-relaxed">Sin seguir improvisando ni probando consejos sueltos que solo te confunden más.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <span className="text-2xl shrink-0">✅</span>
+                  <div>
+                    <h4 className="text-xl font-bold text-dark mb-2">Volver a salir de casa con tranquilidad</h4>
+                    <p className="text-gray-text leading-relaxed">Sin culpa, sin tensión y sin esa sensación horrible de que algo va a salir mal otra vez.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <img 
+              src="/imagen-solución.png" 
+              alt="" 
+              className="w-full max-w-4xl mx-auto h-auto rounded-[40px] mt-8 shadow-xl"
+              referrerPolicy="no-referrer"
+            />
+
           </div>
-        </Reveal>
+        </div>
       </Section>
 
       {/* 4.5) AUTORIDAD */}
       <Section bg="cream">
         <Reveal className="max-w-4xl mx-auto">
-          {/* VSL VIDEO */}
-          <div className="mb-16 max-w-4xl mx-auto overflow-hidden rounded-2xl shadow-2xl border-4 border-white bg-black relative group cursor-pointer">
-            <video 
-              className="w-full h-auto block"
-              controls
-              playsInline
-              poster="/poster.jpg"
-              preload="metadata"
-              onPlay={(e) => e.currentTarget.parentElement?.classList.add('is-playing')}
-              onPause={(e) => e.currentTarget.parentElement?.classList.remove('is-playing')}
-              onEnded={(e) => e.currentTarget.parentElement?.classList.remove('is-playing')}
-            >
-              <source src="/vsl.mp4" type="video/mp4" />
-              Tu navegador no soporta el elemento de video.
-            </video>
-            
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors pointer-events-none group-[.is-playing]:hidden">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-primary rounded-full flex items-center justify-center shadow-2xl transform transition-transform group-hover:scale-110">
-                <Play className="w-10 h-10 md:w-12 md:h-12 text-white fill-white ml-1" />
-              </div>
-            </div>
-          </div>
-
           <div className="flex flex-col md:flex-row items-center gap-12 bg-white p-10 md:p-16 rounded-[40px] border border-border shadow-xl">
             <div className="shrink-0">
               <div className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-primary p-1 shadow-lg">
@@ -685,7 +688,7 @@ export default function App() {
                 />
                 <img 
                   src="/imag-ps.png" 
-                  alt="Oferta Completa Reset Canino" 
+                  alt="Oferta de Lanzamiento Completa Reset Canino" 
                   className="w-full h-auto rounded-xl shadow-md object-contain"
                   referrerPolicy="no-referrer"
                 />
@@ -754,7 +757,7 @@ export default function App() {
                   </div>
                   <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-dark text-white text-xs font-bold mb-8">
                     <Zap className="w-3 h-3 fill-primary text-primary" />
-                    Oferta -73% OFF sólo 20 cupos
+                    Oferta de Lanzamiento -73% OFF sólo 20 cupos
                   </div>
 
                   <div className="bg-red-900 text-white p-8 rounded-[32px] shadow-2xl mb-6 relative overflow-hidden">
@@ -763,7 +766,7 @@ export default function App() {
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full -ml-16 -mb-16 blur-2xl"></div>
                     
                     <h4 className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tight relative z-10">
-                      OFERTA HOY {getDayName()} !!!
+                      OFERTA DE LANZAMIENTO HOY {getDayName()} !!!
                     </h4>
                     
                     <div className="space-y-1 mb-8 opacity-90 relative z-10">
@@ -783,7 +786,7 @@ export default function App() {
                   <div className="space-y-2 mb-8">
                     <p className="flex items-center justify-center gap-2 text-primary font-black animate-pulse text-lg">
                       <Zap className="w-5 h-5 fill-primary" />
-                      Últimos 3 Cupos en Oferta!
+                      Últimos 3 Cupos en Oferta de Lanzamiento!
                     </p>
                     <p className="text-xs text-gray-text font-bold uppercase tracking-widest">
                       Pago único • Acceso de por vida
