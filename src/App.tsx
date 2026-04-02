@@ -557,6 +557,46 @@ export default function App() {
               referrerPolicy="no-referrer"
             />
 
+            {/* VALIDACIÓN EMOCIONAL */}
+            <div className="mt-20 max-w-5xl mx-auto text-center px-4">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-dark mb-4 leading-tight">
+                Esto es lo que muchos dueños viven en silencio
+              </h2>
+              <p className="text-lg md:text-xl text-gray-text max-w-3xl mx-auto mb-12 font-medium">
+                Mensajes reales de personas que no sabían cómo ayudar a su perro con ansiedad por separación
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    main: "“Mi perra tiene ansiedad y ya no sé qué hacer…”",
+                    sub: "He probado de todo, incluso medicación, y sigue igual o peor."
+                  },
+                  {
+                    main: "“He gastado dinero y nada me funciona.”",
+                    sub: "Cada vez que salgo de casa, el mismo problema vuelve a empezar."
+                  },
+                  {
+                    main: "“Ya no es solo que ladre…”",
+                    sub: "Se muerde la cola, se hace daño y vive en un estado de estrés constante."
+                  },
+                  {
+                    main: "“Lo peor no es el destrozo.”",
+                    sub: "Es sentir que tu perro está sufriendo… y no saber cómo ayudarlo de verdad."
+                  }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white p-8 rounded-[32px] border border-border shadow-sm text-left hover:shadow-md transition-shadow">
+                    <p className="text-xl font-bold text-dark mb-3 leading-tight italic">
+                      {item.main}
+                    </p>
+                    <p className="text-gray-text text-base md:text-lg leading-snug">
+                      {item.sub}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="mt-16 max-w-3xl mx-auto text-left space-y-8 bg-white p-10 md:p-16 rounded-[40px] border border-border shadow-xl">
               <h3 className="text-3xl md:text-4xl font-serif font-bold text-dark text-center mb-10">
                 ¿Qué vas a lograr con Reset Canino?
