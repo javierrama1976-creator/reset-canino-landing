@@ -35,11 +35,6 @@ declare global {
 
 const CHECKOUT_URL = "https://pay.hotmart.com/V105096489F?checkoutMode=10&bid=1774912147583";
 
-const getDayName = () => {
-  const days = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
-  return days[new Date().getDay()];
-};
-
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState(15 * 60);
 
@@ -713,31 +708,31 @@ export default function App() {
                     { 
                       icon: "✅", 
                       name: "Reset Canino — Sistema completo", 
-                      val: 22,
+                      val: 350,
                       desc: "El paso a paso para reducir lloros, ladridos, destrucción y pánico al quedarse solo."
                     },
                     { 
                       icon: "🎁", 
                       name: "Guía de Errores Invisibles", 
-                      val: 11,
+                      val: 180,
                       desc: "Descubre las cagadas “bienintencionadas” que empeoran la ansiedad sin que te des cuenta."
                     },
                     { 
                       icon: "🎁", 
                       name: "Audio de Regulación Emocional", 
-                      val: 13,
+                      val: 200,
                       desc: "Un recurso práctico para ayudar a bajar activación y crear un contexto más estable."
                     },
                     { 
                       icon: "🎁", 
                       name: "Video Resumen Paso a Paso", 
-                      val: 9,
+                      val: 150,
                       desc: "Para que sepas exactamente qué hacer sin perderte entre teoría."
                     },
                     { 
                       icon: "🎁", 
                       name: "Asistente IA de Acompañamiento", 
-                      val: 15,
+                      val: 220,
                       desc: "Para resolver dudas, ajustar pasos y no abandonar a mitad del proceso."
                     },
                   ].map((item, i) => (
@@ -745,7 +740,7 @@ export default function App() {
                       <div className="flex items-center justify-between gap-4">
                         <span className="flex items-center gap-2 font-bold text-dark text-lg">
                           <span>{item.icon}</span>
-                          {item.name} — <span className="line-through opacity-60 font-medium">${item.val} USD</span>
+                          {item.name} — <span className="line-through opacity-60 font-medium">${item.val} MXN</span>
                         </span>
                       </div>
                       <p className="text-gray-text text-sm ml-8 leading-snug">
@@ -761,8 +756,8 @@ export default function App() {
                     <span className="ml-2 text-xs font-bold text-gray-text">5/5</span>
                   </div>
                   <div className="flex items-center justify-center gap-4 mb-4">
-                    <span className="text-xl text-gray-text line-through opacity-50 font-bold">$70 USD</span>
-                    <span className="text-4xl font-black text-dark">$14.97 USD</span>
+                    <span className="text-xl text-gray-text line-through opacity-50 font-bold">$1,100 MXN</span>
+                    <span className="text-4xl font-black text-dark">$299 MXN</span>
                   </div>
                   <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-dark text-white text-xs font-bold mb-8">
                     <Zap className="w-3 h-3 fill-primary text-primary" />
@@ -775,7 +770,7 @@ export default function App() {
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-full -ml-16 -mb-16 blur-2xl"></div>
                     
                     <h4 className="text-xl md:text-2xl font-black mb-4 uppercase tracking-tight relative z-10">
-                      OFERTA DE LANZAMIENTO HOY {getDayName()} !!!
+                      OFERTA DE LANZAMIENTO
                     </h4>
                     
                     <div className="space-y-1 mb-8 opacity-90 relative z-10">
